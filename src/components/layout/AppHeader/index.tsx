@@ -1,12 +1,12 @@
 import React from 'react';
-import AppButton from 'components/base/AppButton';
+
+const style = require('./index.module.scss');
 
 const AppHeader: React.FC = () => {
-    return (
-        <div className="app-header">
-            <AppButton>确定</AppButton>
-        </div>
-    );
+  return (
+    <div className={style.appHeader}>
+    </div>
+  );
 }
 
 export default AppHeader;
