@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import AppButton from 'components/base/AppButton'
 
 const style = require('./MenuItem.module.scss')
 
@@ -9,7 +8,6 @@ interface MenuItemProps {
 }
 
 const MenuItem = (props: MenuItemProps) => {
-
   const { menuName, subMenu } = props
   const [ showSubMenu, setShowSubMenu ] = useState(false)
 
