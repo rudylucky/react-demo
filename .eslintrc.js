@@ -30,6 +30,7 @@ module.exports = {
     "array-bracket-spacing": [2, "always"],
     "computed-property-spacing": [2],
     "no-whitespace-before-property": [2],
+    "keyword-spacing": [2],
     "comma-spacing": [2],
     "space-unary-ops": [2],
     "block-spacing": [2],
