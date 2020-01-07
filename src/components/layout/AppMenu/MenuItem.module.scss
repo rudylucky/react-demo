@@ -1,0 +1,23 @@
+$menuHeight: 50px;
+
+.menuItem {
+  width: 120px;
+  height: $menuHeight;
+  line-height: $menuHeight;
+  cursor: pointer;
+  user-select: none;
+
+  .subMenu {
+    height: $menuHeight;
+    color: #fff;
+    background-color: #000;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, .6)
+    }
+  }
+
+  &:hover {
+    background-color: #888;
+  }
+}

@@ -6,8 +6,6 @@ const style = require('./index.module.scss')
 
 const BaseLayout: React.FC = () => {
 
-
-
   return (
     <div className={style.baseLayout}>
       <div className={style.header}>

@@ -7,15 +7,4 @@ $menuHieght: 50px;
     justify-content: center;
     height: $menuHieght;
 
-    .menuItem {
-        margin: 0 2ex;
-        width: 120px;
-        height: $menuHieght;
-        line-height: $menuHieght;
-        cursor: pointer;
-
-        &:hover {
-            background-color: #888;
-        }
-    }
 }
