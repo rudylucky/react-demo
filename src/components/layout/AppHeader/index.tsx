@@ -1,12 +1,15 @@
 import React from 'react';
 import AppButton from 'components/base/AppButton';
 
-const BaseLayout: React.FC = () => {
+const AppHeader: React.FC = (props) => {
+
+
+
   return (
-    <div className="base-layout">
+    <div className="app-header">
       <AppButton>确定</AppButton>
     </div>
   );
 }
 
-export default BaseLayout;
+export default AppHeader;
