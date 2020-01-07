@@ -1,13 +1,20 @@
-import React from 'react';
-import AppButton from 'components/base/AppButton';
+import React from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUser } from '@fortawesome/free-solid-svg-icons'
+
+const style = require('./index.module.scss')
+
 
 const AppHeader: React.FC = (props) => {
 
-
+  const username = '刘迪';
 
   return (
-    <div className="app-header">
-      <AppButton>确定</AppButton>
+    <div className={style.appHeader}>
+      <div className={style.userContainer}>
+        <span className={style.username}>{username}</span>
+        <FontAwesomeIcon className={style.userIcon} icon={faUser} />
+      </div>
     </div>
   );
 }

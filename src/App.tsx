@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import BaseLayout from 'components/layout/BasLayout';
+import BaseLayout from 'components/layout/BaseLayout';
 
 const App: React.FC = () => {
   return (

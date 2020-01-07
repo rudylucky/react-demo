@@ -1,3 +1,25 @@
+$headerHeight: 60px;
+
 .appHeader {
   height: 100%;
+  margin: 0;
+
+  .userContainer {
+    line-height: $headerHeight;
+    height: $headerHeight;
+    float: right;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+
+    .username {
+      font-size: 14px;
+      margin-right: 10px;
+    }
+
+    .userIcon {
+      font-size: 25px;
+    }
+  }
+
 }
