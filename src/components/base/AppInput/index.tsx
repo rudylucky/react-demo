@@ -1,9 +1,9 @@
-import React from 'react';
+import React from 'react'
 
 const AppInput: React.FC = () => {
   return (
     <input></input>
-  );
-};
+  )
+}
 
-export default AppInput;
+export default AppInput

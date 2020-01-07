@@ -1,3 +1,3 @@
-import { articleService } from "common/requests";
+import { articleService } from 'common/requests'
 
-articleService('menu/');
+articleService('menu/')

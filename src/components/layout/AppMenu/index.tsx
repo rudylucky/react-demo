@@ -1,6 +1,6 @@
-import React from 'react';
-import AppButton from 'components/base/AppButton';
-import MenuItem from './MenuItem';
+import React from 'react'
+import AppButton from 'components/base/AppButton'
+import MenuItem from './MenuItem'
 
 const style = require('./index.module.scss')
 
@@ -10,7 +10,7 @@ const AppMenu: React.FC = (props) => {
     { name: '首页', },
     {
       name: '技术',
-      subMenu: ['Java', 'JS', 'Python', 'Golang'],
+      subMenu: [ 'Java', 'JS', 'Python', 'Golang' ],
     },
     { name: '生活', },
     { name: '杂谈', },
@@ -21,9 +21,9 @@ const AppMenu: React.FC = (props) => {
 
   return (
     <div className={style.appMenu}>
-      {menus.map(v => (<MenuItem name={v?.name} subMenu={v?.subMenu} />))}
+      {menus.map(v => (<MenuItem menuName={v?.name} subMenu={v?.subMenu} />))}
     </div>
-  );
+  )
 }
 
-export default AppMenu;
+export default AppMenu

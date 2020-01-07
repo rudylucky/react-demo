@@ -10,4 +10,4 @@ const appConfig = {
   baseUrl
 }
 
-export default appConfig;
+export default appConfig

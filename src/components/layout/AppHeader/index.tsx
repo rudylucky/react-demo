@@ -5,9 +5,9 @@ import { faUser } from '@fortawesome/free-solid-svg-icons'
 const style = require('./index.module.scss')
 
 
-const AppHeader: React.FC = (props) => {
+const AppHeader = () => {
 
-  const username = '刘迪';
+  const username = '刘迪'
 
   return (
     <div className={style.appHeader}>
@@ -16,7 +16,7 @@ const AppHeader: React.FC = (props) => {
         <FontAwesomeIcon className={style.userIcon} icon={faUser} />
       </div>
     </div>
-  );
+  )
 }
 
-export default AppHeader;
+export default AppHeader

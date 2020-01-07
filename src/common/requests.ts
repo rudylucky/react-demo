@@ -1,9 +1,9 @@
-import _ from "./utils";
-import appConfig from "./config";
+import _ from './utils'
+import appConfig from './config'
 
 enum HttpMethod {
-  GET = 0,
-  POST = 1
+  GET,
+  POST
 }
 
 function parseMethod(method: HttpMethod): string {
@@ -16,22 +16,25 @@ function parseMethod(method: HttpMethod): string {
 }
 
 interface IConfig {
-  url: string
-  data?: string
+  url: string;
+  data?: object;
 }
 
 const defaultOption: IConfig & RequestInit = {
   method: 'post',
   url: 'Invalid URL'
-};
+}
 
-export function request(url: string, data?: string): any
-export function request(url: string, method: number, data: string): any
-export function request(config: IConfig & RequestInit): any
-export function request(arg0: string | (IConfig & RequestInit), arg1?: string | number, arg2?: string) {
-
+export function request(url: string, data?: object): any;
+export function request(url: string, method: number, data: object): any;
+export function request(config: IConfig & RequestInit): any;
+export function request(
+  arg0: string | (IConfig & RequestInit),
+  arg1?: object | number,
+  arg2?: object
+) {
   JSON.parse(JSON.stringify(defaultOption))
-  const config = defaultOption;
+  const config = defaultOption
 
   // (config)
   if (typeof arg0 === 'object') {
@@ -51,29 +54,31 @@ export function request(arg0: string | (IConfig & RequestInit), arg1?: string | 
     config.data = arg1
     return fetch(arg0, config)
   }
-
 }
 
 interface AppResponse {
-  status: number,
-  data: object,
-  errorMessage: string,
-  errorCode: string
+  status: number;
+  data: object;
+  errorMessage: string;
+  errorCode: string;
 }
 
 abstract class BaseService {
+  private baseUrl: string;
 
-  constructor(private baseUrl: string) {
+  constructor(suffix: string) {
+    this.baseUrl = appConfig.baseUrl + suffix
   }
 
+  request(api: string, param: object) { }
+
   search(data: object) {
-    request(this.baseUrl + '/list', JSON.stringify(data));
+    request(this.baseUrl + '/search', data)
   }
 
   list(data: object) {
+    request(this.baseUrl + '/list', JSON.stringify)
   }
-
-  
 }
 
 function baseService(suffix: string): () => AppResponse {

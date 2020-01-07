@@ -4,14 +4,14 @@ import AppButton from 'components/base/AppButton'
 const style = require('./MenuItem.module.scss')
 
 interface MenuItemProps {
-  name: string,
+  menuName: string,
   subMenu?: Array<string>
 }
 
-const MenuItem: React.FC<MenuItemProps> = (props) => {
+const MenuItem = (props: MenuItemProps) => {
 
-  const { name: menuName, subMenu } = props
-  const [showSubMenu, setShowSubMenu] = useState(false)
+  const { menuName, subMenu } = props
+  const [ showSubMenu, setShowSubMenu ] = useState(false)
 
   const handleMouseOver = () => setShowSubMenu(true)
   const handleMouseLeave = () => setShowSubMenu(false)
@@ -21,7 +21,7 @@ const MenuItem: React.FC<MenuItemProps> = (props) => {
       <div>{menuName}</div>
       {subMenu && subMenu.map(v => (<div hidden={!showSubMenu} className={style.subMenu}>{v}</div>))}
     </div>
-  );
+  )
 }
 
-export default MenuItem;
+export default MenuItem

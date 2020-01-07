@@ -1,10 +1,9 @@
-import React from 'react';
-import AppHeader from '../AppHeader';
-import AppMenu from '../AppMenu';
+import React from 'react'
+import AppHeader from '../AppHeader'
+import AppMenu from '../AppMenu'
 
 const style = require('./index.module.scss')
-
-const BaseLayout: React.FC = () => {
+const BaseLayout = () => {
 
   return (
     <div className={style.baseLayout}>
@@ -16,7 +15,7 @@ const BaseLayout: React.FC = () => {
       </div>
       <div className={style.content}></div>
     </div>
-  );
+  )
 }
 
-export default BaseLayout;
+export default BaseLayout

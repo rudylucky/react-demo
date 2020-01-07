@@ -1,9 +1,13 @@
-import React from 'react';
+import React from 'react'
 
-const HomePage: React.FC = (props) => {
+interface AppHomePage {
+  children?: any
+}
+
+const HomePage = (props: AppHomePage) => {
   return (
     <button>{props.children}</button>
-  );
-};
+  )
+}
 
-export default HomePage;
+export default HomePage

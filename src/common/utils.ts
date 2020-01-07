@@ -1,5 +1,5 @@
-export function merge<A, B>(source: A, target: B): A | B  {
-  return source;
+export function merge<A, B>(source: A, target: B): A | B {
+  return source
 }
 
 const _ = {
