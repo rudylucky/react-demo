@@ -1,0 +1,29 @@
+.articleItem {
+  width: 700px;
+  height: 87px;
+  border: 0.5px solid #eee;
+  margin: 20px 0 0 30px;
+  text-align: start;
+  .img {
+    width: 120px;
+    height: 100%;
+    background-color: #eee;
+    float: left;
+    box-shadow: 0 0 5px 3px #ddd;
+    margin-right: 10px;
+  }
+  .summary {
+    float: left;
+  }
+  .title {
+  }
+  .createTime {
+    font-size: 14px;
+    color: #888;
+    margin: 8px 0;
+  }
+  .abstract {
+    font-size: 13px;
+    color: #888;
+  }
+}

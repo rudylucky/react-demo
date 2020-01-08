@@ -1,9 +1,11 @@
 import React from 'react'
 import AppHeader from '../AppHeader'
 import AppMenu from '../AppMenu'
-import ArticleList from 'pages/Article/ArticleList'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import route from 'common/route'
+import style from './index.module.scss'
 
-const style = require('./index.module.scss')
+
 const BaseLayout = () => {
 
   return (
@@ -11,12 +13,16 @@ const BaseLayout = () => {
       <div className={style.header}>
         <AppHeader />
       </div>
-      <div className={style.menuBar}>
-        <AppMenu />
-      </div>
-      <div className={style.content}>
-        <ArticleList />
-      </div>
+      <BrowserRouter>
+        <div className={style.menuBar}>
+          <AppMenu routes={route} />
+        </div>
+        <div className={style.content}>
+          <Switch>
+            {route.map(v => <Route exact path={v.path} key={v.code}>{v.component}</Route>)}
+          </Switch>
+        </div>
+      </BrowserRouter>
     </div>
   )
 }

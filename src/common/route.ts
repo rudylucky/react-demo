@@ -2,9 +2,9 @@ import ArticleList from 'pages/Article/ArticleList'
 import HomePage from 'pages/HomePage'
 
 export interface AppRoute {
-  name?: string,
-  code?: string,
-  path?: string,
+  name: string,
+  code: string,
+  path: string,
   component?: (props?: any) => JSX.Element,
   children?: Array<AppRoute>
 }

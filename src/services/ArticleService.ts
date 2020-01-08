@@ -1,13 +1,13 @@
 import BaseService, { BaseEntity } from './BaseService'
 
 export interface ArticleEntity extends BaseEntity {
-  title?: string,
-  authorCode?: string,
-  abstract?: string,
-  upVote?: number,
-  tag?: string,
-  category?: string,
-  totalRead?: number
+  title: string,
+  authorCode: string,
+  abstract: string,
+  upVote: number,
+  tag: string,
+  category: string,
+  totalRead: number
 }
 
 class ArticleService extends BaseService<ArticleEntity> {

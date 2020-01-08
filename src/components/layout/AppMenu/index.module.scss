@@ -1,10 +1,14 @@
 $menuHieght: 50px;
 
 .appMenu {
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: $menuHieght;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: $menuHieght;
 
+  .link {
+    text-decoration: none;
+    color: #fff;
+  }
 }
