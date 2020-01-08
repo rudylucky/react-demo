@@ -2,20 +2,25 @@
   width: 700px;
   height: 87px;
   border: 0.5px solid #eee;
-  margin: 20px 0 0 30px;
+  margin-bottom: 20px;
   text-align: start;
+  display: flex;
+  justify-content: stretch;
   .img {
     width: 120px;
     height: 100%;
     background-color: #eee;
-    float: left;
     box-shadow: 0 0 5px 3px #ddd;
-    margin-right: 10px;
+    margin-right: 20px;
   }
   .summary {
-    float: left;
+    flex-grow: 1;
+    margin-right: 20px;
   }
   .title {
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
   }
   .createTime {
     font-size: 14px;

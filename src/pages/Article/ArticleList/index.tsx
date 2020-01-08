@@ -1,5 +1,5 @@
 import React from 'react'
-import ArticleService, { ArticleEntity } from 'services/ArticleService'
+import { ArticleEntity } from 'services/ArticleService'
 import ArticleItem from 'components/base/ArticleItem'
 import style from './index.module.scss'
 
