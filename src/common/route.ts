@@ -5,7 +5,7 @@ export interface AppRoute {
   name?: string,
   code?: string,
   path?: string,
-  component?: () => JSX.Element,
+  component?: (props?: any) => JSX.Element,
   children?: Array<AppRoute>
 }
 
@@ -19,7 +19,6 @@ const route: Array<AppRoute> = [{
   name: '技术',
   code: 'tech',
   path: 'tech',
-  component: HomePage,
   children: [{
     name: 'Java',
     code: 'java',
@@ -42,6 +41,7 @@ const route: Array<AppRoute> = [{
   name: '生活',
   code: 'life',
   path: 'life',
+  component: HomePage,
 },
 {
   name: '杂谈',
