@@ -29,27 +29,27 @@ abstract class BaseService<T extends BaseEntity> {
   }
 
   search (data: T): Array<T> {
-    return this.request('search', data)
+    return this.request('/search', data)
   }
 
   list (data: T): Array<T> {
-    return this.request('list', data)
+    return this.request('/list', data)
   }
 
   save (data: T) {
-    return this.request('save', data)
+    return this.request('/save', data)
   }
 
   saveBatch (data: T) {
-    this.request('save/batch', data)
+    this.request('/save/batch', data)
   }
 
   update (data: T) {
-    this.request('update', data)
+    this.request('/update', data)
   }
 
   info (data: T): T {
-    return this.request('info', data)
+    return this.request('/info', data)
   }
 }
 

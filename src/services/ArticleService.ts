@@ -25,7 +25,17 @@ class ArticleService extends BaseService<ArticleEntity> {
     return ArticleService.instance
   }
 
-  upVote = (data: ArticleEntity) => this.request('upVote', data)
+  upVote(data: ArticleEntity) {
+    return this.request('upVote', data)
+  }
 
-  listWithContent = (data: ArticleEntity) => this.request('listWithContent', data)
+  listWithContent(data: ArticleEntity) {
+    return this.request('listWithContent', data)
+  }
+
+  infoWithContent(data: ArticleEntity) {
+    return this.request('infoWithContent', data)
+  }
 }
+
+export default ArticleService

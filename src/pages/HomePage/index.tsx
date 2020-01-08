@@ -6,7 +6,7 @@ interface AppHomePage {
 
 const HomePage = (props: AppHomePage) => {
   return (
-    <button>{props.children}</button>
+    <div>homepage</div>
   )
 }
 

@@ -1,16 +1,24 @@
 import React from 'react'
 import MenuItem from './MenuItem'
-import MenuService, { MenuEntity } from 'services/MenuService'
+import route from 'common/route'
+import {
+  BrowserRouter as Router,
+  Route,
+} from 'react-router-dom'
 
 const style = require('./index.module.scss')
 
 const AppMenu = () => {
 
-  const menus = MenuService.getInstance().getMenu()
-
   return (
     <div className={style.appMenu}>
-      {menus.map(v => <MenuItem code={v.code} name={v.name} key={v.code} >{v.children}</MenuItem>)}
+      <Router>
+        {route.map(v => (
+          <Route path={v.path} key={v.code} component={v.component}>
+            <MenuItem key={v.code} {...v} />
+          </Route>
+        ))}
+      </Router>
     </div>
   )
 }

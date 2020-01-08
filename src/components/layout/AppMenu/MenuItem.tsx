@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { MenuEntity } from 'services/MenuService'
+import { AppRoute } from 'common/route'
 
 const style = require('./MenuItem.module.scss')
 
-const MenuItem = (props: MenuEntity) => {
+const MenuItem = (props: AppRoute) => {
   const { code, name, path, children } = props
   const [showSubMenu, setShowSubMenu] = useState(false)
 
