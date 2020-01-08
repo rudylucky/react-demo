@@ -1,5 +1,3 @@
-import _ from './utils'
-import appConfig from './config'
 import { AppResponse, BaseEntity } from 'services/BaseService'
 
 enum HttpMethod {
@@ -64,9 +62,9 @@ function callRemote(config: IConfig & RequestInit) {
     .then(checkResposeData)
 }
 
-function checkHttpStatus(resp: Response): AppResponse<BaseEntity> {
+function checkHttpStatus(resp: Response) {
   const response = resp.json()
-  return response as AppResponse<BaseEntity>
+  return response
 }
 
 function checkResposeData(resp: AppResponse<BaseEntity>): any {
