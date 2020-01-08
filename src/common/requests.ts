@@ -55,36 +55,3 @@ export function request(
     return fetch(arg0, config)
   }
 }
-
-interface AppResponse {
-  status: number;
-  data: object;
-  errorMessage: string;
-  errorCode: string;
-}
-
-abstract class BaseService {
-  private baseUrl: string;
-
-  constructor(suffix: string) {
-    this.baseUrl = appConfig.baseUrl + suffix
-  }
-
-  request(api: string, param: object) { }
-
-  search(data: object) {
-    request(this.baseUrl + '/search', data)
-  }
-
-  list(data: object) {
-    request(this.baseUrl + '/list', JSON.stringify)
-  }
-}
-
-function baseService(suffix: string): () => AppResponse {
-  return () => request(appConfig.baseUrl + suffix)
-}
-
-export function articleService(suffix: string): () => AppResponse {
-  return baseService('article/')
-}

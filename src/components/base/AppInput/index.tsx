@@ -1,6 +1,6 @@
 import React from 'react'
 
-const AppInput: React.FC = () => {
+const AppInput = () => {
   return (
     <input></input>
   )

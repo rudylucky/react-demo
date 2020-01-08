@@ -1,6 +1,6 @@
 import React from 'react'
 
-const AppTable: React.FC = () => {
+const AppTable = () => {
   return (
     <table></table>
   )

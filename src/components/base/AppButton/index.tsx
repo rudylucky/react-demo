@@ -1,6 +1,10 @@
 import React from 'react'
 
-const AppButton: React.FC = (props) => {
+interface AppButtonProps {
+  children: any
+}
+
+const AppButton = (props: AppButtonProps) => {
   return (
     <button>{props.children}</button>
   )

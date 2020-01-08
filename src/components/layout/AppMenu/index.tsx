@@ -1,24 +1,16 @@
 import React from 'react'
 import MenuItem from './MenuItem'
+import MenuService, { MenuEntity } from 'services/MenuService'
 
 const style = require('./index.module.scss')
 
 const AppMenu = () => {
-  const menus: Array<{ name: string, subMenu?: Array<string> }> = [
-    { name: '首页', }, {
-      name: '技术',
-      subMenu: [ 'Java', 'JS', 'Python', 'Golang' ],
-    },
-    { name: '生活', },
-    { name: '杂谈', },
-    { name: '笔记', },
-    { name: '电影', },
-    { name: '读书' }
-  ]
+
+  const menus = MenuService.getInstance().getMenu()
 
   return (
     <div className={style.appMenu}>
-      {menus.map(v => (<MenuItem menuName={v?.name} subMenu={v?.subMenu} />))}
+      {menus.map(v => <MenuItem code={v.code} name={v.name} key={v.code} >{v.children}</MenuItem>)}
     </div>
   )
 }

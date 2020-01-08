@@ -27,7 +27,8 @@ module.exports = {
   "rules": {
     "indent": ["error", 2, { "SwitchCase": 1 }],
     "object-curly-spacing": [2, "always"],
-    "array-bracket-spacing": [2, "always"],
+    "array-bracket-spacing": [2, "never"],
+    "rest-spread-spacing": [2],
     "computed-property-spacing": [2],
     "no-whitespace-before-property": [2],
     "space-infix-ops": [2, { "int32Hint": false }],
