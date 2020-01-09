@@ -6,6 +6,8 @@ $menuHeight: 50px;
   line-height: $menuHeight;
   cursor: pointer;
   user-select: none;
+  position: relative;
+  z-index: 200;
 
   .subMenu {
     height: $menuHeight;
@@ -13,7 +15,7 @@ $menuHeight: 50px;
     background-color: #000;
 
     &:hover {
-      background-color: rgba(0, 0, 0, .6)
+      background-color: #888
     }
   }
 
