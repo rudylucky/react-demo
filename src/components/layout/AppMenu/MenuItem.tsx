@@ -14,9 +14,9 @@ const MenuItem = (props: AppRoute) => {
   return (
     <div onMouseLeave={handleMouseLeave} onMouseOver={handleMouseOver} className={style.menuItem}>
       <Link className={style.link} to={path} key={code}>{name}</Link>
-      {children && children.map(v =>
+      {children && showSubMenu && children.map(v =>
         <Link className={style.link} to={v.path} key={v.code} >
-          <div hidden={!showSubMenu} key={v.code} className={style.subMenu}>
+          <div key={v.code} className={style.subMenu}>
             {v.name}
           </div>
         </Link>

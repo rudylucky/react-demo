@@ -1,0 +1,40 @@
+.homePage {
+  overflow: hidden;
+  .imgContainer {
+    height: 300px;
+    @keyframes slide {
+      0%,
+      15% {
+        margin-left: 0;
+      }
+      20%,
+      35% {
+        margin-left: -100%;
+      }
+      40%,
+      55% {
+        margin-left: -200%;
+      }
+      60%,
+      75% {
+        margin-left: -300%;
+      }
+      80%,
+      95% {
+        margin-left: -400%;
+      }
+    }
+    width: 500%;
+    animation: slide 10s ease-out infinite;
+
+    .slide {
+      padding: 5px;
+      background-color: #eee;
+      box-sizing: border-box;
+      width: 20%;
+      border: 3px solid #888;
+      height: 100%;
+      float: left;
+    }
+  }
+}

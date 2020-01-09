@@ -1,4 +1,4 @@
-import ArticleList from 'pages/Article/ArticleList'
+import ArticleList from 'pages/ArticleListPage'
 import HomePage from 'pages/HomePage'
 
 export interface AppRoute {
