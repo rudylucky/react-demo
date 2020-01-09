@@ -10,7 +10,7 @@ export interface AppMenuProps {
 
 const AppMenu = (props: AppMenuProps) => {
   const { routes } = props
-  const mappings = routes.map(v => <Link className={style.link} to={v.path} key={v.code}><MenuItem {...v} /></Link>)
+  const mappings = routes.map(v => <MenuItem key={v.code} {...v} />)
 
   return (
     <div className={style.appMenu}>

@@ -7,13 +7,20 @@ $menuHeight: 50px;
   cursor: pointer;
   user-select: none;
 
+  .link {
+    display: inline-block;
+    width: 120px;
+    height: $menuHeight;
+    text-decoration: none;
+    color: #fff;
+  }
   .subMenu {
     height: $menuHeight;
     color: #fff;
     background-color: #000;
 
     &:hover {
-      background-color: #888
+      background-color: #888;
     }
   }
 

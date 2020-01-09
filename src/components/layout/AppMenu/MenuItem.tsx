@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { AppRoute } from 'common/route'
+import { Link } from 'react-router-dom'
 
 const style = require('./MenuItem.module.scss')
 
@@ -12,8 +13,14 @@ const MenuItem = (props: AppRoute) => {
 
   return (
     <div onMouseLeave={handleMouseLeave} onMouseOver={handleMouseOver} className={style.menuItem}>
-      <div>{name}</div>
-      {children && children.map(v => <div hidden={!showSubMenu} key={v.code} className={style.subMenu}>{v.name}</div>)}
+      <Link className={style.link} to={path} key={code}>{name}</Link>
+      {children && children.map(v =>
+        <Link className={style.link} to={v.path} key={v.code} >
+          <div hidden={!showSubMenu} key={v.code} className={style.subMenu}>
+            {v.name}
+          </div>
+        </Link>
+      )}
     </div>
   )
 }

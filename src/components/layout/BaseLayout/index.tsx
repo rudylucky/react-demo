@@ -8,18 +8,22 @@ import { ArticleEntity } from 'services/ArticleService'
 import HomePage from 'pages/HomePage'
 
 
-function routers(config: Array<AppRoute>, prefix: string = '') {
-  config.map(v => {
-    if (!v.children) {
-      return <Route exact path={v.path} key={v.code} component={v.component}></Route>
-    }
-  })
+function composeRouter(parents: Array<AppRoute>, routers: Array<AppRoute>): Array<AppRoute> {
+
+  if (!parents || !parents.length) {
+    return routers
+  }
+
+  parents.forEach(route => route.children?.forEach(v => v.path = route.path + v.path))
+  const nextParents = parents.filter(v => v.children).flatMap(route => route.children)
+
+  routers = routers.concat(parents)
+  return composeRouter(nextParents as Array<AppRoute>, routers)
 }
 
 const BaseLayout = () => {
 
-  const routers = route.map(v => <Route exact path={v.path} key={v.code} component={v.component}></Route>)
-
+  const routers = composeRouter(route, [])
 
   return (
     <div className={style.baseLayout}>
@@ -31,7 +35,7 @@ const BaseLayout = () => {
           <AppMenu routes={route} />
         </div>
         <div className={style.content}>
-          {routers}
+          {routers.map(v => <Route exact path={v.path} key={v.code} component={v.component}></Route>)}
         </div>
       </BrowserRouter>
     </div>
