@@ -5,6 +5,8 @@
   .menuBar {
     height: 50px;
     background-color: #000;
+    position: relative;
+    z-index: 100;
   }
   .content {
     height: 1000px;

@@ -6,8 +6,6 @@ $menuHeight: 50px;
   line-height: $menuHeight;
   cursor: pointer;
   user-select: none;
-  position: relative;
-  z-index: 200;
 
   .subMenu {
     height: $menuHeight;
