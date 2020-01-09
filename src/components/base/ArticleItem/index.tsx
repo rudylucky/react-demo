@@ -13,7 +13,7 @@ const ArticleItem = (props: ArticleEntity) => {
           {props.title}
         </div>
         <div className={style.createTime}>
-          {props.createTime?.toLocaleDateString()}
+          {props.createTime}
         </div>
         <div className={style.abstract}>
           {props.abstract}

@@ -1,12 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import AppHeader from '../AppHeader'
 import AppMenu from '../AppMenu'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import route from 'common/route'
 import style from './index.module.scss'
+import { ArticleEntity } from 'services/ArticleService'
+import HomePage from 'pages/HomePage'
 
 
 const BaseLayout = () => {
+
+  const routers = route.map(v => <Route exact path={v.path} key={v.code} component={v.component}></Route>)
 
   return (
     <div className={style.baseLayout}>
@@ -18,9 +22,7 @@ const BaseLayout = () => {
           <AppMenu routes={route} />
         </div>
         <div className={style.content}>
-          <Switch>
-            {route.map(v => <Route exact path={v.path} key={v.code}>{v.component}</Route>)}
-          </Switch>
+          {routers}
         </div>
       </BrowserRouter>
     </div>

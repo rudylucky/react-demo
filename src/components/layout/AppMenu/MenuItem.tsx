@@ -10,8 +10,6 @@ const MenuItem = (props: AppRoute) => {
   const handleMouseOver = () => setShowSubMenu(true)
   const handleMouseLeave = () => setShowSubMenu(false)
 
-  console.log('name', name)
-
   return (
     <div onMouseLeave={handleMouseLeave} onMouseOver={handleMouseOver} className={style.menuItem}>
       <div>{name}</div>

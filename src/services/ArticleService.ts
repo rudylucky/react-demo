@@ -18,7 +18,7 @@ class ArticleService extends BaseService<ArticleEntity> {
     super('article')
   }
 
-  static getInstance = () => {
+  static getInstance() {
     if (typeof ArticleService.instance === 'undefined') {
       ArticleService.instance = new ArticleService()
     }

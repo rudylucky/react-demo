@@ -8,6 +8,7 @@ $menuHieght: 50px;
   height: $menuHieght;
 
   .link {
+    flex-shrink: 1;
     text-decoration: none;
     color: #fff;
   }

@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 interface AppHomePage {
   children?: any
 }
 
 const HomePage = (props: AppHomePage) => {
+
   return (
-    <div>homepage</div>
+    <div>homepage works</div>
   )
 }
 

@@ -11,9 +11,9 @@ export interface AppResponse<T> {
 export interface BaseEntity {
   id?: number,
   code?: string,
-  createTime?: Date,
+  createTime?: string,
   createUser?: string,
-  updateTime?: Date,
+  updateTime?: string,
   updateUser?: string
 }
 
@@ -32,7 +32,7 @@ abstract class BaseService<T extends BaseEntity> {
     return this.request('/search', data)
   }
 
-  list (data: T): Array<T> {
+  list (data: T = {} as T): Promise<Array<T>> {
     return this.request('/list', data)
   }
 
