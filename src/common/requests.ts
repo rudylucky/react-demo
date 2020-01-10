@@ -95,6 +95,8 @@ function checkResposeData(resp: AppResponse<BaseEntity>): any {
   if (resp.errorCode) {
     console.error('http fetch error', resp)
   }
-  console.info('http fetch result', resp.data)
+  if (typeof resp.data !== 'string') {
+    console.info('http fetch result', resp.data)
+  }
   return resp.data
 }
