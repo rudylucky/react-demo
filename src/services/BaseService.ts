@@ -1,4 +1,4 @@
-import { request } from 'common/requests'
+import { request, ContentType } from 'common/requests'
 import appConfig from 'common/config'
 
 export interface AppResponse<T> {
@@ -24,8 +24,11 @@ abstract class BaseService<T extends BaseEntity> {
     this.baseUrl = appConfig.baseUrl + suffix
   }
 
-  request(api: string, param: T = {} as T): any {
-    return request(this.baseUrl + api, param)
+  request(api: string = '', param: T | object = {} as T, contentType?: ContentType): any {
+    if (!api.startsWith('/')) {
+      api = '/' + api
+    }
+    return request(this.baseUrl + api, param, contentType)
   }
 
   search (data: T): Array<T> {

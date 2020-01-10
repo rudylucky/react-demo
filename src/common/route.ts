@@ -1,5 +1,6 @@
 import ArticleList from 'pages/ArticleListPage'
 import HomePage from 'pages/HomePage'
+import AritcleView from 'pages/ArticleView'
 
 export interface AppRoute {
   name: string,
@@ -24,6 +25,7 @@ const route: Array<AppRoute> = [{
     name: 'Java',
     code: 'java',
     path: '/java',
+    component: AritcleView,
   }, {
     name: 'JS',
     code: 'js',

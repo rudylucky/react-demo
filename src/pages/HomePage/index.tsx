@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
-
 import style from './index.module.scss'
 
-interface AppHomePage {
+interface AppHomePageProps {
   children?: any
 }
 
-const HomePage = (props: AppHomePage) => {
+const HomePage = (props: AppHomePageProps) => {
 
   return (
     <div className={style.homePage}>

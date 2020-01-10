@@ -1,4 +1,5 @@
 import BaseService, { BaseEntity } from './BaseService'
+import { ContentType } from 'common/requests'
 
 export interface ArticleEntity extends BaseEntity {
   title: string,
@@ -27,6 +28,10 @@ class ArticleService extends BaseService<ArticleEntity> {
 
   upVote(data: ArticleEntity) {
     return this.request('upVote', data)
+  }
+
+  getContent(articleCode: string) {
+    return this.request('getContent', { articleCode }, ContentType.FORM)
   }
 
   listWithContent(data: ArticleEntity) {
