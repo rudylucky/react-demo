@@ -4,25 +4,34 @@ import ArticleService from 'services/ArticleService'
 import markdownStyle from './markdown.module.scss'
 import style from './index.module.scss'
 
-// import hljs from 'highlight.js'
-// import 'highlight.js/styles/github.css'
-
 import prismjs from 'prismjs'
 import 'prismjs/themes/prism.css'
-require('prismjs/components/prism-java')
-// const loadLanguages = require('prismjs/components/index')
-// loadLanguages([java])
+import 'prismjs/components/prism-java'
 
+var toc: Array<any> = []
+
+const renderer = new marked.Renderer()
+renderer.heading = (text, level, raw, slugger) => {
+  var anchor = renderer.options.headerPrefix + raw.toLowerCase().replace(/[^\w\\u4e00-\\u9fa5]]+/g, '-')
+  toc.push({
+    anchor: anchor,
+    level: level,
+    text: text
+  })
+  const header = `<a href="#table-of-contents"><h ${level} id="${anchor}">${text}</h${level}></a>`
+  return header
+}
+
+console.log(toc)
 
 marked.setOptions({
-  highlight: function(code, lang) {
+  highlight: (code, lang) => {
     if (['mermaid', ''].includes(lang)) {
       return code
     }
-    console.log(lang)
-    console.log(prismjs.highlight(code, prismjs.languages[lang], lang))
     return prismjs.highlight(code, prismjs.languages[lang], lang)
   },
+  renderer,
   pedantic: false,
   gfm: true,
   breaks: false,
@@ -49,6 +58,7 @@ const AritcleView = (props: ArticleViewProps) => {
 
   return (
     <div className={style.articleView}>
+      <div id="table-of-contents"></div>
       <div className={markdownStyle['markdown-body']} dangerouslySetInnerHTML={{ __html: content }}>
 
       </div>
