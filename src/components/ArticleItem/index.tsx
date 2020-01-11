@@ -9,9 +9,9 @@ const ArticleItem = (props: ArticleEntity) => {
       <div className={style.img}>
       </div>
       <div className={style.summary}>
-        <div className={style.title}>
+        <a href={'/article/detail/' + props.code} className={style.title}>
           {props.title}
-        </div>
+        </a>
         <div className={style.createTime}>
           {props.createTime}
         </div>

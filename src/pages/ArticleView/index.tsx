@@ -7,6 +7,7 @@ import style from './index.module.scss'
 import prismjs from 'prismjs'
 import 'prismjs/themes/prism.css'
 import 'prismjs/components/prism-java'
+import { useParams } from 'react-router-dom'
 
 
 interface TOC {
@@ -24,8 +25,10 @@ interface ArticleViewProps {
 const AritcleView = (props: ArticleViewProps) => {
 
   const [content, setContent] = useState('')
-
   const [toc, setToc] = useState<TOC>({} as TOC)
+  const { articleId } = useParams()
+
+  console.log(articleId)
 
   let tempToc: TOC
   const renderer = new marked.Renderer()
@@ -64,12 +67,12 @@ const AritcleView = (props: ArticleViewProps) => {
   function toDom(parent: TOC) {
     if (!parent.children) {
     // when toc have not composed already
-      return ''
+      return null
     }
     if (!parent.children.length) {
-    // the leaf node
+      // the leaf node
       return (
-        <li id={'toc-' + parent.anchor}>
+        <li id={'toc-' + parent.anchor} key={parent.chapter.join('.')}>
           <a className={style.tocItem} href={'#' + parent.anchor}>
             {parent.chapter.join('.') + ' ' + parent.text}
           </a>
@@ -78,16 +81,14 @@ const AritcleView = (props: ArticleViewProps) => {
     }
     // the branch node
     return (
-      <>
-        <li id={'toc-' + parent.anchor}>
-          <a className={style.tocItem} href={'#' + parent.anchor}>
-            {parent.chapter?.join('.') + ' ' + parent.text}
-          </a>
-        </li>
+      <li id={'toc-' + parent.anchor} key={parent.chapter.join('.')}>
+        <a className={style.tocItem} href={'#' + parent.anchor}>
+          {parent.chapter?.join('.') + ' ' + parent.text}
+        </a>
         <ul>
           {parent.children.map(v => toDom(v))}
         </ul>
-      </>
+      </li>
     )
   }
 
@@ -105,7 +106,13 @@ const AritcleView = (props: ArticleViewProps) => {
 
   useEffect(() => {
     (async () => {
-      const content = await ArticleService.getInstance().getContent('4345')
+      if (!articleId) {
+        return
+      }
+      const content = await ArticleService.getInstance().getContent(articleId)
+      if (!content) {
+        return
+      }
       setContent(marked(content))
       buildTOC(tempToc)
       setToc(tempToc)
@@ -115,6 +122,7 @@ const AritcleView = (props: ArticleViewProps) => {
   return (
     <div className={style.articleView}>
       <div className={style.toc}>
+        目录
         {toDom(toc)}
       </div>
       <div

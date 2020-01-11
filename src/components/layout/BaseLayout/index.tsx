@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 import AppHeader from '../AppHeader'
 import AppMenu from '../AppMenu'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import route, { AppRoute } from 'common/route'
+import { BrowserRouter, Route, useParams, useHistory, useLocation } from 'react-router-dom'
+import route, { AppRoute, routeName } from 'common/route'
 import style from './index.module.scss'
 import { ArticleEntity } from 'services/ArticleService'
 import HomePage from 'pages/HomePage'
+import BreadCrumb from 'components/BreadCrumb'
 
 
 function composeRouter(parents: Array<AppRoute>, routers: Array<AppRoute>): Array<AppRoute> {
-
   if (!parents || !parents.length) {
     return routers
   }
@@ -20,26 +20,29 @@ function composeRouter(parents: Array<AppRoute>, routers: Array<AppRoute>): Arra
   routers = routers.concat(parents)
   return composeRouter(nextParents as Array<AppRoute>, routers)
 }
+const routers = composeRouter(route, [])
 
-const BaseLayout = () => {
+const BaseLayout = (props: any) => {
 
-  const routers = composeRouter(route, [])
+  console.log(route)
+  console.log(routers)
 
   return (
     <div className={style.baseLayout}>
       <div className={style.header}>
         <AppHeader />
       </div>
-      <BrowserRouter>
-        <div className={style.menuBar}>
-          <AppMenu routes={route} />
-        </div>
-        <div className={style.content}>
-          {routers.map(v => (
-            <Route exact path={v.path} key={v.code} component={v.component}></Route>
-          ))}
-        </div>
-      </BrowserRouter>
+      <div className={style.menuBar}>
+        <AppMenu routes={route} />
+      </div>
+      <div className={style.breadCrumb}>
+        <BreadCrumb />
+      </div>
+      <div className={style.content}>
+        {routers.map(v => (
+          v.component && <Route exact={!v.notExact} path={v.path} key={v.code} component={v.component}></Route>
+        ))}
+      </div>
     </div>
   )
 }

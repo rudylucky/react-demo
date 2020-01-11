@@ -12,6 +12,11 @@
     position: relative;
     z-index: 100;
   }
+  .breadCrumb {
+    display: block;
+    text-align: start;
+    margin: 0;
+  }
   .content {
     flex-grow: 0;
     overflow: auto;

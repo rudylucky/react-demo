@@ -3,14 +3,31 @@ import HomePage from 'pages/HomePage'
 import AritcleView from 'pages/ArticleView'
 
 export interface AppRoute {
-  name: string,
+  name?: string,
   code: string,
   path: string,
+  hideInMenu?: boolean,
+  notExact?: boolean,
   component?: (props?: any) => JSX.Element,
   children?: Array<AppRoute>
 }
 
-const route: Array<AppRoute> = [{
+const hiddenRoute: Array<AppRoute> = [{
+  name: '文章',
+  code: 'article',
+  path: '/article',
+  hideInMenu: true,
+  children: [{
+    name: '详情',
+    code: 'detail',
+    path: '/detail/:articleId',
+    notExact: true,
+    hideInMenu: true,
+    component: AritcleView
+  }]
+}]
+
+const menuRoute: Array<AppRoute> = [{
   name: '首页',
   code: 'index',
   path: '/index',
@@ -25,7 +42,6 @@ const route: Array<AppRoute> = [{
     name: 'Java',
     code: 'java',
     path: '/java',
-    component: AritcleView,
   }, {
     name: 'JS',
     code: 'js',
@@ -44,6 +60,7 @@ const route: Array<AppRoute> = [{
   name: '生活',
   code: 'life',
   path: '/life',
+  component: ArticleList,
   children: [{
     name: '电影',
     code: 'movie',
@@ -67,5 +84,12 @@ const route: Array<AppRoute> = [{
   path: '/note',
   component: ArticleList,
 }]
+const route = menuRoute.concat(hiddenRoute)
+
+export function routeName(path: string): AppRoute | undefined {
+  const s = (JSON.parse(JSON.stringify(route)) as Array<AppRoute>)
+    .flatMap(v => [v].concat(v.children || []))
+  return s.find(v => v.code === path)
+}
 
 export default route

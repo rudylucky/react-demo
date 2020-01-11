@@ -60,10 +60,10 @@ export function request(
 }
 
 function callRemote(config: IConfig & RequestInit) {
-  console.log('http fetch params', {
-    url: config.url,
-    data: config.data
-  })
+  // console.log('http fetch params', {
+  //   url: config.url,
+  //   data: config.data
+  // })
   const headers: HeadersInit = new Headers()
   headers.set('content-type', config.contentType || ContentType.JSON)
   config.headers = headers
@@ -95,8 +95,8 @@ function checkResposeData(resp: AppResponse<BaseEntity>): any {
   if (resp.errorCode) {
     console.error('http fetch error', resp)
   }
-  if (typeof resp.data !== 'string') {
-    console.info('http fetch result', resp.data)
-  }
+  // if (typeof resp.data !== 'string') {
+  //   console.info('http fetch result', resp.data)
+  // }
   return resp.data
 }
