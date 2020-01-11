@@ -35,7 +35,9 @@ const BaseLayout = () => {
           <AppMenu routes={route} />
         </div>
         <div className={style.content}>
-          {routers.map(v => <Route exact path={v.path} key={v.code} component={v.component}></Route>)}
+          {routers.map(v => (
+            <Route exact path={v.path} key={v.code} component={v.component}></Route>
+          ))}
         </div>
       </BrowserRouter>
     </div>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import ArticleService, { ArticleEntity } from 'services/ArticleService'
-import ArticleItem from 'components/base/ArticleItem'
+import ArticleItem from 'components/ArticleItem'
 import style from './index.module.scss'
 
 

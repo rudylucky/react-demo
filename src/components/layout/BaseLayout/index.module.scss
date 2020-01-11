@@ -1,4 +1,8 @@
 .baseLayout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: auto;
   .header {
     height: 60px;
   }
@@ -9,7 +13,8 @@
     z-index: 100;
   }
   .content {
-    height: 1000px;
-    padding: 20px 3px;
+    flex-grow: 0;
+    overflow: auto;
+    padding: 20px 3px 0 3px;
   }
 }

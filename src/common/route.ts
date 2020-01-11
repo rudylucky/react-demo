@@ -1,4 +1,4 @@
-import ArticleList from 'pages/ArticleListPage'
+import ArticleList from 'components/ArticleList'
 import HomePage from 'pages/HomePage'
 import AritcleView from 'pages/ArticleView'
 

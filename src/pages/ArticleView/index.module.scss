@@ -1,8 +1,36 @@
 .articleView {
   text-align: start;
+  display: flex;
+  height: 100%;
+  li {
+    list-style: none;
+  }
 
-}
+  .toc {
+    width: 300px;
+    flex-shrink: 0;
+    height: 100%;
+    overflow: auto;
+    float: left;
 
-li {
-  list-style: none;
+    ul {
+      padding-left: 10px;
+      margin-top: 0;
+    }
+    .tocItem {
+      color: #000;
+      text-decoration: none;
+      font-size: 14px;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .markdownBody {
+    margin: auto;
+    height: 100%;
+    overflow: auto;
+  }
 }
