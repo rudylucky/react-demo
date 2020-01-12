@@ -9,6 +9,8 @@ import 'prismjs/themes/prism.css'
 import 'prismjs/components/prism-java'
 import { useParams } from 'react-router-dom'
 import _ from 'common/utils'
+import Comment from './Comment'
+import CommentService from 'services/CommentService'
 
 
 interface IToc {
@@ -40,49 +42,84 @@ const AritcleView = (props: IArticleViewProps) => {
       chapter: [],
       children: []
     }
+    console.log('t', t)
+    console.log('tempToc', tempToc)
     let curr = tempToc
 
+    if (!curr) {
+      // root node
+      if (level > 1) {
+        tempToc = curr = { children: [] as Array<IToc>, chapter: [0] } as IToc
+        for (let i = 1; i < level; i++) {
+          const newItem = { children: [] as Array<IToc> } as IToc
+          if (i !== level - 1) {
+            curr.children.push(newItem)
+          }
+        }
+      }
+    }
+
     for (let i = 0; i < level - 2; i++) {
+      if (!curr) {
+        curr = { children: [] as Array<IToc> } as IToc
+      }
+      if (!curr.children.length) {
+        curr.children.push({ children: [] as Array<IToc> } as IToc)
+      }
       curr = curr.children[curr.children.length - 1]
     }
     if (curr) {
       curr.children.push(t)
-    } else {
-      // root node
-      tempToc = t
     }
     const header = `<a href="#toc-${anchor}"><h${level} id="${anchor}">${text}</h${level}></a>`
+    console.log('tempToc', tempToc)
     return header
   }
 
   function buildTOC(parent: IToc) {
     parent.children.forEach((item, index) => {
-      item.chapter.splice(0, 0, ...parent.chapter)
+      if (!item.chapter) {
+        item.chapter = []
+      }
+      if (parent.chapter[0] === 0) {
+        parent.chapter.splice(0, 1)
+      }
+      item.chapter.splice(0, 0, ...parent.chapter || [1])
       item.chapter.push(index + 1)
       buildTOC(item)
     })
   }
 
   function toDom(parent: IToc) {
-    if (!parent.children) {
+    if (!parent.children ) {
     // when toc have not composed already
       return null
     }
+
+    if (!parent.chapter) {
+      return (
+        <ul>
+          {parent.children.map(v => toDom(v))}
+        </ul>
+      )
+    }
+
     if (!parent.children.length) {
       // the leaf node
       return (
         <li id={'toc-' + parent.anchor} key={parent.chapter.join('.')}>
           <a className={style.tocItem} href={'#' + parent.anchor}>
-            {parent.chapter.join('.') + ' ' + parent.text}
+            {parent.chapter.join('.') + ' ' + (parent.text || '')}
           </a>
         </li>
       )
     }
+
     // the branch node
     return (
       <li id={'toc-' + parent.anchor} key={parent.chapter.join('.')}>
         <a className={style.tocItem} href={'#' + parent.anchor}>
-          {parent.chapter?.join('.') + ' ' + parent.text}
+          {parent.chapter?.join('.') + ' ' + (parent.text || '')}
         </a>
         <ul>
           {parent.children.map(v => toDom(v))}
@@ -137,6 +174,8 @@ const AritcleView = (props: IArticleViewProps) => {
     })
   }, [toc])
 
+  const comments = CommentService.getInstance().getComments()
+
   return (
     <div className={style.articleView}>
       <div className={style.toc}>
@@ -144,9 +183,14 @@ const AritcleView = (props: IArticleViewProps) => {
         {toDom(toc)}
       </div>
       <div className={style.mockToc}></div>
-      <div
-        className={`${style.markdownBody} ${markdownStyle['markdown-body']}`}
-        dangerouslySetInnerHTML={{ __html: content }}>
+      <div>
+        <div
+          className={`${style.markdownBody} ${markdownStyle['markdown-body']}`}
+          dangerouslySetInnerHTML={{ __html: content }}>
+        </div>
+        <div className={style.comment}>
+          {comments.map(v => <Comment {...v} />)}
+        </div>
       </div>
     </div>
   )
