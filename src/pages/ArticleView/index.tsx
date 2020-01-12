@@ -81,10 +81,10 @@ const AritcleView = (props: IArticleViewProps) => {
       if (!item.chapter) {
         item.chapter = []
       }
-      if (parent.chapter[0] === 0) {
-        parent.chapter.splice(0, 1)
+      item.chapter.splice(0, 0, ...parent.chapter)
+      if (item.chapter[0] === 0) {
+        item.chapter.splice(0, 1)
       }
-      item.chapter.splice(0, 0, ...parent.chapter || [1])
       item.chapter.push(index + 1)
       buildTOC(item)
     })
