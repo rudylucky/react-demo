@@ -8,6 +8,7 @@ import prismjs from 'prismjs'
 import 'prismjs/themes/prism.css'
 import 'prismjs/components/prism-java'
 import { useParams } from 'react-router-dom'
+import _ from 'common/utils'
 
 
 interface IToc {
@@ -28,12 +29,10 @@ const AritcleView = (props: IArticleViewProps) => {
   const [toc, setToc] = useState<IToc>({} as IToc)
   const { articleId } = useParams()
 
-  console.log(articleId)
-
   let tempToc: IToc
   const renderer = new marked.Renderer()
   renderer.heading = (text, level, raw, slugger) => {
-    var anchor = renderer.options.headerPrefix + raw.toLowerCase().replace(/[^\w\\u4e00-\\u9fa5]]+/g, '-')
+    var anchor = 'uuid' + _.uuid()
     const t: IToc = {
       anchor: anchor,
       level: level,
@@ -118,6 +117,25 @@ const AritcleView = (props: IArticleViewProps) => {
       setToc(tempToc)
     })()
   }, [])
+
+  useEffect(() => {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault()
+        const href = anchor.getAttribute('href')
+        if (!href) {
+          return
+        }
+        const elem = document.querySelector(href)
+        if (!elem) {
+          return
+        }
+        elem?.scrollIntoView({
+          behavior: 'smooth'
+        })
+      })
+    })
+  }, [toc])
 
   return (
     <div className={style.articleView}>
