@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 import style from './index.module.scss'
 import ArticleList from 'components/ArticleList'
 
-interface AppHomePageProps {
+interface IHomePageProps {
   children?: any
 }
 
-const HomePage = (props: AppHomePageProps) => {
+const HomePage = (props: IHomePageProps) => {
 
   return (
     <div className={style.homePage}>

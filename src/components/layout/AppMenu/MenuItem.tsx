@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { AppRoute } from 'common/route'
+import { IRoute } from 'common/route'
 import { Link } from 'react-router-dom'
 
 const style = require('./MenuItem.module.scss')
 
-const MenuItem = (props: AppRoute) => {
+const MenuItem = (props: IRoute) => {
   const { code, name, path, children } = props
   const [showSubMenu, setShowSubMenu] = useState(false)
 

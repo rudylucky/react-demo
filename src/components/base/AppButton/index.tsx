@@ -1,10 +1,10 @@
 import React from 'react'
 
-interface AppButtonProps {
+interface IButtonProps {
   children: any
 }
 
-const AppButton = (props: AppButtonProps) => {
+const AppButton = (props: IButtonProps) => {
   return (
     <button>{props.children}</button>
   )

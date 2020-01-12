@@ -1,8 +1,8 @@
 import React from 'react'
 import style from './index.module.scss'
-import { ArticleEntity } from 'services/ArticleService'
+import { IArticleEntity } from 'services/ArticleService'
 
-const ArticleItem = (props: ArticleEntity) => {
+const ArticleItem = (props: IArticleEntity) => {
 
   return (
     <div className={style.articleItem}>

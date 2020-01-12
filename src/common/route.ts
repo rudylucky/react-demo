@@ -1,33 +1,35 @@
 import ArticleList from 'components/ArticleList'
 import HomePage from 'pages/HomePage'
 import AritcleView from 'pages/ArticleView'
+import { Redirect } from 'react-router-dom'
 
-export interface AppRoute {
+export interface IRoute {
   name?: string,
   code: string,
   path: string,
-  hideInMenu?: boolean,
+  showInMenu?: boolean,
   notExact?: boolean,
   component?: (props?: any) => JSX.Element,
-  children?: Array<AppRoute>
+  children?: Array<IRoute>
 }
 
-const hiddenRoute: Array<AppRoute> = [{
+const hiddenRoute: Array<IRoute> = [{
   name: '文章',
   code: 'article',
   path: '/article',
-  hideInMenu: true,
+  showInMenu: true,
   children: [{
     name: '详情',
     code: 'detail',
     path: '/detail/:articleId',
     notExact: true,
-    hideInMenu: true,
     component: AritcleView
   }]
 }]
 
-const menuRoute: Array<AppRoute> = [{
+hiddenRoute.flatMap(v => [v, ...v.children || []]).forEach(v => v.showInMenu = true)
+
+const menuRoute: Array<IRoute> = [{
   name: '首页',
   code: 'index',
   path: '/index',
@@ -86,10 +88,14 @@ const menuRoute: Array<AppRoute> = [{
 }]
 const route = menuRoute.concat(hiddenRoute)
 
-export function routeName(path: string): AppRoute | undefined {
-  const s = (JSON.parse(JSON.stringify(route)) as Array<AppRoute>)
+export function routeName(path: string): IRoute | undefined {
+  const s = (JSON.parse(JSON.stringify(route)) as Array<IRoute>)
     .flatMap(v => [v].concat(v.children || []))
   return s.find(v => v.code === path)
 }
 
-export default route
+export {
+  route,
+  hiddenRoute,
+  menuRoute
+}

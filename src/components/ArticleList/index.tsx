@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import ArticleService, { ArticleEntity } from 'services/ArticleService'
+import ArticleService, { IArticleEntity } from 'services/ArticleService'
 import ArticleItem from 'components/ArticleItem'
 import style from './index.module.scss'
 import { useParams, useHistory } from 'react-router-dom'
@@ -7,7 +7,7 @@ import { useParams, useHistory } from 'react-router-dom'
 
 const ArticleList = (props: any) => {
 
-  const [articles, setArticles] = useState<Array<ArticleEntity>>([])
+  const [articles, setArticles] = useState<Array<IArticleEntity>>([])
 
   useEffect(() => {
     (async () => {

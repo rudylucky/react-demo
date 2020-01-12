@@ -1,14 +1,14 @@
 import { request, ContentType } from 'common/requests'
 import appConfig from 'common/config'
 
-export interface AppResponse<T> {
+export interface IResponse<T> {
   status?: number;
   data?: T;
   errorMessage?: string;
   errorCode?: string;
 }
 
-export interface BaseEntity {
+export interface IBaseEntity {
   id?: number,
   code?: string,
   createTime?: string,
@@ -17,7 +17,7 @@ export interface BaseEntity {
   updateUser?: string
 }
 
-abstract class BaseService<T extends BaseEntity> {
+abstract class BaseService<T extends IBaseEntity> {
   private baseUrl: string;
 
   constructor(suffix: string) {

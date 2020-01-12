@@ -1,7 +1,7 @@
-import BaseService, { BaseEntity } from './BaseService'
+import BaseService, { IBaseEntity } from './BaseService'
 import { ContentType } from 'common/requests'
 
-export interface ArticleEntity extends BaseEntity {
+export interface IArticleEntity extends IBaseEntity {
   title: string,
   authorCode: string,
   abstract: string,
@@ -11,7 +11,7 @@ export interface ArticleEntity extends BaseEntity {
   totalRead: number
 }
 
-class ArticleService extends BaseService<ArticleEntity> {
+class ArticleService extends BaseService<IArticleEntity> {
 
   private static instance: ArticleService
 
@@ -26,7 +26,7 @@ class ArticleService extends BaseService<ArticleEntity> {
     return ArticleService.instance
   }
 
-  upVote(data: ArticleEntity) {
+  upVote(data: IArticleEntity) {
     return this.request('upVote', data)
   }
 
@@ -34,11 +34,11 @@ class ArticleService extends BaseService<ArticleEntity> {
     return this.request('getContent', { articleCode }, ContentType.FORM)
   }
 
-  listWithContent(data: ArticleEntity) {
+  listWithContent(data: IArticleEntity) {
     return this.request('listWithContent', data)
   }
 
-  infoWithContent(data: ArticleEntity) {
+  infoWithContent(data: IArticleEntity) {
     return this.request('infoWithContent', data)
   }
 }

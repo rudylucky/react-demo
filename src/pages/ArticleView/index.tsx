@@ -10,31 +10,31 @@ import 'prismjs/components/prism-java'
 import { useParams } from 'react-router-dom'
 
 
-interface TOC {
+interface IToc {
   anchor: string,
   level: number,
   text: string,
   chapter: Array<number>,
-  children: Array<TOC>
+  children: Array<IToc>
 }
 
-interface ArticleViewProps {
+interface IArticleViewProps {
   children?: any
 }
 
-const AritcleView = (props: ArticleViewProps) => {
+const AritcleView = (props: IArticleViewProps) => {
 
   const [content, setContent] = useState('')
-  const [toc, setToc] = useState<TOC>({} as TOC)
+  const [toc, setToc] = useState<IToc>({} as IToc)
   const { articleId } = useParams()
 
   console.log(articleId)
 
-  let tempToc: TOC
+  let tempToc: IToc
   const renderer = new marked.Renderer()
   renderer.heading = (text, level, raw, slugger) => {
     var anchor = renderer.options.headerPrefix + raw.toLowerCase().replace(/[^\w\\u4e00-\\u9fa5]]+/g, '-')
-    const t: TOC = {
+    const t: IToc = {
       anchor: anchor,
       level: level,
       text: text,
@@ -56,7 +56,7 @@ const AritcleView = (props: ArticleViewProps) => {
     return header
   }
 
-  function buildTOC(parent: TOC) {
+  function buildTOC(parent: IToc) {
     parent.children.forEach((item, index) => {
       item.chapter.splice(0, 0, ...parent.chapter)
       item.chapter.push(index + 1)
@@ -64,7 +64,7 @@ const AritcleView = (props: ArticleViewProps) => {
     })
   }
 
-  function toDom(parent: TOC) {
+  function toDom(parent: IToc) {
     if (!parent.children) {
     // when toc have not composed already
       return null
@@ -125,6 +125,7 @@ const AritcleView = (props: ArticleViewProps) => {
         目录
         {toDom(toc)}
       </div>
+      <div className={style.mockToc}></div>
       <div
         className={`${style.markdownBody} ${markdownStyle['markdown-body']}`}
         dangerouslySetInnerHTML={{ __html: content }}>

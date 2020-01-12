@@ -1,4 +1,4 @@
-import { AppResponse, BaseEntity } from 'services/BaseService'
+import { IResponse, IBaseEntity } from 'services/BaseService'
 
 export enum HttpMethod {
   GET,
@@ -91,7 +91,7 @@ function checkHttpStatus(resp: Response) {
   return response
 }
 
-function checkResposeData(resp: AppResponse<BaseEntity>): any {
+function checkResposeData(resp: IResponse<IBaseEntity>): any {
   if (resp.errorCode) {
     console.error('http fetch error', resp)
   }

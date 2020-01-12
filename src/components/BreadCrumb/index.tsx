@@ -1,7 +1,7 @@
 import React from 'react'
 
 import style from './index.module.scss'
-import { AppRoute, routeName } from 'common/route'
+import { IRoute, routeName } from 'common/route'
 import { useLocation } from 'react-router-dom'
 
 export interface BreadCrumbProps {

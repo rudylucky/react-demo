@@ -1,16 +1,16 @@
 import React from 'react'
 import MenuItem from './MenuItem'
-import { AppRoute } from 'common/route'
+import { IRoute } from 'common/route'
 import { Link, } from 'react-router-dom'
 const style = require('./index.module.scss')
 
 export interface AppMenuProps {
-  routes: Array<AppRoute>
+  routes: Array<IRoute>
 }
 
 const AppMenu = (props: AppMenuProps) => {
   const { routes } = props
-  const mappings = routes.filter(v => !v.hideInMenu).map(v => <MenuItem key={v.code} {...v} />)
+  const mappings = routes.filter(v => !v.showInMenu).map(v => <MenuItem key={v.code} {...v} />)
 
   return (
     <div className={style.appMenu}>
