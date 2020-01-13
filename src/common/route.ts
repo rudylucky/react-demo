@@ -2,6 +2,8 @@ import ArticleList from 'components/ArticleList'
 import HomePage from 'pages/HomePage'
 import AritcleView from 'pages/ArticleView'
 import { Redirect } from 'react-router-dom'
+import util from './util'
+import _ from 'lodash'
 
 export interface IRoute {
   name?: string,
@@ -27,7 +29,7 @@ const hiddenRoute: Array<IRoute> = [{
   }]
 }]
 
-hiddenRoute.flatMap(v => [v, ...v.children || []]).forEach(v => v.showInMenu = true)
+_.flatMap(hiddenRoute, v => [v, ...v.children || []]).forEach(v => v.showInMenu = true)
 
 const menuRoute: Array<IRoute> = [{
   name: '首页',
@@ -90,7 +92,7 @@ const route = menuRoute.concat(hiddenRoute)
 
 export function routeName(path: string): IRoute | undefined {
   const s = (JSON.parse(JSON.stringify(route)) as Array<IRoute>)
-    .flatMap(v => [v].concat(v.children || []))
+  util.flatMap(s, v => [v].concat(v.children || []))
   return s.find(v => v.code === path)
 }
 

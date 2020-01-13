@@ -4,11 +4,9 @@ import AppMenu from '../AppMenu'
 import { BrowserRouter, Route, useParams, useHistory, useLocation } from 'react-router-dom'
 import { IRoute, routeName, route, menuRoute } from 'common/route'
 import style from './index.module.scss'
-import { IArticleEntity } from 'services/ArticleService'
-import HomePage from 'pages/HomePage'
 import BreadCrumb from 'components/BreadCrumb'
 import AppRoute from 'components/AppRoute'
-
+import util from '../../../common/util'
 
 function composeRouter(parents: Array<IRoute>, routers: Array<IRoute>): Array<IRoute> {
   if (!parents || !parents.length) {
@@ -16,7 +14,7 @@ function composeRouter(parents: Array<IRoute>, routers: Array<IRoute>): Array<IR
   }
 
   parents.forEach(route => route.children?.forEach(v => v.path = route.path + v.path))
-  const nextParents = parents.filter(v => v.children).flatMap(route => route.children)
+  const nextParents = util.flatMap(parents.filter(v => v.children), route => route.children)
 
   routers = routers.concat(parents)
   return composeRouter(nextParents as Array<IRoute>, routers)

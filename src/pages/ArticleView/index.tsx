@@ -8,10 +8,9 @@ import prismjs from 'prismjs'
 import 'prismjs/themes/prism.css'
 import 'prismjs/components/prism-java'
 import { useParams } from 'react-router-dom'
-import _ from 'common/utils'
+import util from 'common/util'
 import Comment from './Comment'
 import CommentService from 'services/CommentService'
-
 
 interface IToc {
   anchor: string,
@@ -34,7 +33,7 @@ const AritcleView = (props: IArticleViewProps) => {
   let tempToc: IToc
   const renderer = new marked.Renderer()
   renderer.heading = (text, level, raw, slugger) => {
-    var anchor = 'uuid' + _.uuid()
+    var anchor = 'uuid' + util.uuid()
     const t: IToc = {
       anchor: anchor,
       level: level,
@@ -42,8 +41,6 @@ const AritcleView = (props: IArticleViewProps) => {
       chapter: [],
       children: []
     }
-    console.log('t', t)
-    console.log('tempToc', tempToc)
     let curr = tempToc
 
     if (!curr) {
@@ -72,7 +69,6 @@ const AritcleView = (props: IArticleViewProps) => {
       curr.children.push(t)
     }
     const header = `<a href="#toc-${anchor}"><h${level} id="${anchor}">${text}</h${level}></a>`
-    console.log('tempToc', tempToc)
     return header
   }
 
@@ -183,9 +179,9 @@ const AritcleView = (props: IArticleViewProps) => {
         {toDom(toc)}
       </div>
       <div className={style.mockToc}></div>
-      <div>
+      <div className={style.markdown}>
         <div
-          className={`${style.markdownBody} ${markdownStyle['markdown-body']}`}
+          className={markdownStyle['markdown-body']}
           dangerouslySetInnerHTML={{ __html: content }}>
         </div>
         <div className={style.comment}>

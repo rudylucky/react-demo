@@ -1993,6 +1993,11 @@
   resolved "https://registry.npm.taobao.org/@types/json-schema/download/@types/json-schema-7.0.3.tgz#bdfd69d61e464dcc81b25159c270d75a73c1a636"
   integrity sha1-vf1p1h5GTcyBslFZwnDXWnPBpjY=
 
+"@types/lodash@^4.14.149":
+  version "4.14.149"
+  resolved "https://registry.npm.taobao.org/@types/lodash/download/@types/lodash-4.14.149.tgz?cache=0&sync_timestamp=1574120085454&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Flodash%2Fdownload%2F%40types%2Flodash-4.14.149.tgz#1342d63d948c6062838fbf961012f74d4e638440"
+  integrity sha1-E0LWPZSMYGKDj7+WEBL3TU5jhEA=
+
 "@types/marked@^0.7.2":
   version "0.7.2"
   resolved "https://registry.npm.taobao.org/@types/marked/download/@types/marked-0.7.2.tgz#1393f076773b55cc7078c0fbeb86a497c69db97e"
@@ -2008,10 +2013,10 @@
   resolved "https://registry.npm.taobao.org/@types/node/download/@types/node-12.12.17.tgz?cache=0&sync_timestamp=1576005890806&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Fnode%2Fdownload%2F%40types%2Fnode-12.12.17.tgz#191b71e7f4c325ee0fb23bc4a996477d92b8c39b"
   integrity sha1-GRtx5/TDJe4PsjvEqZZHfZK4w5s=
 
-"@types/node@13.1.2":
-  version "13.1.2"
-  resolved "https://registry.npm.taobao.org/@types/node/download/@types/node-13.1.2.tgz?cache=0&sync_timestamp=1577727780099&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Fnode%2Fdownload%2F%40types%2Fnode-13.1.2.tgz#fe94285bf5e0782e1a9e5a8c482b1c34465fa385"
-  integrity sha1-/pQoW/XgeC4anlqMSCscNEZfo4U=
+"@types/node@13.1.6":
+  version "13.1.6"
+  resolved "https://registry.npm.taobao.org/@types/node/download/@types/node-13.1.6.tgz?cache=0&sync_timestamp=1578585994687&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Fnode%2Fdownload%2F%40types%2Fnode-13.1.6.tgz#076028d0b0400be8105b89a0a55550c86684ffec"
+  integrity sha1-B2Ao0LBAC+gQW4mgpVVQyGaE/+w=
 
 "@types/parse-json@^4.0.0":
   version "4.0.0"
@@ -9499,7 +9504,7 @@ rc@^1.2.7:
 
 react-app-polyfill@^1.0.5:
   version "1.0.5"
-  resolved "https://registry.npm.taobao.org/react-app-polyfill/download/react-app-polyfill-1.0.5.tgz?cache=0&sync_timestamp=1575504334493&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Freact-app-polyfill%2Fdownload%2Freact-app-polyfill-1.0.5.tgz#59c7377a0b9ed25692eeaca7ad9b12ef2d064709"
+  resolved "https://registry.npm.taobao.org/react-app-polyfill/download/react-app-polyfill-1.0.5.tgz#59c7377a0b9ed25692eeaca7ad9b12ef2d064709"
   integrity sha1-Wcc3egue0laS7qynrZsS7y0GRwk=
   dependencies:
     core-js "^3.4.1"
@@ -9849,10 +9854,10 @@ relateurl@0.2.x:
   resolved "https://registry.npm.taobao.org/relateurl/download/relateurl-0.2.7.tgz#54dbf377e51440aca90a4cd274600d3ff2d888a9"
   integrity sha1-VNvzd+UUQKypCkzSdGANP/LYiKk=
 
-remixicon@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.npm.taobao.org/remixicon/download/remixicon-2.1.0.tgz#cc53b8c3ed0210894ae12228b0f568df507e4a5b"
-  integrity sha1-zFO4w+0CEIlK4SIosPVo31B+Sls=
+remixicon@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.npm.taobao.org/remixicon/download/remixicon-2.2.0.tgz#ec421352fbb0f4e2fe38d1ba524b1ac7ace0a020"
+  integrity sha1-7EITUvuw9OL+ONG6Uksax6zgoCA=
 
 remove-trailing-separator@^1.0.1:
   version "1.1.0"
