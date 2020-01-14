@@ -7,6 +7,9 @@ $menuHeight: 50px;
   cursor: pointer;
   user-select: none;
 
+  &:hover .subMenuContainer {
+    transform: scaleY(1);
+  }
   .link {
     display: inline-block;
     width: 120px;
@@ -14,13 +17,19 @@ $menuHeight: 50px;
     text-decoration: none;
     color: #fff;
   }
-  .subMenu {
-    height: $menuHeight;
-    color: #fff;
-    background-color: #000;
+  .subMenuContainer {
+    transform: scaleY(0);
+    transition: 200ms;
+    transform-origin: top;
 
-    &:hover {
-      background-color: #888;
+    .subMenu {
+      height: $menuHeight;
+      color: #fff;
+      background-color: #000;
+
+      &:hover {
+        background-color: #888;
+      }
     }
   }
 
