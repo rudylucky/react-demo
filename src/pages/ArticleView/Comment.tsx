@@ -10,23 +10,17 @@ const Comment = (props: ICommentEntity) => {
     <div className={style.comment}>
       <div className={style.firstLine}>
         <span className={style.userName}>
-          {author}
+          {author + ' : '}
         </span>
-          :
         <span className={style.date}>
           {createTime}
         </span>
+        <span className={style.react}>
+          <span className={style.reply}>回复</span>
+          <span className={style.upVote}>点赞</span>
+        </span>
       </div>
       <div className={style.secondLine}>
-        <span className={style.userAgent}>
-          Opera avira 65.0.3467.48
-        </span>
-          -
-        <span className={style.osVersion}>
-          Windows 10 x64 Edition
-        </span>
-      </div>
-      <div className={style.thirdLine}>
         {content}
       </div>
     </div>
