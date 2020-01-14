@@ -1,9 +1,11 @@
+import React from 'react'
 import ArticleList from 'components/ArticleList'
 import HomePage from 'pages/HomePage'
 import AritcleView from 'pages/ArticleView'
 import { Redirect } from 'react-router-dom'
 import util from './util'
 import _ from 'lodash'
+import Test from 'components/Test'
 
 export interface IRoute {
   name?: string,
@@ -11,20 +13,24 @@ export interface IRoute {
   path: string,
   showInMenu?: boolean,
   notExact?: boolean,
-  component?: (props?: any) => JSX.Element,
+  component?: ((props?: any) => JSX.Element),
   children?: Array<IRoute>
 }
 
 const hiddenRoute: Array<IRoute> = [{
+  code: '',
+  path: '/',
+  showInMenu: false,
+  component: () => <Redirect to='/index' />,
+}, {
   name: '文章',
   code: 'article',
   path: '/article',
-  showInMenu: true,
   children: [{
     name: '详情',
     code: 'detail',
     path: '/detail/:articleId',
-    notExact: true,
+    notExact: false,
     component: AritcleView
   }]
 }]
@@ -74,6 +80,7 @@ const menuRoute: Array<IRoute> = [{
     name: '读书',
     code: 'reading',
     path: '/reading',
+    component: Test
   }]
 },
 {
@@ -91,7 +98,7 @@ const menuRoute: Array<IRoute> = [{
 const route = menuRoute.concat(hiddenRoute)
 
 export function routeName(path: string): IRoute | undefined {
-  const s = (JSON.parse(JSON.stringify(route)) as Array<IRoute>)
+  const s = (JSON.parse(JSON.stringify(menuRoute)) as Array<IRoute>)
   util.flatMap(s, v => [v].concat(v.children || []))
   return s.find(v => v.code === path)
 }
