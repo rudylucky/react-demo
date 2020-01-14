@@ -99,8 +99,8 @@ const route = menuRoute.concat(hiddenRoute)
 
 export function routeName(path: string): IRoute | undefined {
   const s = (JSON.parse(JSON.stringify(menuRoute)) as Array<IRoute>)
-  util.flatMap(s, v => [v].concat(v.children || []))
-  return s.find(v => v.code === path)
+  return util.flatMap(s, v => [v].concat(v.children || []))
+    .find(v => v.code === path)
 }
 
 export {

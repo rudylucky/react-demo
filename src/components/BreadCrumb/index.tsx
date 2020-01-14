@@ -7,12 +7,11 @@ import { useLocation } from 'react-router-dom'
 export interface BreadCrumbProps {
 }
 
-
 const BreadCrumb = (props: BreadCrumbProps) => {
-
   const location = useLocation()
-  const arr = location.pathname.split('/').map(v => routeName(v)).filter(v => v)
-
+  const arr = location.pathname.split('/')
+    .map(v => routeName(v))
+    .filter(v => v)
 
   const result = arr.map(v => (
     <span key={v?.code}> / {v?.name || 'null'}</span>
