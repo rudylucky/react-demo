@@ -19,3 +19,5 @@ const AppModel = (props: IModelProps) => {
     </div>
   )
 }
+
+export default AppModel

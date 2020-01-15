@@ -3,8 +3,8 @@ $headerHeight: 60px;
 .appHeader {
   height: 100%;
   margin: 0;
-  cursor: pointer;
   .userDropdown {
+    cursor: pointer;
     height: $headerHeight;
     float: right;
     position: relative;

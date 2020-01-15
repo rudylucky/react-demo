@@ -6,6 +6,7 @@ import { Redirect } from 'react-router-dom'
 import util from './util'
 import _ from 'lodash'
 import Test from 'components/Test'
+import AppModel from 'components/base/AppModel'
 
 export interface IRoute {
   name?: string,
@@ -75,6 +76,7 @@ const menuRoute: Array<IRoute> = [{
     name: '电影',
     code: 'movie',
     path: '/movie',
+    component: (props) => <AppModel />
   },
   {
     name: '读书',
