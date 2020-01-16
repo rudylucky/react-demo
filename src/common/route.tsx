@@ -85,12 +85,6 @@ const menuRoute: Array<IRoute> = [{
   }]
 },
 {
-  name: '杂谈',
-  code: 'talk',
-  path: '/talk',
-  component: ArticleList,
-},
-{
   name: '笔记',
   code: 'note',
   path: '/note',

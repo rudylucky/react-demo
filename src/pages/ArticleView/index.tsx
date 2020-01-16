@@ -11,6 +11,8 @@ import { useParams } from 'react-router-dom'
 import util from 'common/util'
 import Comment from './Comment'
 import CommentService from 'services/CommentService'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUser, faAngleDoubleLeft, faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons'
 
 interface IToc {
   anchor: string,
@@ -29,6 +31,9 @@ const AritcleView = (props: IArticleViewProps) => {
   const [content, setContent] = useState('')
   const [toc, setToc] = useState<IToc>({} as IToc)
   const { articleId } = useParams()
+
+  const [tocCollapse, setTocCollapse] = useState(true)
+  const tocContentClassName = tocCollapse ? 'invisible' : ''
 
   let tempToc: IToc
   const renderer = new marked.Renderer()
@@ -174,11 +179,15 @@ const AritcleView = (props: IArticleViewProps) => {
 
   return (
     <div className={style.articleView}>
-      <div className={style.toc}>
-        目录
-        {toDom(toc)}
+      <div className={`${style.toc}  ${style[tocContentClassName]}`}>
+        <div className={`${style.tocContent} ${style[tocContentClassName]}`}>
+          {toDom(toc)}
+        </div>
+        <div className={style.tocButton} onClick={() => setTocCollapse(!tocCollapse)}>
+          <FontAwesomeIcon className={style.userIcon} icon={tocCollapse ? faAngleDoubleRight : faAngleDoubleLeft } />
+        </div>
       </div>
-      <div className={style.mockToc}></div>
+      <div className={`${style.mockToc} ${style[tocContentClassName]}`}></div>
       <div className={style.markdown}>
         <div
           className={markdownStyle['markdown-body']}
