@@ -60,9 +60,9 @@
   }
 
   .mockToc {
+    padding: 0;
     width: 320px;
     flex-shrink: 0;
-    padding-left: 5px;
     &.invisible {
       width: 0;
     }
@@ -70,6 +70,7 @@
 
   .markdown {
     margin: auto;
+    width: 100%;
     .comment {
     }
   }
