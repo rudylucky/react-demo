@@ -1,6 +1,7 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
+import { useDispatch } from 'react-redux'
 
 const style = require('./index.module.scss')
 
@@ -8,6 +9,9 @@ const style = require('./index.module.scss')
 const AppHeader = () => {
 
   const username = '洛霖'
+
+  const dispatch = useDispatch()
+  dispatch({ type: 'UPDATE_USER', name: username })
 
   return (
     <div className={style.appHeader}>

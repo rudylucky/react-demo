@@ -38,7 +38,6 @@ export function request(
   arg2?: object | ContentType
 ) {
 
-  JSON.parse(JSON.stringify(defaultOption))
   const config = defaultOption
   config.url = arg0
 
@@ -67,7 +66,11 @@ function callRemote(config: IConfig & RequestInit) {
   const headers: HeadersInit = new Headers()
   headers.set('content-type', config.contentType ?? ContentType.JSON)
   config.headers = headers
-  config.body = queryString(config.data)
+  if (config.contentType === ContentType.FORM) {
+    config.body = queryString(config.data)
+  } else {
+    config.body = JSON.stringify(config.data)
+  }
   return fetch(config.url, config)
     .then(checkHttpStatus)
     .then(checkResposeData)

@@ -1,12 +1,13 @@
-import React, { useState } from 'react'
+import React from 'react'
 import AppHeader from '../AppHeader'
 import AppMenu from '../AppMenu'
-import { BrowserRouter, Route, useParams, useHistory, useLocation } from 'react-router-dom'
-import { IRoute, routeName, route, menuRoute } from 'common/route'
+import { IRoute, route, menuRoute, routeName } from 'common/route'
 import style from './index.module.scss'
 import BreadCrumb from 'components/BreadCrumb'
 import AppRoute from 'components/AppRoute'
 import util from '../../../common/util'
+import { useLocation } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 
 function composeRouter(parents: Array<IRoute>, routers: Array<IRoute>): Array<IRoute> {
   if (!parents || !parents.length) {
@@ -21,7 +22,7 @@ function composeRouter(parents: Array<IRoute>, routers: Array<IRoute>): Array<IR
 }
 const routers = composeRouter(route, [])
 
-const BaseLayout = (props: any) => {
+const BaseLayout = () => {
 
   return (
     <div className={style.baseLayout}>

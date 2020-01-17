@@ -26,6 +26,7 @@
   margin: auto;
   max-width: 1024px;
   .imgContainer {
+    display: none;
     height: 337px;
     cursor: pointer;
     width: 500%;
@@ -39,7 +40,5 @@
     }
   }
   .articleList {
-    margin-top: 20px;
-    margin-left: 5px;
   }
 }

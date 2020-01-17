@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import marked from 'marked'
-import ArticleService from 'services/ArticleService'
+import ArticleService, { IArticleEntity } from 'services/ArticleService'
 import markdownStyle from './markdown.module.scss'
 import style from './index.module.scss'
 
@@ -12,7 +12,8 @@ import util from 'common/util'
 import Comment from './Comment'
 import CommentService from 'services/CommentService'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser, faAngleDoubleLeft, faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons'
+import { faAngleDoubleLeft, faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons'
+import { useDispatch } from 'react-redux'
 
 interface IToc {
   anchor: string,
@@ -26,7 +27,7 @@ interface IArticleViewProps {
   children?: any
 }
 
-const AritcleView = (props: IArticleViewProps) => {
+const AritcleView = () => {
 
   const [content, setContent] = useState('')
   const [toc, setToc] = useState<IToc>({} as IToc)
@@ -37,7 +38,7 @@ const AritcleView = (props: IArticleViewProps) => {
 
   let tempToc: IToc
   const renderer = new marked.Renderer()
-  renderer.heading = (text, level, raw, slugger) => {
+  renderer.heading = (text, level) => {
     var anchor = 'uuid' + util.uuid()
     const t: IToc = {
       anchor: anchor,
@@ -141,18 +142,25 @@ const AritcleView = (props: IArticleViewProps) => {
     xhtml: false
   })
 
+  const [article, setArticle] = useState<IArticleEntity | null>(null)
+
   useEffect(() => {
     (async () => {
       if (!articleId) {
         return
       }
-      const content = await ArticleService.getInstance().getContent(articleId)
+      const content = await ArticleService.getInstance().infoWithContent({ code: articleId } as IArticleEntity)
       if (!content) {
         return
       }
-      setContent(marked(content))
+
+      setContent(marked(content.content!))
       buildTOC(tempToc)
       setToc(tempToc)
+      setArticle({
+        ...content,
+        content: ''
+      })
     })()
   }, [])
 
@@ -176,6 +184,9 @@ const AritcleView = (props: IArticleViewProps) => {
   }, [toc])
 
   const comments = CommentService.getInstance().getComments()
+  const dispatch = useDispatch()
+
+  dispatch({ type: 'UPDATE_ARTICLE', title: article?.title ?? '' })
 
   return (
     <div className={style.articleView}>

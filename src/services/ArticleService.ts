@@ -8,7 +8,8 @@ export interface IArticleEntity extends IBaseEntity {
   upVote: number,
   tag: string,
   category: string,
-  totalRead: number
+  totalRead: number,
+  content?: string
 }
 
 class ArticleService extends BaseService<IArticleEntity> {
@@ -38,7 +39,7 @@ class ArticleService extends BaseService<IArticleEntity> {
     return this.request('listWithContent', data)
   }
 
-  infoWithContent(data: IArticleEntity) {
+  infoWithContent(data: IArticleEntity): IArticleEntity {
     return this.request('infoWithContent', data)
   }
 }
