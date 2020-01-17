@@ -23,7 +23,7 @@ class CommentService extends BaseService<ICommentEntity> {
 
   comment: ICommentEntity = {
     author: '昨天里的明天',
-    content: '怎么设置仿真翻页等模式，在设置里找半天找不到！',
+    content: '富强民主和谐！',
     createTime: '2019年12月03日 上午9:29'
   }
 
