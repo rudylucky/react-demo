@@ -65,7 +65,7 @@ function callRemote(config: IConfig & RequestInit) {
   //   data: config.data
   // })
   const headers: HeadersInit = new Headers()
-  headers.set('content-type', config.contentType || ContentType.JSON)
+  headers.set('content-type', config.contentType ?? ContentType.JSON)
   config.headers = headers
   config.body = queryString(config.data)
   return fetch(config.url, config)

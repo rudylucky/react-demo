@@ -110,7 +110,7 @@ const AritcleView = (props: IArticleViewProps) => {
       return (
         <li id={'toc-' + parent.anchor} key={parent.chapter.join('.')}>
           <a className={style.tocItem} href={'#' + parent.anchor}>
-            {parent.chapter.join('.') + ' ' + (parent.text || '')}
+            {parent.chapter.join('.') + ' ' + (parent.text ?? '')}
           </a>
         </li>
       )
@@ -120,7 +120,7 @@ const AritcleView = (props: IArticleViewProps) => {
     return (
       <li id={'toc-' + parent.anchor} key={parent.chapter.join('.')}>
         <a className={style.tocItem} href={'#' + parent.anchor}>
-          {parent.chapter?.join('.') + ' ' + (parent.text || '')}
+          {parent.chapter?.join('.') + ' ' + (parent.text ?? '')}
         </a>
         <ul>
           {parent.children.map(v => toDom(v))}

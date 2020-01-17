@@ -13,9 +13,7 @@ const BreadCrumb = (props: BreadCrumbProps) => {
     .map(v => routeName(v))
     .filter(v => v)
 
-  const result = arr.map(v => (
-    <span key={v?.code}> / {v?.name || 'null'}</span>
-  ))
+  const result = arr.map(v => <span key={v?.code}> / {v?.name ?? 'null'}</span>)
   return (
     <div className={style.breadCrumb}>
       {result}

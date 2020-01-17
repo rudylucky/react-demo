@@ -36,7 +36,7 @@ const hiddenRoute: Array<IRoute> = [{
   }]
 }]
 
-_.flatMap(hiddenRoute, v => [v, ...v.children || []]).forEach(v => v.showInMenu = true)
+_.flatMap(hiddenRoute, v => [v, ...v.children ?? []]).forEach(v => v.showInMenu = true)
 
 const menuRoute: Array<IRoute> = [{
   name: '首页',
@@ -94,7 +94,7 @@ const route = menuRoute.concat(hiddenRoute)
 
 export function routeName(path: string): IRoute | undefined {
   const s = (JSON.parse(JSON.stringify(menuRoute)) as Array<IRoute>)
-  return util.flatMap(s, v => [v].concat(v.children || []))
+  return util.flatMap(s, v => [v].concat(v.children ?? []))
     .find(v => v.code === path)
 }
 

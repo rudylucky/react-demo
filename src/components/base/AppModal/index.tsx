@@ -35,14 +35,14 @@ const AppModal = (props: IModelProps) => {
           <div className={style.background}>
             <div className={style.model}>
               <div className={style.title}>
-                {props.title || '请输入内容'}
+                {props.title ?? '请输入内容'}
               </div>
               <div className={style.content}>
                 {props.children}
               </div>
               <div className={style.foot}>
-                <button onClick={confirm}>{props.confirmText || '确定'}</button>
-                <button onClick={cancel}>{props.cancelText || '取消'}</button>
+                <button onClick={confirm}>{props.confirmText ?? '确定'}</button>
+                <button onClick={cancel}>{props.cancelText ?? '取消'}</button>
               </div>
             </div>
           </div>
