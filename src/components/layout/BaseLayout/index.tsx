@@ -1,13 +1,11 @@
 import React from 'react'
 import AppHeader from '../AppHeader'
 import AppMenu from '../AppMenu'
-import { IRoute, route, menuRoute, routeName } from 'common/route'
+import { IRoute, route, menuRoute } from 'common/route'
 import style from './index.module.scss'
 import BreadCrumb from 'components/BreadCrumb'
 import AppRoute from 'components/AppRoute'
 import util from '../../../common/util'
-import { useLocation } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
 
 function composeRouter(parents: Array<IRoute>, routers: Array<IRoute>): Array<IRoute> {
   if (!parents || !parents.length) {
