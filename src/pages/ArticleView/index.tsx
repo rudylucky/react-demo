@@ -5,8 +5,6 @@ import markdownStyle from './markdown.module.scss'
 import style from './index.module.scss'
 
 import prismjs from 'prismjs'
-import 'prismjs/themes/prism.css'
-import 'prismjs/components/prism-java'
 import { useParams } from 'react-router-dom'
 import util from 'common/util'
 import Comment from './Comment'
@@ -14,6 +12,9 @@ import CommentService from 'services/CommentService'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleDoubleLeft, faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons'
 import { useDispatch } from 'react-redux'
+
+const loadLanguages = require('prismjs/components/')
+loadLanguages(['java', 'bash', 'powershell'])
 
 interface IToc {
   anchor: string,
@@ -129,9 +130,13 @@ const AritcleView = () => {
       </li>
     )
   }
+  const highlightCode = (code: string, lang: string) => {
+    console.log('lang', lang)
+    return ['mermaid', ''].includes(lang) ? code : prismjs.highlight(code, prismjs.languages[lang], lang)
+  }
 
   marked.setOptions({
-    highlight: (code, lang) => ['mermaid', ''].includes(lang) ? code : prismjs.highlight(code, prismjs.languages[lang], lang),
+    highlight: highlightCode,
     renderer,
     pedantic: false,
     gfm: true,
