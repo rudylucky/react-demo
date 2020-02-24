@@ -205,7 +205,7 @@ const AritcleView = () => {
           dangerouslySetInnerHTML={{ __html: content }}>
         </div>
         <div className={style.comment}>
-          {comments.map(v => <Comment {...v} />)}
+          {comments.map((v, i) => <Comment key={i} {...v} />)}
         </div>
       </div>
     </div>

@@ -22,6 +22,7 @@ const hiddenRoute: Array<IRoute> = [{
   code: '',
   path: '/',
   showInMenu: false,
+  // eslint-disable-next-line react/display-name
   component: () => <Redirect to='/index' />,
 }, {
   name: '文章',
