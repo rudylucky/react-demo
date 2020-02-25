@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import React from 'react'
 import ArticleList from 'components/ArticleList'
 import HomePage from 'pages/HomePage'
@@ -6,7 +7,6 @@ import { Redirect } from 'react-router-dom'
 import util from './util'
 import _ from 'lodash'
 import Test from 'components/Test'
-import AppModal from 'components/base/AppModal'
 
 export interface IRoute {
   name?: string,
@@ -22,7 +22,6 @@ const hiddenRoute: Array<IRoute> = [{
   code: '',
   path: '/',
   showInMenu: false,
-  // eslint-disable-next-line react/display-name
   component: () => <Redirect to='/index' />,
 }, {
   name: '文章',
@@ -49,30 +48,49 @@ const menuRoute: Array<IRoute> = [{
   name: '技术',
   code: 'tech',
   path: '/tech',
-  component: ArticleList,
+  component: () => <ArticleList category='tech' />,
   children: [{
     name: 'Java',
     code: 'java',
     path: '/java',
+    component: () => <ArticleList category='tech:java' />,
   }, {
     name: 'JS',
     code: 'js',
-    path: '/js'
+    path: '/js',
+    component: () => <ArticleList category='tech:js' />,
   }, {
     name: 'Python',
     code: 'python',
     path: '/python',
+    component: () => <ArticleList category='tech:python' />,
+  }, {
+    name: 'Linux',
+    code: 'linux',
+    path: '/linux',
+    component: () => <ArticleList category='tech:linux' />,
+  }, {
+    name: '运维',
+    code: 'devops',
+    path: '/devops',
+    component: () => <ArticleList category='tech:devops' />,
+  }, {
+    name: '中间件',
+    code: 'middleware',
+    path: '/middleware',
+    component: () => <ArticleList category='tech:middleware' />,
   }, {
     name: 'Golang',
     code: 'golang',
-    path: '/golang'
+    path: '/golang',
+    component: () => <ArticleList category='tech:golang' />,
   }],
 },
 {
   name: '生活',
   code: 'life',
   path: '/life',
-  component: ArticleList,
+  component: () => <ArticleList category='tech:life' />,
   children: [{
     name: '电影',
     code: 'movie',

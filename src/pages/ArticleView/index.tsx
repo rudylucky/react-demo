@@ -14,7 +14,6 @@ import { faAngleDoubleLeft, faAngleDoubleRight, faArrowCircleDown, faArrowCircle
 import { useDispatch } from 'react-redux'
 
 import baseLayoutStyle from 'components/layout/BaseLayout/index.module.scss'
-import { rootCertificates } from 'tls'
 
 interface IToc {
   anchor: string,
