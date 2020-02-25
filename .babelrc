@@ -8,17 +8,16 @@
       {
         "languages": [
           "javascript",
-          "css",
-          "markup",
           "bash",
-          "powershell",
-          "java",
           "batch",
-          "bash",
-          "json"
+          "css",
+          "ini",
+          "java",
+          "json",
+          "markup",
+          "powershell"
         ],
-        "plugins": [
-        ],
+        "plugins": [],
         "theme": "default",
         "css": true
       }

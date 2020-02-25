@@ -107,7 +107,7 @@ const menuRoute: Array<IRoute> = [{
   name: '笔记',
   code: 'note',
   path: '/note',
-  component: ArticleList,
+  component: () => <ArticleList category='tech:note' />,
 }]
 const route = menuRoute.concat(hiddenRoute)
 
