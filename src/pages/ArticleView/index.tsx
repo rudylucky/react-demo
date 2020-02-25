@@ -5,15 +5,16 @@ import markdownStyle from './markdown.module.scss'
 import style from './index.module.scss'
 
 import prismjs from 'prismjs'
-import 'prismjs/themes/prism.css'
-import 'prismjs/components/prism-java'
 import { useParams } from 'react-router-dom'
 import util from 'common/util'
 import Comment from './Comment'
 import CommentService from 'services/CommentService'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAngleDoubleLeft, faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons'
+import { faAngleDoubleLeft, faAngleDoubleRight, faArrowCircleDown, faArrowCircleUp } from '@fortawesome/free-solid-svg-icons'
 import { useDispatch } from 'react-redux'
+
+import baseLayoutStyle from 'components/layout/BaseLayout/index.module.scss'
+import { rootCertificates } from 'tls'
 
 interface IToc {
   anchor: string,
@@ -130,8 +131,13 @@ const AritcleView = () => {
     )
   }
 
+  const hightlightCode = (code: any, lang: any) => {
+    console.log(lang)
+    return ['mermaid', ''].includes(lang) ? code : prismjs.highlight(code, prismjs.languages[lang], lang)
+  }
+
   marked.setOptions({
-    highlight: (code, lang) => ['mermaid', ''].includes(lang) ? code : prismjs.highlight(code, prismjs.languages[lang], lang),
+    highlight: hightlightCode,
     renderer,
     pedantic: false,
     gfm: true,
@@ -164,29 +170,39 @@ const AritcleView = () => {
     })()
   }, [])
 
-  useEffect(() => {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault()
-        const href = anchor.getAttribute('href')
-        if (!href) {
-          return
-        }
-        const elem = document.querySelector(href)
-        if (!elem) {
-          return
-        }
+  const smoothScroll = (anchor: Element) => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault()
+      const href = anchor.getAttribute('href')
+      if (!href) {
+        return
+      }
+      const elem = document.querySelector(href)
+      if (!elem) {
+        return
+      }
         elem?.scrollIntoView({
           behavior: 'smooth'
         })
-      })
     })
+  }
+
+  useEffect(() => {
+    document.querySelectorAll('a[href^="#"]').forEach(smoothScroll)
+    const headerDom = document.getElementById(baseLayoutStyle.header)
+    headerDom && smoothScroll(headerDom)
+    const footerDom = document.querySelector(baseLayoutStyle.footer)
+    footerDom && smoothScroll(footerDom)
   }, [toc])
 
   const comments = CommentService.getInstance().getComments()
   const dispatch = useDispatch()
 
   dispatch({ type: 'UPDATE_ARTICLE', title: article?.title ?? '' })
+
+  const toBottom = () => {
+
+  }
 
   return (
     <div className={style.articleView}>
@@ -207,6 +223,14 @@ const AritcleView = () => {
         <div className={style.comment}>
           {comments.map((v, i) => <Comment key={i} {...v} />)}
         </div>
+      </div>
+      <div className={style.toTop}>
+        <a href={'#' + baseLayoutStyle.header}>
+          <FontAwesomeIcon className={style.icon} icon={faArrowCircleUp} />
+        </a>
+        <a href={'#' + baseLayoutStyle.footer}>
+          <FontAwesomeIcon onClick={toBottom} className={style.icon} icon={faArrowCircleDown} />
+        </a>
       </div>
     </div>
   )

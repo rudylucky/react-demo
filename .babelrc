@@ -1,0 +1,27 @@
+{
+  "presets": [
+    "react-app"
+  ],
+  "plugins": [
+    [
+      "prismjs",
+      {
+        "languages": [
+          "javascript",
+          "css",
+          "markup",
+          "bash",
+          "powershell",
+          "java",
+          "batch",
+          "bash",
+          "json"
+        ],
+        "plugins": [
+        ],
+        "theme": "default",
+        "css": true
+      }
+    ]
+  ]
+}
