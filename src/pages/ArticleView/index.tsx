@@ -79,7 +79,7 @@ const AritcleView = () => {
   }
 
   function buildTOC(parent: IToc) {
-    parent.children.forEach((item, index) => {
+    parent?.children.forEach((item, index) => {
       if (!item.chapter) {
         item.chapter = []
       }
@@ -93,7 +93,7 @@ const AritcleView = () => {
   }
 
   function toDom(parent: IToc) {
-    if (!parent.children ) {
+    if (!parent?.children ) {
     // when toc have not composed already
       return null
     }

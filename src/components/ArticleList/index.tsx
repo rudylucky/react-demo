@@ -2,10 +2,9 @@ import React, { useEffect, useState } from 'react'
 import ArticleService, { IArticleEntity } from 'services/ArticleService'
 import ArticleItem from 'components/ArticleItem'
 import style from './index.module.scss'
-import { useParams, useHistory } from 'react-router-dom'
 
 
-const ArticleList = (props: any) => {
+const ArticleList = () => {
 
   const [articles, setArticles] = useState<Array<IArticleEntity>>([])
 
