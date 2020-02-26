@@ -68,6 +68,10 @@
     margin: auto;
     width: 100%;
     .comment {
+      box-sizing: border-box;
+      margin: 0 auto;
+      padding: 10px;
+      width: 980px;
     }
   }
 

@@ -70,15 +70,10 @@ const menuRoute: Array<IRoute> = [{
     path: '/linux',
     component: () => <ArticleList category='tech:linux' />,
   }, {
-    name: '运维',
+    name: 'DevOps',
     code: 'devops',
     path: '/devops',
     component: () => <ArticleList category='tech:devops' />,
-  }, {
-    name: '中间件',
-    code: 'middleware',
-    path: '/middleware',
-    component: () => <ArticleList category='tech:middleware' />,
   }, {
     name: 'Golang',
     code: 'golang',

@@ -4,7 +4,7 @@ const AppFooter = () => {
 
   return (
     <div>
-      footer
+      © 2019-2020 rudylukcy 的个人博客
     </div>
   )
 }
