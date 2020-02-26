@@ -7,6 +7,7 @@ import { Redirect } from 'react-router-dom'
 import util from './util'
 import _ from 'lodash'
 import Test from 'components/Test'
+import Login from 'components/Login'
 
 export interface IRoute {
   name?: string,
