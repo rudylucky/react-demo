@@ -1,12 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import style from './index.module.scss'
 import ArticleList from 'components/ArticleList'
 
-interface IHomePageProps {
-  children?: any
-}
-
-const HomePage = (props: IHomePageProps) => {
+const HomePage = () => {
 
   return (
     <div className={style.homePage}>

@@ -1,7 +1,7 @@
 $menuHeight: 50px;
 
 .menuItem {
-  width: 90px;
+  width: 120px;
   height: $menuHeight;
   line-height: $menuHeight;
   cursor: pointer;
@@ -12,7 +12,7 @@ $menuHeight: 50px;
   }
   .link {
     display: inline-block;
-    width: 90px;
+    width: 120px;
     height: $menuHeight;
     text-decoration: none;
     color: #fff;

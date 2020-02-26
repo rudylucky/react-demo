@@ -40,10 +40,11 @@ module.exports = {
     "func-call-spacing": [2, "never"],
     "no-trailing-spaces": [2],
     "no-multi-spaces": [2],
-    "no-unused-vars": [1],
+    "no-unused-vars": [0],
+    "@typescript-eslint/no-unused-vars": [1],
     "no-irregular-whitespace": [2],
     "linebreak-style": [1, "unix"],
     "quotes": [2, "single"],
-    "semi": [2, "never"]
+    "semi": [2, "never"],
   }
 };

@@ -6,6 +6,7 @@ import style from './index.module.scss'
 import BreadCrumb from 'components/BreadCrumb'
 import AppRoute from 'components/AppRoute'
 import util from '../../../common/util'
+import AppFooter from '../AppFooter'
 
 function composeRouter(parents: Array<IRoute>, routers: Array<IRoute>): Array<IRoute> {
   if (!parents || !parents.length) {
@@ -24,7 +25,7 @@ const BaseLayout = () => {
 
   return (
     <div className={style.baseLayout}>
-      <div className={style.header}>
+      <div className={style.header} id={style.header}>
         <AppHeader />
       </div>
       <div className={style.menuBar}>
@@ -35,6 +36,9 @@ const BaseLayout = () => {
       </div>
       <div className={style.content}>
         <AppRoute routers={routers} />
+      </div>
+      <div className={style.footer} id={style.footer}>
+        <AppFooter />
       </div>
     </div>
   )
