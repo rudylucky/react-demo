@@ -3,7 +3,12 @@ $headerHeight: 60px;
 .appHeader {
   height: 100%;
   margin: 0;
-  .userDropdown {
+  .itemIcon {
+    font-size: 50px;
+    margin-left: 10px;
+  }
+  .headerItem {
+    line-height: $headerHeight;
     cursor: pointer;
     height: $headerHeight;
     float: right;
@@ -19,11 +24,6 @@ $headerHeight: 60px;
 
       .username {
         font-size: 14px;
-        margin-right: 10px;
-      }
-
-      .userIcon {
-        font-size: 25px;
       }
     }
     &:hover .settingContainer {

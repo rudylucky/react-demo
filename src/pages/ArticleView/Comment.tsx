@@ -36,7 +36,7 @@ const Comment = (props: ICommentEntity) => {
         {content}
       </div>
       <AppModal title={'回复: ' + author} visible={commentVisible} setVisible={setCommentVisible} confirm={handleSubmit}>
-        <AppInput type='textarea' placeholder='请输入回复内容' onChange={handleValueChange}/>
+        <AppInput className={style.replyInput} type='textarea' placeholder='请输入回复内容' onChange={handleValueChange}/>
       </AppModal>
     </div>
   )

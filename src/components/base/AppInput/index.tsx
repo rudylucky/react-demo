@@ -5,10 +5,11 @@ export interface AppInputProps {
   onChange: (e: any) => any
   placeholder?: string
   type?: 'date' | 'datetime' | 'textarea'
+  className?: string
 }
 
 const AppInput = (props: AppInputProps) => {
-  const { onChange } = props
+  const { onChange, className } = props
 
   const handleChange = (e: any) => {
     onChange && onChange(e.target.value)
@@ -28,7 +29,7 @@ const AppInput = (props: AppInputProps) => {
 
   return (
     <>
-      <input placeholder={props.placeholder} value={props.value} onChange={(e) => onChange && onChange(e)} />
+      <input className={className} placeholder={props.placeholder} value={props.value} onChange={(e) => onChange && onChange(e)} />
     </>
   )
 }
