@@ -1,6 +1,8 @@
 import React from 'react'
 
 import style from './index.module.scss'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faWindowClose } from '@fortawesome/free-solid-svg-icons'
 
 export interface IModelProps {
   children?: any
@@ -16,6 +18,8 @@ export interface IModelProps {
 const AppModal = (props: IModelProps) => {
 
   const { visible, setVisible } = props
+
+  const showFooter = (typeof props.cancel === 'function') || (typeof props.confirm === 'function')
 
   const cancel = () => {
     const cancel = props.cancel
@@ -35,15 +39,19 @@ const AppModal = (props: IModelProps) => {
           <div className={style.background}>
             <div className={style.model}>
               <div className={style.title}>
-                {props.title ?? '请输入内容'}
+                <span>{props.title}</span>
+                <FontAwesomeIcon onClick={cancel} className={style.closeButton} icon={faWindowClose} />
               </div>
               <div className={style.content}>
                 {props.children}
               </div>
-              <div className={style.foot}>
-                <button onClick={confirm}>{props.confirmText ?? '确定'}</button>
-                <button onClick={cancel}>{props.cancelText ?? '取消'}</button>
-              </div>
+              {
+                showFooter &&
+                <div className={style.foot}>
+                  <button onClick={confirm}>{props.confirmText ?? '确定'}</button>
+                  <button onClick={cancel}>{props.cancelText ?? '取消'}</button>
+                </div>
+              }
             </div>
           </div>
       }

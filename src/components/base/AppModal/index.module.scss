@@ -12,20 +12,29 @@
 
   .model {
     min-width: 300px;
+    min-height: 50px;
     background-color: #fff;
 
     .title {
       font-weight: bold;
       border-bottom: 1px solid #aaa;
       background-color: #eee;
+      height: 12px;
+      line-height: 12px;
       padding: 5px;
+
+      .closeButton {
+        float: right;
+        margin-top: -1px;
+        cursor: pointer;
+      }
     }
     .content {
-      border-bottom: 1px solid #aaa;
       padding: 5px;
     }
     .foot {
       flex-grow: 0;
+      border-top: 1px solid #aaa;
       background-color: #eee;
       & > button {
         cursor: pointer;

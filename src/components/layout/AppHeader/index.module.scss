@@ -4,20 +4,34 @@ $headerHeight: 60px;
   height: 100%;
   margin: 0;
   .itemIcon {
-    font-size: 50px;
+    font-size: 25px;
     margin-left: 10px;
+    cursor: pointer;
   }
   .headerItem {
     line-height: $headerHeight;
-    cursor: pointer;
     height: $headerHeight;
     float: right;
     position: relative;
     user-select: none;
+    margin-right: 10px;
+    .loginSignup {
+      margin-right: 10px;
+      cursor: pointer;
+      user-select: none;
+      font-weight: bold;
+    }
+    .itemContainer {
+      height: $headerHeight;
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
+    }
     .userContainer {
+      cursor: pointer;
       line-height: $headerHeight;
       height: $headerHeight;
-      padding: 0 20px;
+      padding: 0 10px;
       display: flex;
       align-items: center;
       margin-right: 10px;
