@@ -13,7 +13,6 @@ const Login = (props: LoginProps) => {
 
   const values = new FormStore()
 
-
   const handleLogin = () => {
     console.log(values)
   }
