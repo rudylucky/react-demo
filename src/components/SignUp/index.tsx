@@ -1,6 +1,6 @@
 import React from 'react'
 import AppModal from 'components/base/AppModal'
-import AppInput from 'components/base/AppInput'
+import { Form, FormField, FormStore } from 'components/Form'
 
 interface SignUpProps {
   visible: boolean
@@ -11,13 +11,27 @@ const SignUp = (props: SignUpProps) => {
 
   const { visible, setVisible } = props
 
-  const func = () => { }
+  const values = new FormStore()
+
+  const handleLogin = () => {
+    console.log(values)
+  }
 
   return (
     <div>
       <AppModal setVisible={setVisible} visible={visible}>
-        <div>密码：<AppInput onChange={func} placeholder='请输入密码' /></div>
-        <div>邮箱：<AppInput onChange={func} placeholder='请输入邮箱' /></div>
+        <Form store={values} onSubmit={handleLogin}>
+          <FormField name="username" label='用户名：'>
+            <input />
+          </FormField>
+          <FormField name="email" label='邮箱：'>
+            <input />
+          </FormField>
+          <FormField name="captcha" label='邮箱验证码：'>
+            <input />
+          </FormField>
+          <button>下一步</button>
+        </Form>
       </AppModal>
     </div>
   )

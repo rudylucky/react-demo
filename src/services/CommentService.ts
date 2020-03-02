@@ -27,7 +27,7 @@ class CommentService extends BaseService<ICommentEntity> {
     createTime: '2019年12月03日 上午9:29'
   }
 
-  getComments(data?: ICommentEntity): Array<ICommentEntity> {
+  getComments(): Array<ICommentEntity> {
     return new Array(10).fill(this.comment)
   }
 

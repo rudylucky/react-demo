@@ -53,7 +53,7 @@ const AppHeader = () => {
           <FontAwesomeIcon className={style.itemIcon} icon={faSearch} />
         </div>
       </div>
-      <Login visible={true} setVisible={setloginVisible} />
+      <Login visible={loginVisible} setVisible={setloginVisible} />
       <SignUp visible={signUpVisible} setVisible={setSignUpVisible} />
     </div>
   )
