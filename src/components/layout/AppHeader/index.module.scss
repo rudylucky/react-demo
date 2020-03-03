@@ -1,67 +1,24 @@
-$headerHeight: 60px;
+$totalHeight: 88px;
 
 .appHeader {
   height: 100%;
   margin: 0;
-  .itemIcon {
-    font-size: 25px;
-    margin-left: 10px;
-    cursor: pointer;
-  }
-  .headerItem {
-    line-height: $headerHeight;
-    height: $headerHeight;
-    float: right;
-    position: relative;
+  display: flex;
+  justify-content: center;
+  background-color: #2ab48a;
+
+  & > div {
+    color: #fff;
+    width: 100px;
+    height: $totalHeight;
+    line-height: $totalHeight;
     user-select: none;
-    margin-right: 10px;
-    .loginSignup {
-      margin-right: 10px;
-      cursor: pointer;
-      user-select: none;
-      font-weight: bold;
-    }
-    .itemContainer {
-      height: $headerHeight;
-      display: flex;
-      align-items: center;
-      padding: 0 10px;
-    }
-    .userContainer {
-      cursor: pointer;
-      line-height: $headerHeight;
-      height: $headerHeight;
-      padding: 0 10px;
-      display: flex;
-      align-items: center;
-      margin-right: 10px;
+    cursor: pointer;
+    font-size: 22px;
+    letter-spacing: 0.79px;
 
-      .username {
-        font-size: 14px;
-      }
-    }
-    &:hover .settingContainer {
-      transform: scaleY(1);
-    }
-    .settingContainer {
-      z-index: 200;
-      transition: 250ms;
-      transform-origin: top;
-      transform: scaleY(0);
-      background-color: #eee;
-      border: 0.5px solid #ccc;
-      box-shadow: 0 1px 1px 1px #888;
-      position: relative;
-      width: 100px;
-      .userSetting {
-        height: 40px;
-        line-height: 40px;
-        margin: 0;
-
-        &:hover {
-          background-color: rgba($color: #000000, $alpha: 0.2);
-        }
-      }
+    &:hover {
+      background-color: #313433;
     }
   }
 }
