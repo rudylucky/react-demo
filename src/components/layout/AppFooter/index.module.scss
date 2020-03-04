@@ -1,0 +1,37 @@
+.footer {
+  height: 324px;
+  text-align: start;
+  background-color: #313433;
+  color: #fff;
+  font-size: 14px;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+  display: flex;
+  justify-content: space-between;
+
+  .declare {
+    font-size: 20px;
+    margin-top: 260px;
+  }
+
+  .infoContainer {
+    box-sizing: border-box;
+    padding: 60px 0 0 60px;
+    width: 320px;
+
+    & > div {
+      padding: 10px 0;
+    }
+  }
+  .qrCodeContainer {
+    width: 320px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .qrCode {
+      width: 160px;
+      height: 160px;
+      background-color: #aaa;
+    }
+  }
+}

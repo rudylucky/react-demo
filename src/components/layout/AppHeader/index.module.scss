@@ -1,24 +1,31 @@
 $totalHeight: 88px;
 
 .appHeader {
-  height: 100%;
+  height: $totalHeight;
   margin: 0;
   display: flex;
   justify-content: center;
   background-color: #2ab48a;
 
-  & > div {
-    color: #fff;
-    width: 100px;
-    height: $totalHeight;
-    line-height: $totalHeight;
-    user-select: none;
-    cursor: pointer;
-    font-size: 22px;
-    letter-spacing: 0.79px;
-
-    &:hover {
-      background-color: #313433;
+  & > label {
+    & > span {
+      color: #fff;
+      width: 99px;
+      height: $totalHeight;
+      line-height: $totalHeight;
+      user-select: none;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 18px;
+      &:hover {
+        background: #313433;
+      }
+    }
+    input[type='radio'] {
+      display: none;
+      &:checked + span {
+        background: #313433;
+      }
     }
   }
 }

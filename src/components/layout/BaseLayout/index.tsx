@@ -5,6 +5,7 @@ import style from './index.module.scss'
 import util from '../../../common/util'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye } from '@fortawesome/free-solid-svg-icons'
+import AppFooter from '../AppFooter'
 
 function composeRouter(parents: Array<IRoute>, routers: Array<IRoute>): Array<IRoute> {
   if (!parents || !parents.length) {
@@ -20,7 +21,7 @@ function composeRouter(parents: Array<IRoute>, routers: Array<IRoute>): Array<IR
 
 const BaseLayout = () => {
 
-  const articleList = new Array(10).map((v, i) => {
+  const articleList = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((v, i) => {
     return (<ArticleItem
       key={i}
       thumbs={Math.round(Math.random() * 1000)}
@@ -41,24 +42,25 @@ const BaseLayout = () => {
 
   return (
     <div className={style.baseLayout}>
-      <div className={style.header} id={style.header}>
-        <AppHeader />
-      </div>
-      <div className={style.img}></div>
-      <div className={style.contentContainer}>
-        <div className={style.menuContainer}>
-          <div>最近更新</div>
-          <div>Java</div>
-          <div>JS</div>
-          <div>Python</div>
-          <div>Linux</div>
-          <div>DevOps</div>
-          <div>Golang</div>
+      <AppHeader />
+      <div className={style.content}>
+        <div className={style.img}></div>
+        <div className={style.contentContainer}>
+          <div className={style.menuContainer}>
+            <label><input name='menu-tech' type='radio' defaultChecked/><span>最近更新</span></label>
+            <label><input name='menu-tech' type='radio'/><span>Java</span></label>
+            <label><input name='menu-tech' type='radio'/><span>JS</span></label>
+            <label><input name='menu-tech' type='radio'/><span>Python</span></label>
+            <label><input name='menu-tech' type='radio'/><span>Linux</span></label>
+            <label><input name='menu-tech' type='radio'/><span>DevOps</span></label>
+            <label><input name='menu-tech' type='radio'/><span>Golang</span></label>
+          </div>
+          <div className={style.articleContainer}>
+            {articleList}
+          </div>
         </div>
-        <div className={style.articleContainer}>
-          {articleList}
-        </div>
       </div>
+      <AppFooter />
     </div>
   )
 }
@@ -96,8 +98,6 @@ export function ArticleItem(props: ArticleItemProps) {
             <span>{reads}</span>
           </span>
         </span>
-      </div>
-      <div>
       </div>
     </div>
   )

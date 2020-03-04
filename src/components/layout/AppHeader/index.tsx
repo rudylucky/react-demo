@@ -15,10 +15,10 @@ const AppHeader = () => {
 
   return (
     <div className={style.appHeader}>
-      <div>首页</div>
-      <div>生活</div>
-      <div>笔记</div>
-      <div>关于我</div>
+      <label><input name='menu' type='radio' defaultChecked /><span>首页</span></label>
+      <label><input name='menu' type='radio' /><span>生活</span></label>
+      <label><input name='menu' type='radio' /><span>笔记</span></label>
+      <label><input name='menu' type='radio' /><span>关于我</span></label>
     </div>
   )
 }
