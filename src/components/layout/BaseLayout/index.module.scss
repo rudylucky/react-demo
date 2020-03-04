@@ -12,7 +12,7 @@
       background-image: linear-gradient(120deg, #a4bcb1, #37b9e9);
     }
     .contentContainer {
-      width: 1400px;
+      max-width: 1400px;
       margin: -300px auto 0;
       background-image: linear-gradient(
         180deg,
@@ -25,6 +25,7 @@
         text-align: start;
         & > label {
           & > span {
+            margin-bottom: 20px;
             $height: 48px;
             text-align: center;
             background-color: #313433;
@@ -90,12 +91,16 @@
             color: rgba(0, 0, 0, 0.85);
             letter-spacing: 0.5px;
             .dateContainer {
+              font-size: 14px;
             }
             .buttonContainer {
               float: right;
               & > span {
                 margin-left: 15px;
                 width: 200px;
+                & > :first-child {
+                  color: #bfbfbf;
+                }
                 & > span {
                   margin-left: 3px;
                 }

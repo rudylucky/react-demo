@@ -1,23 +1,10 @@
 import React from 'react'
 import AppHeader from '../AppHeader'
-import { IRoute, route } from 'common/route'
 import style from './index.module.scss'
-import util from '../../../common/util'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEye } from '@fortawesome/free-solid-svg-icons'
+import { faEye, faThumbsUp, faCommentDots } from '@fortawesome/free-solid-svg-icons'
 import AppFooter from '../AppFooter'
 
-function composeRouter(parents: Array<IRoute>, routers: Array<IRoute>): Array<IRoute> {
-  if (!parents || !parents.length) {
-    return routers
-  }
-
-  parents.forEach(route => route.children?.forEach(v => v.path = route.path + v.path))
-  const nextParents = util.flatMap(parents.filter(v => v.children), route => route.children)
-
-  routers = routers.concat(parents)
-  return composeRouter(nextParents as Array<IRoute>, routers)
-}
 
 const BaseLayout = () => {
 
@@ -86,11 +73,11 @@ export function ArticleItem(props: ArticleItemProps) {
         <span className={style.dateContainer}>发布时间：{date.toLocaleDateString()}</span>
         <span className={style.buttonContainer}>
           <span>
-            <FontAwesomeIcon icon={faEye} />
+            <FontAwesomeIcon icon={faThumbsUp} />
             <span>{thumbs}</span>
           </span>
           <span>
-            <FontAwesomeIcon icon={faEye} />
+            <FontAwesomeIcon icon={faCommentDots} />
             <span>{comments}</span>
           </span>
           <span>
