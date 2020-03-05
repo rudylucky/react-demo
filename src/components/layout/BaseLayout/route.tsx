@@ -12,34 +12,34 @@ export interface IRoute {
   children?: Array<IRoute>
 }
 
-export const menu: Array<IRoute> = [{
+export const route: Array<IRoute> = [{
   name: 'Java',
   code: 'java',
-  path: '/java',
+  path: '/tech/java',
   component: () => <ArticleList category='tech:java' />,
 }, {
   name: 'JS',
   code: 'js',
-  path: '/js',
+  path: '/tech/js',
   component: () => <ArticleList category='tech:js' />,
 }, {
   name: 'Python',
   code: 'python',
-  path: '/python',
+  path: '/tech/python',
   component: () => <ArticleList category='tech:python' />,
 }, {
   name: 'Linux',
   code: 'linux',
-  path: '/linux',
+  path: '/tech/linux',
   component: () => <ArticleList category='tech:linux' />,
 }, {
   name: 'DevOps',
   code: 'devops',
-  path: '/devops',
+  path: '/tech/devops',
   component: () => <ArticleList category='tech:devops' />,
 }, {
   name: 'Golang',
   code: 'golang',
-  path: '/golang',
+  path: '/tech/golang',
   component: () => <ArticleList category='tech:golang' />,
 }]

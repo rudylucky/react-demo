@@ -1,18 +1,13 @@
+import _ from 'lodash'
 import React from 'react'
+import AppFooter from '../AppFooter'
 import AppHeader from '../AppHeader'
 import style from './index.module.scss'
-import AppFooter from '../AppFooter'
-import { menu } from './route'
 import MenuItem from './MenuItem'
-import _ from 'lodash'
-import { useParams } from 'react-router-dom'
-import ArticleList from './ArticleList'
-
+import { route } from './route'
+import { Route } from 'react-router-dom'
 
 const BaseLayout = () => {
-
-
-  const { category } = useParams()
 
   return (
     <div className={style.baseLayout}>
@@ -21,10 +16,10 @@ const BaseLayout = () => {
         <div className={style.img}></div>
         <div className={style.contentContainer}>
           <div className={style.menuContainer}>
-            {menu.map(v => <MenuItem className={style.menuItem} type={_.uniqueId()} key={v.code} {...v} />)}
+            {route.map(v => <MenuItem className={style.menuItem} type={_.uniqueId()} key={v.code} {...v} />)}
           </div>
           <div className={style.articleContainer}>
-            
+            {route.map(v => <Route exact path={v.path} key={v.code} component={v.component} />)}
           </div>
         </div>
       </div>

@@ -16,9 +16,13 @@ export function ArticleItem(props: ArticleItemProps) {
 
   const { title, abstract, date, thumbs, comments, reads } = props
 
+  const handleTitleClick = () => {
+    
+  }
+
   return (
     <div className={style.articleItem}>
-      <div className={style.title}>{title}</div>
+      <div className={style.title} onClick={handleTitleClick}>{title}</div>
       <div className={style.content}>{abstract}</div>
       <div className={style.bottom}>
         <span className={style.dateContainer}>发布时间：{date.toLocaleDateString()}</span>
