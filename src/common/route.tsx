@@ -1,12 +1,12 @@
 /* eslint-disable react/display-name */
 import React from 'react'
-import ArticleList from 'components/ArticleList'
 import HomePage from 'pages/HomePage'
 import AritcleView from 'pages/ArticleView'
 import { Redirect } from 'react-router-dom'
 import util from './util'
 import _ from 'lodash'
 import Test from 'components/Test'
+import ArticleList from 'components/layout/BaseLayout/ArticleList'
 
 export interface IRoute {
   name?: string,

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import ArticleService, { IArticleEntity } from 'services/ArticleService'
-import ArticleItem from 'components/ArticleItem'
 import style from './index.module.scss'
+import { ArticleItem } from '../ArticleItem'
 
 interface ArticleListProps {
   category?: string
@@ -23,7 +23,7 @@ const ArticleList = (props: ArticleListProps) => {
     thumbs={Math.round(Math.random() * 1000)}
     comments={Math.round(Math.random() * 1000)}
     reads={Math.round(Math.random() * 1000)}
-    title='小刺猬脱毛衣'
+    title={v.title}
     abstract='小刺猬每天出门前，妈妈都要关照它穿好刺毛衣，
               因为外面可怕的事实在是太多了，
               有了刺毛衣的保护，
@@ -36,9 +36,9 @@ const ArticleList = (props: ArticleListProps) => {
   />)
 
   return (
-    <div className={style.articleList}>
-      {list}
-    </div>
+    <>
+      { list }
+    </>
   )
 }
 

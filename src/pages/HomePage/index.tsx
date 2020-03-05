@@ -1,6 +1,5 @@
 import React from 'react'
 import style from './index.module.scss'
-import ArticleList from 'components/ArticleList'
 
 const HomePage = () => {
 

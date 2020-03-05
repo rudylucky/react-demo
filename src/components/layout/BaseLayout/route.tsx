@@ -1,6 +1,6 @@
 /* eslint-disable react/display-name */
 import React from 'react'
-import ArticleList from 'components/ArticleList'
+import ArticleList from './ArticleList'
 
 export interface IRoute {
   name?: string,

@@ -1,6 +1,5 @@
 import React from 'react'
 import style from './index.module.scss'
-import { IArticleEntity } from 'services/ArticleService'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCommentDots, faEye, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
 
@@ -12,7 +11,6 @@ interface ArticleItemProps {
   abstract: string
   date: Date
 }
-
 
 export function ArticleItem(props: ArticleItemProps) {
 
