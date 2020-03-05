@@ -4,6 +4,12 @@ import style from './index.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faThumbsUp, faCommentDots } from '@fortawesome/free-solid-svg-icons'
 import AppFooter from '../AppFooter'
+import { menu } from './route'
+import MenuItem from './MenuItem'
+import _ from 'lodash'
+import ArticleList from 'components/ArticleList'
+import { useParams } from 'react-router-dom'
+import ArticleItem from 'components/ArticleItem'
 
 
 const BaseLayout = () => {
@@ -27,6 +33,8 @@ const BaseLayout = () => {
     />)
   })
 
+  const { category } = useParams()
+
   return (
     <div className={style.baseLayout}>
       <AppHeader />
@@ -34,58 +42,14 @@ const BaseLayout = () => {
         <div className={style.img}></div>
         <div className={style.contentContainer}>
           <div className={style.menuContainer}>
-            <label><input name='menu-tech' type='radio' defaultChecked/><span>最近更新</span></label>
-            <label><input name='menu-tech' type='radio'/><span>Java</span></label>
-            <label><input name='menu-tech' type='radio'/><span>JS</span></label>
-            <label><input name='menu-tech' type='radio'/><span>Python</span></label>
-            <label><input name='menu-tech' type='radio'/><span>Linux</span></label>
-            <label><input name='menu-tech' type='radio'/><span>DevOps</span></label>
-            <label><input name='menu-tech' type='radio'/><span>Golang</span></label>
+            {menu.map(v => <MenuItem className={style.menuItem} type={_.uniqueId()} key={v.code} {...v} />)}
           </div>
           <div className={style.articleContainer}>
-            {articleList}
+            <ArticleList category={category} />
           </div>
         </div>
       </div>
       <AppFooter />
-    </div>
-  )
-}
-
-interface ArticleItemProps {
-  thumbs: number
-  comments: number
-  reads: number
-  title: string
-  abstract: string
-  date: Date
-}
-
-export function ArticleItem(props: ArticleItemProps) {
-
-  const { title, abstract, date, thumbs, comments, reads } = props
-
-  return (
-    <div className={style.articleItem}>
-      <div className={style.title}>{title}</div>
-      <div className={style.content}>{abstract}</div>
-      <div className={style.bottom}>
-        <span className={style.dateContainer}>发布时间：{date.toLocaleDateString()}</span>
-        <span className={style.buttonContainer}>
-          <span>
-            <FontAwesomeIcon icon={faThumbsUp} />
-            <span>{thumbs}</span>
-          </span>
-          <span>
-            <FontAwesomeIcon icon={faCommentDots} />
-            <span>{comments}</span>
-          </span>
-          <span>
-            <FontAwesomeIcon icon={faEye} />
-            <span>{reads}</span>
-          </span>
-        </span>
-      </div>
     </div>
   )
 }

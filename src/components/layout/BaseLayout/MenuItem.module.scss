@@ -1,0 +1,31 @@
+.menuItem {
+  display: inline-block;
+  span {
+    margin-bottom: 20px;
+    $height: 48px;
+    text-align: center;
+    background-color: #313433;
+    user-select: none;
+    cursor: pointer;
+    border-radius: 4px;
+    border-radius: 4px;
+    display: inline-block;
+    line-height: $height;
+    margin-right: 30px;
+    height: $height;
+    width: 123px;
+    font-size: 18px;
+    color: #ffffff;
+    letter-spacing: 0.64px;
+    &:hover {
+      background: #2ab48a;
+    }
+  }
+
+  input[type=radio] {
+    display: none;
+    &:checked + span {
+      background: #2ab48a;
+    }
+  }
+}

@@ -23,36 +23,6 @@
 
       .menuContainer {
         text-align: start;
-        & > label {
-          & > span {
-            margin-bottom: 20px;
-            $height: 48px;
-            text-align: center;
-            background-color: #313433;
-            user-select: none;
-            cursor: pointer;
-            border-radius: 4px;
-            border-radius: 4px;
-            display: inline-block;
-            line-height: $height;
-            margin-right: 30px;
-            height: $height;
-            width: 123px;
-            font-size: 18px;
-            color: #ffffff;
-            letter-spacing: 0.64px;
-            &:hover {
-              background: #2ab48a;
-            }
-          }
-
-          input[type='radio'] {
-            display: none;
-            &:checked + span {
-              background: #2ab48a;
-            }
-          }
-        }
       }
 
       .articleContainer {
@@ -60,54 +30,6 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
-
-        .articleItem {
-          flex-shrink: 0;
-          display: inline-block;
-          padding: 16px 22px;
-          margin-top: 26px;
-          width: 450px;
-          height: 200px;
-          box-sizing: border-box;
-          background: #ffffff;
-          border-radius: 4px;
-          border-radius: 4px;
-          .title {
-            font-size: 18px;
-            color: rgba(0, 0, 0, 0.85);
-            letter-spacing: 0.64px;
-            font-weight: bold;
-          }
-          .content {
-            overflow: auto;
-            height: 106px;
-            margin-top: 10px;
-            font-size: 14px;
-            color: rgba(0, 0, 0, 0.65);
-            letter-spacing: 0.5px;
-          }
-          .bottom {
-            font-size: 14px;
-            color: rgba(0, 0, 0, 0.85);
-            letter-spacing: 0.5px;
-            .dateContainer {
-              font-size: 14px;
-            }
-            .buttonContainer {
-              float: right;
-              & > span {
-                margin-left: 15px;
-                width: 200px;
-                & > :first-child {
-                  color: #bfbfbf;
-                }
-                & > span {
-                  margin-left: 3px;
-                }
-              }
-            }
-          }
-        }
       }
     }
   }
