@@ -1,7 +1,7 @@
-import React from 'react'
 import { IRoute } from 'common/route'
-import { Link, useLocation } from 'react-router-dom'
 import _ from 'lodash'
+import React from 'react'
+import { Link, useLocation } from 'react-router-dom'
 
 const style = require('./MenuItem.module.scss')
 

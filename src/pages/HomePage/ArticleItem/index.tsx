@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCommentDots, faEye, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
 
 interface ArticleItemProps {
+  code?: string
   thumbs: number
   comments: number
   reads: number
@@ -14,15 +15,15 @@ interface ArticleItemProps {
 
 export function ArticleItem(props: ArticleItemProps) {
 
-  const { title, abstract, date, thumbs, comments, reads } = props
+  const { title, abstract, date, thumbs, comments, reads, code } = props
 
-  const handleTitleClick = () => {
-    
+  if (!code) {
+    return <div className={style.articleItem} style={{opacity: 0 }}></div>
   }
 
   return (
     <div className={style.articleItem}>
-      <div className={style.title} onClick={handleTitleClick}>{title}</div>
+      <a className={style.title} href={'/article/detail/' + code}>{title}</a>
       <div className={style.content}>{abstract}</div>
       <div className={style.bottom}>
         <span className={style.dateContainer}>发布时间：{date.toLocaleDateString()}</span>

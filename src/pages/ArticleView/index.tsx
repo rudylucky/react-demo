@@ -13,7 +13,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleDoubleLeft, faAngleDoubleRight, faArrowCircleDown, faArrowCircleUp } from '@fortawesome/free-solid-svg-icons'
 import { useDispatch } from 'react-redux'
 
-import baseLayoutStyle from 'components/layout/BaseLayout/index.module.scss'
+import baseLayoutStyle from 'pages/HomePage/index.module.scss'
 
 interface IToc {
   anchor: string,

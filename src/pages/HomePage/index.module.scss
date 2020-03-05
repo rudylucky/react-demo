@@ -1,43 +1,39 @@
-@keyframes slide {
-  0%,
-  15% {
-    margin-left: 0;
+.baseLayout {
+  height: 100%;
+  overflow: auto;
+  .header {
+    height: 60px;
   }
-  20%,
-  35% {
-    margin-left: -100%;
-  }
-  40%,
-  55% {
-    margin-left: -200%;
-  }
-  60%,
-  75% {
-    margin-left: -300%;
-  }
-  80%,
-  95% {
-    margin-left: -400%;
-  }
-}
+  .content {
+    .img {
+      width: 100%;
+      height: 0px;
+      padding-bottom: 40%;
+      background-image: linear-gradient(120deg, #a4bcb1, #37b9e9);
+    }
+    .contentContainer {
+      max-width: 1400px;
+      margin: -300px auto 0;
+      background-image: linear-gradient(
+        180deg,
+        rgba(252, 252, 252, 0.4) 0%,
+        #f8f8f8 100%
+      );
+      padding: 50px;
 
-.homePage {
-  overflow: hidden;
-  margin: auto;
-  max-width: 1024px;
-  .imgContainer {
-    height: 337px;
-    cursor: pointer;
-    width: 500%;
-    animation: slide 20s ease-out infinite;
-    .slide {
-      background-color: #eee;
-      box-sizing: border-box;
-      width: 20%;
-      height: 100%;
-      float: left;
+      .menuContainer {
+        text-align: start;
+      }
+
+      .articleContainer {
+        text-align: start;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
     }
   }
-  .articleList {
+
+  .footer {
   }
 }
