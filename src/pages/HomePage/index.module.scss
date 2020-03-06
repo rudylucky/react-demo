@@ -7,7 +7,7 @@
     .img {
       width: 100%;
       height: 0px;
-      padding-bottom: 40%;
+      padding-bottom: 35%;
       background-image: linear-gradient(120deg, #a4bcb1, #37b9e9);
     }
     .contentContainer {
@@ -18,10 +18,12 @@
         rgba(252, 252, 252, 0.4) 0%,
         #f8f8f8 100%
       );
-      padding: 50px;
+      padding: 0px 50px;
 
       .menuContainer {
         text-align: start;
+        display: flex;
+        flex-wrap: wrap;
       }
 
       .articleContainer {

@@ -14,6 +14,11 @@ export interface IRoute {
 }
 
 export const route: Array<IRoute> = [{
+  name: '最近更新',
+  code: 'update',
+  path: '/tech/update',
+  category: 'tech:update'
+}, {
   name: 'Java',
   code: 'java',
   path: '/tech/java',
