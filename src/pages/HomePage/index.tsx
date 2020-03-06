@@ -4,7 +4,7 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import ArticleList from './ArticleList'
 import style from './index.module.scss'
-import MenuItem from './MenuItem'
+import MenuItem from './Menuitem/MenuItem'
 import { route } from './route'
 
 interface IHomePageProps {
@@ -12,7 +12,8 @@ interface IHomePageProps {
 
 const HomePage = (props: IHomePageProps) => {
 
-  const { category } = useParams()
+  let { category } = useParams()
+  category = category ? `tech:${category}` : undefined
 
   return (
     <div className={style.baseLayout}>
@@ -23,7 +24,7 @@ const HomePage = (props: IHomePageProps) => {
             {route.map(v => <MenuItem className={style.menuItem} type={_.uniqueId()} key={v.code} {...v} />)}
           </div>
           <div className={style.articleContainer}>
-            <ArticleList category={`tech:${category}`} />
+            <ArticleList category={category} />
           </div>
         </div>
       </div>

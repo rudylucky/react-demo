@@ -5,12 +5,12 @@ import markdownStyle from './markdown.module.scss'
 import style from './index.module.scss'
 
 import prismjs from 'prismjs'
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import util from 'common/util'
-import Comment from './Comment'
+import Comment from './Comment/Comment'
 import CommentService from 'services/CommentService'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAngleDoubleLeft, faAngleDoubleRight, faArrowCircleDown, faArrowCircleUp } from '@fortawesome/free-solid-svg-icons'
+import { faAngleDoubleLeft, faAngleDoubleRight, faArrowCircleDown, faArrowCircleUp, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { useDispatch } from 'react-redux'
 
 import baseLayoutStyle from 'pages/HomePage/index.module.scss'
@@ -203,9 +203,15 @@ const AritcleView = () => {
 
   }
 
+  const history = useHistory()
+
+  const pageBack = () => {
+    history.goBack()
+  }
+
   return (
     <div className={style.articleView}>
-      <div className={`${style.toc}  ${style[tocContentClassName]}`}>
+      <div className={`${style.toc} ${style[tocContentClassName]}`}>
         <div className={`${style.tocContent} ${style[tocContentClassName]}`}>
           {toDom(toc)}
         </div>
@@ -215,6 +221,10 @@ const AritcleView = () => {
       </div>
       <div className={`${style.mockToc} ${style[tocContentClassName]}`}></div>
       <div className={style.markdown}>
+        <div className={style.titleContainer} onClick={pageBack}>
+          <FontAwesomeIcon icon={faArrowLeft} className={style.pageBack} />
+          <span className={style.title}>Java 虚拟机</span>
+        </div>
         <div
           className={markdownStyle['markdown-body']}
           dangerouslySetInnerHTML={{ __html: content }}>

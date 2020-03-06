@@ -3,6 +3,29 @@
   display: flex;
   height: 100%;
 
+  .titleContainer {
+    margin: 20px auto;
+    max-width: 980px;
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.85);
+    letter-spacing: 0.86px;
+    cursor: pointer;
+    user-select: none;
+
+    ::after {
+      content: '';
+      display: block;
+      background-color: #ccc;
+      height: 1px;
+      position: relative;
+      top: 20px;
+    }
+
+    .title {
+      margin-left: 20px;
+    }
+  }
+
   .toc {
     text-align: start;
     flex-shrink: 0;

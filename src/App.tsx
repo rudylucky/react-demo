@@ -11,11 +11,12 @@ const App: React.FC = () => {
     <div className="App">
       <BrowserRouter>
         <AppHeader />
-        {/* <Redirect exact path='/' to='/index' /> */}
-        <Route exact path='/index' component={HomePage} />
-        {/* <Redirect exact path='/tech/update' to='/index' /> */}
-        <Route exact path='/tech/:category' component={HomePage} />
-        <Route path='/article/detail/:articleCode' component={AritcleView} />
+        <Switch>
+          <Route exact path='/index' component={HomePage} />
+          <Route exact path='/tech/:category' component={HomePage} />
+          <Route path='/article/detail/:articleCode' component={AritcleView} />
+          <Redirect exact path='/' to='/index' />
+        </Switch>
       </BrowserRouter>
     </div>
   )
