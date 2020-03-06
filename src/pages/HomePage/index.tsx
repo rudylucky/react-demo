@@ -1,19 +1,18 @@
 import AppFooter from 'components/layout/AppFooter'
 import _ from 'lodash'
 import React from 'react'
-import { match, Route } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+import ArticleList from './ArticleList'
 import style from './index.module.scss'
 import MenuItem from './MenuItem'
 import { route } from './route'
 
 interface IHomePageProps {
-  match?: match
 }
 
 const HomePage = (props: IHomePageProps) => {
 
-  console.log('props.match.path', props)
-
+  const { category } = useParams()
   return (
     <div className={style.baseLayout}>
       <div className={style.content}>
@@ -23,7 +22,7 @@ const HomePage = (props: IHomePageProps) => {
             {route.map(v => <MenuItem className={style.menuItem} type={_.uniqueId()} key={v.code} {...v} />)}
           </div>
           <div className={style.articleContainer}>
-            {route.map(v => <Route exact path={v.path} key={v.code} component={v.component} />)}
+            {route.map(v => <ArticleList key={v.code} category={`tech:${category}`} />)}
           </div>
         </div>
       </div>

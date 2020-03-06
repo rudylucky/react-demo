@@ -31,7 +31,7 @@ const AritcleView = () => {
 
   const [content, setContent] = useState('')
   const [toc, setToc] = useState<IToc>({} as IToc)
-  const { articleId } = useParams()
+  const { articleCode } = useParams()
 
   const [tocCollapse, setTocCollapse] = useState(true)
   const tocContentClassName = tocCollapse ? 'invisible' : ''
@@ -151,10 +151,10 @@ const AritcleView = () => {
 
   useEffect(() => {
     (async () => {
-      if (!articleId) {
+      if (!articleCode) {
         return
       }
-      const content = await ArticleService.getInstance().infoWithContent({ code: articleId } as IArticleEntity)
+      const content = await ArticleService.getInstance().infoWithContent({ code: articleCode } as IArticleEntity)
       if (!content) {
         return
       }

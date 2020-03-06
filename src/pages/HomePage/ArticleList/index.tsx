@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import ArticleService, { IArticleEntity } from 'services/ArticleService'
 import { ArticleItem } from '../ArticleItem'
+import _ from 'lodash'
 
 interface ArticleListProps {
   category?: string
@@ -8,18 +9,22 @@ interface ArticleListProps {
 
 const ArticleList = (props: ArticleListProps) => {
 
+  const { category } = props
+
   const [articles, setArticles] = useState<Array<IArticleEntity>>([])
 
   useEffect(() => {
     (async () => {
-      let articles = await ArticleService.getInstance().list({ category: props.category } as IArticleEntity)
+      let articles = await ArticleService.getInstance().list({ category } as IArticleEntity)
       const appendCount = 3 - articles.length % 3
       if (appendCount != 0) {
-        articles = articles.concat(new Array(appendCount).fill(0))
+        articles = articles.concat(new Array(appendCount).fill(null).map(v => ({ code: _.uniqueId() } as IArticleEntity)))
       }
       setArticles(articles)
     })()
-  }, [])
+  }, [category])
+
+  console.log(articles)
 
   return (
     <>
