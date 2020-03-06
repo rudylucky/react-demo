@@ -13,6 +13,7 @@ interface IHomePageProps {
 const HomePage = (props: IHomePageProps) => {
 
   const { category } = useParams()
+
   return (
     <div className={style.baseLayout}>
       <div className={style.content}>
