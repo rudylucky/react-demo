@@ -22,7 +22,7 @@ const HomePage = (props: IHomePageProps) => {
             {route.map(v => <MenuItem className={style.menuItem} type={_.uniqueId()} key={v.code} {...v} />)}
           </div>
           <div className={style.articleContainer}>
-            {route.map(v => <ArticleList key={v.code} category={`tech:${category}`} />)}
+            <ArticleList category={`tech:${category}`} />
           </div>
         </div>
       </div>

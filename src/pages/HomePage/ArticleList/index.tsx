@@ -15,12 +15,12 @@ const ArticleList = (props: ArticleListProps) => {
 
   useEffect(() => {
     (async () => {
-      let articles = await ArticleService.getInstance().list({ category } as IArticleEntity)
-      const appendCount = 3 - articles.length % 3
-      if (appendCount != 0) {
-        articles = articles.concat(new Array(appendCount).fill(null).map(v => ({ code: _.uniqueId() } as IArticleEntity)))
+      let newArticles = await ArticleService.getInstance().list({ category } as IArticleEntity)
+      const appendCount = 3 - newArticles.length % 3
+      if (appendCount !== 0 && appendCount !== 3) {
+        newArticles = newArticles.concat(new Array(appendCount).fill(null).map(v => ({ code: _.uniqueId() } as IArticleEntity)))
       }
-      setArticles(articles)
+      setArticles(newArticles)
     })()
   }, [category])
 

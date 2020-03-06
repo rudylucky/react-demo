@@ -17,8 +17,8 @@ export function ArticleItem(props: ArticleItemProps) {
 
   const { title, abstract, date, thumbs, comments, reads, code } = props
 
-  if (!code) {
-    return <div className={style.articleItem} style={{opacity: 0 }}></div>
+  if (!title) {
+    return <div className={style.articleItem} style={{ opacity: 0 }}></div>
   }
 
   return (
