@@ -1,4 +1,3 @@
-import AppFooter from 'components/layout/AppFooter'
 import _ from 'lodash'
 import React from 'react'
 import { useParams } from 'react-router-dom'
@@ -28,7 +27,6 @@ const HomePage = (props: IHomePageProps) => {
           </div>
         </div>
       </div>
-      <AppFooter />
     </div>
   )
 }

@@ -11,11 +11,11 @@ const AppHeader = () => {
   const location = useLocation()
 
   return (
-    <div className={style.appHeader}>
+    <div className={`${style.appHeader} black`} id={style.appHeader}>
       {
         route.map(v => <label key={v.code}>
           <Link to={v.path}>
-            <input checked={location.pathname.endsWith(v.path)} name={uid} type='radio' />
+            <input checked={location.pathname.startsWith(v.path)} name={uid} type='radio' />
             <span>{v.name}</span>
           </Link>
         </label>)

@@ -1,7 +1,6 @@
 .articleView {
   text-align: start;
   display: flex;
-  height: 100%;
 
   .titleContainer {
     margin: 20px auto;
@@ -9,20 +8,29 @@
     font-size: 20px;
     color: rgba(0, 0, 0, 0.85);
     letter-spacing: 0.86px;
-    cursor: pointer;
-    user-select: none;
 
-    ::after {
+    .title {
+      cursor: pointer;
+      user-select: none;
+      margin-left: 20px;
+      display: inline-block;
+
+      span {
+        margin-left: 8px;
+      }
+    }
+
+    &::after {
       content: '';
       display: block;
       background-color: #ccc;
-      height: 1px;
+      height: 2px;
       position: relative;
       top: 20px;
     }
 
-    .title {
-      margin-left: 20px;
+    .createDate {
+      float: right;
     }
   }
 

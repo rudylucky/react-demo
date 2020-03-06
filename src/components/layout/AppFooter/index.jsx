@@ -5,7 +5,7 @@ import style from './index.module.scss'
 const AppFooter = () => {
 
   return (
-    <div className={style.footer}>
+    <div className={style.appFooter} id={style.appFooter}>
       <div className={style.infoContainer}>
         <div>感兴趣请联系我</div>
         <div>CONTACT ME IF YOU ARE INTERESTED</div>

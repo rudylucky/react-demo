@@ -16,21 +16,21 @@ export const route: Array<IRoute> = [{
 }, {
   name: 'Java',
   code: 'java',
-  path: '/tech/java',
+  path: '/index/java',
 }, {
   name: 'JS',
   code: 'js',
-  path: '/tech/js',
+  path: '/index/js',
 }, {
   name: 'Python',
   code: 'python',
-  path: '/tech/python',
+  path: '/index/python',
 }, {
   name: 'Linux',
   code: 'linux',
-  path: '/tech/linux',
+  path: '/index/linux',
 }, {
   name: 'DevOps',
   code: 'devops',
-  path: '/tech/devops',
+  path: '/index/devops',
 }]

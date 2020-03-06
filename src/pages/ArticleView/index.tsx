@@ -1,19 +1,18 @@
-import React, { useState, useEffect } from 'react'
-import marked from 'marked'
-import ArticleService, { IArticleEntity } from 'services/ArticleService'
-import markdownStyle from './markdown.module.scss'
-import style from './index.module.scss'
-
-import prismjs from 'prismjs'
-import { useParams, useHistory } from 'react-router-dom'
-import util from 'common/util'
-import Comment from './Comment/Comment'
-import CommentService from 'services/CommentService'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleDoubleLeft, faAngleDoubleRight, faArrowCircleDown, faArrowCircleUp, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import util from 'common/util'
+import marked from 'marked'
+import headerStyle from 'components/layout/AppHeader/index.module.scss'
+import footerStyle from 'components/layout/AppFooter/index.module.scss'
+import prismjs from 'prismjs'
+import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
+import { useHistory, useParams } from 'react-router-dom'
+import ArticleService, { IArticleEntity } from 'services/ArticleService'
+import CommentService from 'services/CommentService'
+import style from './index.module.scss'
+import markdownStyle from './markdown.module.scss'
 
-import baseLayoutStyle from 'pages/HomePage/index.module.scss'
 
 interface IToc {
   anchor: string,
@@ -188,9 +187,9 @@ const AritcleView = () => {
 
   useEffect(() => {
     document.querySelectorAll('a[href^="#"]').forEach(smoothScroll)
-    const headerDom = document.getElementById(baseLayoutStyle.header)
+    const headerDom = document.getElementById(headerStyle.header)
     headerDom && smoothScroll(headerDom)
-    const footerDom = document.querySelector(baseLayoutStyle.footer)
+    const footerDom = document.querySelector(footerStyle.footer)
     footerDom && smoothScroll(footerDom)
   }, [toc])
 
@@ -199,15 +198,7 @@ const AritcleView = () => {
 
   dispatch({ type: 'UPDATE_ARTICLE', title: article?.title ?? '' })
 
-  const toBottom = () => {
-
-  }
-
   const history = useHistory()
-
-  const pageBack = () => {
-    history.goBack()
-  }
 
   return (
     <div className={style.articleView}>
@@ -221,24 +212,27 @@ const AritcleView = () => {
       </div>
       <div className={`${style.mockToc} ${style[tocContentClassName]}`}></div>
       <div className={style.markdown}>
-        <div className={style.titleContainer} onClick={pageBack}>
-          <FontAwesomeIcon icon={faArrowLeft} className={style.pageBack} />
-          <span className={style.title}>Java 虚拟机</span>
+        <div className={style.titleContainer}>
+          <span className={style.title} onClick={() => history.goBack()}>
+            <FontAwesomeIcon icon={faArrowLeft} />
+            <span >Java 虚拟机</span>
+          </span>
+          <span className={style.createDate}>{new Date().toLocaleDateString()}</span>
         </div>
         <div
           className={markdownStyle['markdown-body']}
           dangerouslySetInnerHTML={{ __html: content }}>
         </div>
         <div className={style.comment}>
-          {comments.map((v, i) => <Comment key={i} {...v} />)}
+
         </div>
       </div>
       <div className={style.toTop}>
-        <a href={'#' + baseLayoutStyle.header}>
+        <a href={'#' + headerStyle.appHeader}>
           <FontAwesomeIcon className={style.icon} icon={faArrowCircleUp} />
         </a>
-        <a href={'#' + baseLayoutStyle.footer}>
-          <FontAwesomeIcon onClick={toBottom} className={style.icon} icon={faArrowCircleDown} />
+        <a href={'#' + footerStyle.appFooter}>
+          <FontAwesomeIcon className={style.icon} icon={faArrowCircleDown} />
         </a>
       </div>
     </div>
