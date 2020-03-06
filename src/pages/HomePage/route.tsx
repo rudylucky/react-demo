@@ -15,7 +15,7 @@ export interface IRoute {
 export const route: Array<IRoute> = [{
   name: 'Java',
   code: 'java',
-  path: '/tech/java',
+  path: '/index/tech/java',
   component: () => <ArticleList category='tech:java' />,
 }, {
   name: 'JS',

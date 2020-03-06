@@ -1,12 +1,18 @@
 import AppFooter from 'components/layout/AppFooter'
 import _ from 'lodash'
 import React from 'react'
-import { Route } from 'react-router-dom'
+import { match, Route } from 'react-router-dom'
 import style from './index.module.scss'
 import MenuItem from './MenuItem'
 import { route } from './route'
 
-const HomePage = () => {
+interface IHomePageProps {
+  match?: match
+}
+
+const HomePage = (props: IHomePageProps) => {
+
+  console.log('props.match.path', props)
 
   return (
     <div className={style.baseLayout}>

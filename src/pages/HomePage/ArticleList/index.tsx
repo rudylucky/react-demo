@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import ArticleService, { IArticleEntity } from 'services/ArticleService'
-import style from './index.module.scss'
 import { ArticleItem } from '../ArticleItem'
 
 interface ArticleListProps {
@@ -16,7 +15,6 @@ const ArticleList = (props: ArticleListProps) => {
       let articles = await ArticleService.getInstance().list({ category: props.category } as IArticleEntity)
       const appendCount = 3 - articles.length % 3
       if (appendCount != 0) {
-        console.log(appendCount)
         articles = articles.concat(new Array(appendCount).fill(0))
       }
       setArticles(articles)
