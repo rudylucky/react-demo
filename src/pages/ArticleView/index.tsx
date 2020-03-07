@@ -1,9 +1,9 @@
 import { faAngleDoubleLeft, faAngleDoubleRight, faArrowCircleDown, faArrowCircleUp, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import util from 'common/util'
-import marked from 'marked'
-import headerStyle from 'components/layout/AppHeader/index.module.scss'
 import footerStyle from 'components/layout/AppFooter/index.module.scss'
+import headerStyle from 'components/layout/AppHeader/index.module.scss'
+import marked from 'marked'
 import prismjs from 'prismjs'
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
@@ -12,6 +12,7 @@ import ArticleService, { IArticleEntity } from 'services/ArticleService'
 import CommentService from 'services/CommentService'
 import style from './index.module.scss'
 import markdownStyle from './markdown.module.scss'
+import Comment from './Comment'
 
 
 interface IToc {
@@ -58,6 +59,8 @@ const AritcleView = () => {
             curr.children.push(newItem)
           }
         }
+      } else {
+        setTitle(text)
       }
     }
 
@@ -148,6 +151,8 @@ const AritcleView = () => {
 
   const [article, setArticle] = useState<IArticleEntity | null>(null)
 
+  const [title, setTitle] = useState<string>('')
+
   useEffect(() => {
     (async () => {
       if (!articleCode) {
@@ -202,20 +207,11 @@ const AritcleView = () => {
 
   return (
     <div className={style.articleView}>
-      <div className={`${style.toc} ${style[tocContentClassName]}`}>
-        <div className={`${style.tocContent} ${style[tocContentClassName]}`}>
-          {toDom(toc)}
-        </div>
-        <div className={style.tocButton} onClick={() => setTocCollapse(!tocCollapse)}>
-          <FontAwesomeIcon className={style.userIcon} icon={tocCollapse ? faAngleDoubleRight : faAngleDoubleLeft } />
-        </div>
-      </div>
-      <div className={`${style.mockToc} ${style[tocContentClassName]}`}></div>
       <div className={style.markdown}>
         <div className={style.titleContainer}>
           <span className={style.title} onClick={() => history.goBack()}>
             <FontAwesomeIcon icon={faArrowLeft} />
-            <span >Java 虚拟机</span>
+            <span >{title}</span>
           </span>
           <span className={style.createDate}>{new Date().toLocaleDateString()}</span>
         </div>
@@ -223,9 +219,9 @@ const AritcleView = () => {
           className={markdownStyle['markdown-body']}
           dangerouslySetInnerHTML={{ __html: content }}>
         </div>
-        <div className={style.comment}>
-
-        </div>
+      </div>
+      <div className={style.comment}>
+        <Comment />
       </div>
       <div className={style.toTop}>
         <a href={'#' + headerStyle.appHeader}>
