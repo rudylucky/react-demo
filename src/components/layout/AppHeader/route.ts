@@ -14,9 +14,17 @@ export const route: Array<IRoute> = [{
   code: 'index',
   path: '/index',
 }, {
-  name: '笔记',
-  code: 'note',
-  path: '/note',
+  name: '随笔',
+  code: 'essay',
+  path: '/essay',
+}, {
+  name: '书屋',
+  code: 'book',
+  path: '/book',
+}, {
+  name: '留言区',
+  code: 'message',
+  path: '/message',
 }, {
   name: '关于我',
   code: 'aboutme',

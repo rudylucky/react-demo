@@ -153,6 +153,8 @@ const AritcleView = () => {
 
   const [title, setTitle] = useState<string>('')
 
+  document.title = title
+
   useEffect(() => {
     (async () => {
       if (!articleCode) {
