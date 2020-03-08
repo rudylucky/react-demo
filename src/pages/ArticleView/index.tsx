@@ -200,7 +200,6 @@ const AritcleView = () => {
     footerDom && smoothScroll(footerDom)
   }, [toc])
 
-  const comments = CommentService.getInstance().getComments()
   const dispatch = useDispatch()
 
   dispatch({ type: 'UPDATE_ARTICLE', title: article?.title ?? '' })
@@ -223,7 +222,7 @@ const AritcleView = () => {
         </div>
       </div>
       <div className={style.comment}>
-        <Comment />
+        <Comment articleCode={articleCode} />
       </div>
       <div className={style.toTop}>
         <a href={'#' + headerStyle.appHeader}>

@@ -2,8 +2,10 @@ import BaseService, { IBaseEntity } from './BaseService'
 
 
 export interface ICommentEntity extends IBaseEntity {
-  author: string,
-  content: string,
+  username?: string
+  articleCode?: string
+  userCode?: string
+  content?: string
 }
 
 class CommentService extends BaseService<ICommentEntity> {
@@ -19,16 +21,6 @@ class CommentService extends BaseService<ICommentEntity> {
       CommentService.instance = new CommentService()
     }
     return CommentService.instance
-  }
-
-  comment: ICommentEntity = {
-    author: '昨天里的明天',
-    content: '富强民主和谐！',
-    createTime: '2019年12月03日 上午9:29'
-  }
-
-  getComments(): Array<ICommentEntity> {
-    return new Array(10).fill(this.comment)
   }
 
 }
