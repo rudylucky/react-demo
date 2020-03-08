@@ -7,12 +7,9 @@ $totalHeight: 68px;
   justify-content: center;
   background-color: #2ab48a;
 
-  &,
-  .black {
-  }
-
   label {
     span {
+      transition: all 0.5s;
       color: #fff;
       width: 99px;
       height: $totalHeight;

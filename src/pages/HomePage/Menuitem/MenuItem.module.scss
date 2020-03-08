@@ -1,6 +1,7 @@
 .menuItem {
   display: inline-block;
   span {
+    transition: all 0.5s;
     $height: 44px;
     margin-top: 20px;
     text-align: center;
@@ -22,7 +23,7 @@
     }
   }
 
-  input[type=radio] {
+  input[type='radio'] {
     display: none;
     &:checked + span {
       background: #2ab48a;
