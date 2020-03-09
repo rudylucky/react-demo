@@ -24,8 +24,6 @@ const ArticleList = (props: ArticleListProps) => {
     })()
   }, [category])
 
-  console.log(articles)
-
   return (
     <>
       {

@@ -6,12 +6,18 @@ $totalHeight: 68px;
   display: flex;
   justify-content: center;
   background-color: #2ab48a;
+  @media only screen and (max-width: 500px) {
+    justify-content: stretch;
+  }
 
   label {
     span {
       transition: all 0.5s;
       color: #fff;
       width: 99px;
+      @media only screen and (max-width: 500px) {
+        width: 70px;
+      }
       height: $totalHeight;
       line-height: $totalHeight;
       user-select: none;

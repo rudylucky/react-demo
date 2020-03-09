@@ -17,7 +17,6 @@ const CommentItem = (props: ICommentEntity) => {
   }
 
   const handleSubmit = () => {
-    console.log('submit: ', reply)
   }
 
   return (

@@ -133,7 +133,6 @@ const AritcleView = () => {
   }
 
   const hightlightCode = (code: any, lang: any) => {
-    console.log(lang)
     return ['mermaid', ''].includes(lang) ? code : prismjs.highlight(code, prismjs.languages[lang], lang)
   }
 

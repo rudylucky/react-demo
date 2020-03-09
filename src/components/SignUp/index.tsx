@@ -14,7 +14,6 @@ const SignUp = (props: SignUpProps) => {
   const values = new FormStore()
 
   const handleLogin = () => {
-    console.log(values)
   }
 
   return (
