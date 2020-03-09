@@ -23,8 +23,10 @@ export function ArticleItem(props: ArticleItemProps) {
 
   return (
     <div className={style.articleItem}>
-      <a className={style.title} href={'/article/detail/' + code}>{title}</a>
-      <div className={style.content}>{abstract}</div>
+      <a className={style.toArticle} href={'/article/detail/' + code}>
+        <div className={style.title}>{title}</div>
+        <div className={style.content}>{abstract}</div>
+      </a>
       <div className={style.bottom}>
         <span className={style.dateContainer}>发布时间：{date.toLocaleDateString()}</span>
         <span className={style.buttonContainer}>
