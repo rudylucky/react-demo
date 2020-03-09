@@ -30,10 +30,10 @@ const ArticleList = (props: ArticleListProps) => {
         articles.map(v => <ArticleItem
           code={v.code}
           key={v.code}
-          thumbs={Math.round(Math.random() * 1000)}
           comments={Math.round(Math.random() * 1000)}
           reads={Math.round(Math.random() * 1000)}
           title={v.title}
+          upVote={v.upVote}
           abstract='小刺猬每天出门前，妈妈都要关照它穿好刺毛衣，
               因为外面可怕的事实在是太多了，
               有了刺毛衣的保护，

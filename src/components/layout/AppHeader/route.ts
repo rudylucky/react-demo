@@ -19,12 +19,12 @@ export const route: Array<IRoute> = [{
   path: '/essay',
 }, {
   name: '书屋',
-  code: 'book',
-  path: '/book',
+  code: 'bookhouse',
+  path: '/bookhouse',
 }, {
   name: '留言区',
-  code: 'message',
-  path: '/message',
+  code: 'messageboard',
+  path: '/messageboard',
 }, {
   name: '关于我',
   code: 'aboutme',

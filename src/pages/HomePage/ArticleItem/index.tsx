@@ -2,23 +2,23 @@ import React from 'react'
 import style from './index.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCommentDots, faEye, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
+import { IArticleEntity } from 'services/ArticleService'
 
-interface ArticleItemProps {
-  code?: string
-  thumbs: number
+type ArticleItemProps = IArticleEntity & {
   comments: number
   reads: number
-  title: string
-  abstract: string
   date: Date
 }
 
 export function ArticleItem(props: ArticleItemProps) {
 
-  const { title, abstract, date, thumbs, comments, reads, code } = props
+  const { title, abstract, date, upVote, comments, reads, code } = props
 
   if (!title) {
-    return <div className={style.articleItem} style={{ opacity: 0, overflow: 'hidden' }}>
+    return <div
+      className={style.articleItem}
+      style={{ opacity: 0, overflow: 'hidden', userSelect: 'none' }}
+    >
       {'a'.repeat(50)}
     </div>
   }
@@ -34,7 +34,7 @@ export function ArticleItem(props: ArticleItemProps) {
         <span className={style.buttonContainer}>
           <span>
             <FontAwesomeIcon icon={faThumbsUp} />
-            <span>{thumbs}</span>
+            <span>{upVote ?? 0}</span>
           </span>
           <span>
             <FontAwesomeIcon icon={faCommentDots} />

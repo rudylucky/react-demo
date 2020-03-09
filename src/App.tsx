@@ -5,6 +5,10 @@ import './App.css'
 import AritcleView from 'pages/ArticleView'
 import AppHeader from 'components/layout/AppHeader'
 import AppFooter from 'components/layout/AppFooter'
+import AboutMe from 'pages/AboutMe'
+import MessageBoard from 'pages/MessageBoard'
+import Essay from 'pages/Essay'
+import BookHouse from 'pages/BookHouse'
 
 const App: React.FC = () => {
 
@@ -16,6 +20,10 @@ const App: React.FC = () => {
           <Route exact path='/index/:category' component={HomePage} />
           <Route exact path='/index' component={HomePage} />
           <Route path='/article/detail/:articleCode' component={AritcleView} />
+          <Route exact path='/aboutme' component={AboutMe} />
+          <Route exact path='/bookhouse' component={BookHouse} />
+          <Route exact path='/messageboard' component={MessageBoard} />
+          <Route exact path='/essay' component={Essay} />
           <Redirect exact path='/' to='/index' />
         </Switch>
         <AppFooter />
