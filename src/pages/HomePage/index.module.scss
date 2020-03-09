@@ -1,16 +1,20 @@
 .baseLayout {
   .content {
-    .img {
+    .imgContainer {
       width: 100%;
       height: 0px;
       padding-bottom: 20%;
-      background-image: linear-gradient(120deg, #a4bcb1, #37b9e9);
+      .img {
+        width: 100%;
+      }
     }
     .contentContainer {
       max-width: 1400px;
       margin: -10% auto 30px;
       background-image: linear-gradient(180deg, hsla(0, 0%, 99%, 0.2), #efefef);
       padding: 10px 40px 40px;
+      position: relative;
+      z-index: 100;
       @media only screen and (max-width: 500px) {
         padding: 10px 0px 40px;
         background-color: rgba($color: #000000, $alpha: .1);
