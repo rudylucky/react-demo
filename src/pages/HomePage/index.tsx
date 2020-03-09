@@ -18,7 +18,6 @@ const HomePage = (props: IHomePageProps) => {
     <div className={style.baseLayout}>
       <div className={style.content}>
         <div className={style.imgContainer}>
-          {/* <img src='https://s2.ax1x.com/2020/03/09/8poUVs.png' className={style.img}></img> */}
         </div>
         <div className={style.contentContainer}>
           <div className={style.menuContainer}>
