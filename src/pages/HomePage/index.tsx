@@ -17,8 +17,7 @@ const HomePage = (props: IHomePageProps) => {
   return (
     <div className={style.baseLayout}>
       <div className={style.content}>
-        <div className={style.imgContainer}>
-        </div>
+        <div className={style.imgContainer}></div>
         <div className={style.contentContainer}>
           <div className={style.menuContainer}>
             {route.map(v => <MenuItem className={style.menuItem} type={_.uniqueId()} key={v.code} {...v} />)}

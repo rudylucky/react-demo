@@ -18,7 +18,9 @@ export function ArticleItem(props: ArticleItemProps) {
   const { title, abstract, date, thumbs, comments, reads, code } = props
 
   if (!title) {
-    return <div className={style.articleItem} style={{ opacity: 0 }}>{'a'.repeat(200)}</div>
+    return <div className={style.articleItem} style={{ opacity: 0, overflow: 'hidden' }}>
+      {'a'.repeat(50)}
+    </div>
   }
 
   return (

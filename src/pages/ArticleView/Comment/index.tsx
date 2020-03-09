@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react'
+import CommentService, { ICommentEntity } from 'services/CommentService'
 import CommentFrame from './CommentFrame'
 import CommentItem from './CommentItem'
 import style from './index.module.scss'
-import CommentService, { ICommentEntity } from 'services/CommentService'
-import user from 'reducers/users'
-import UserService from 'services/UserService'
 
 interface ICommentProps {
   articleCode?: string
