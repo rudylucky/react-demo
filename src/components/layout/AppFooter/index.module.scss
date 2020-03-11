@@ -3,7 +3,6 @@
   text-align: start;
   background-color: #313433;
   color: #fff;
-  color: #ffffff;
 
   .footerContainer {
     margin: auto;
@@ -21,7 +20,7 @@
 
     .infoContainer {
       box-sizing: border-box;
-      width: 340px;
+      max-width: 340px;
 
       & > div {
         font-size: 14px;
