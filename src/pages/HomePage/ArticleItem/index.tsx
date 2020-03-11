@@ -14,19 +14,10 @@ export function ArticleItem(props: ArticleItemProps) {
 
   const { title, abstract, date, upVote, comments, reads, code } = props
 
-  if (!title) {
-    return <div
-      className={style.articleItem}
-      style={{ opacity: 0, overflow: 'hidden', userSelect: 'none' }}
-    >
-      {'a'.repeat(50)}
-    </div>
-  }
-
   return (
     <div className={style.articleItem}>
       <a className={style.toArticle} href={'/article/detail/' + code}>
-        <div className={style.title}>{title}</div>
+        <div title={title} className={style.title}>{title}</div>
         <div className={style.content}>{abstract}</div>
       </a>
       <div className={style.bottom}>

@@ -211,7 +211,7 @@ const AritcleView = () => {
         <div className={style.titleContainer}>
           <span className={style.title} onClick={() => history.goBack()}>
             <FontAwesomeIcon icon={faArrowLeft} />
-            <span >{title}</span>
+            <span>{title}</span>
           </span>
           <span className={style.createDate}>{new Date().toLocaleDateString()}</span>
         </div>

@@ -16,10 +16,6 @@ const ArticleList = (props: ArticleListProps) => {
   useEffect(() => {
     (async () => {
       let newArticles = await ArticleService.getInstance().list({ category } as IArticleEntity)
-      const appendCount = 3 - newArticles.length % 3
-      if (appendCount !== 0 && appendCount !== 3) {
-        newArticles = newArticles.concat(new Array(appendCount).fill(null).map(v => ({ code: _.uniqueId() } as IArticleEntity)))
-      }
       setArticles(newArticles)
     })()
   }, [category])
