@@ -21,12 +21,15 @@
       background-color: #eee;
       height: 12px;
       line-height: 12px;
-      padding: 5px;
+      padding: 10px;
 
       .closeButton {
         float: right;
         margin-top: -1px;
         cursor: pointer;
+        &:hover {
+          color: #2ab48a;
+        }
       }
     }
     .content {

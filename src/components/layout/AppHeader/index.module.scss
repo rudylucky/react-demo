@@ -26,7 +26,7 @@ $headerHeight: 68px;
           background: rgba($color: #000, $alpha: 0.3);
         }
       }
-      input[type='radio'] {
+      input[type=radio] {
         display: none;
         &:checked + span {
           background: #313433;

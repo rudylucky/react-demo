@@ -1,6 +1,9 @@
 import React from 'react'
 import AppModal from 'components/base/AppModal'
 import { Form, FormField, FormStore } from 'components/Form'
+import Input from 'components/base/AppInput/Input'
+import AppButton from 'components/base/AppButton'
+import style from './index.module.scss'
 
 interface SignUpProps {
   visible: boolean
@@ -20,16 +23,16 @@ const SignUp = (props: SignUpProps) => {
     <div>
       <AppModal setVisible={setVisible} visible={visible}>
         <Form store={values} onSubmit={handleLogin}>
-          <FormField name="username" label='用户名：'>
-            <input />
+          <FormField name="username" label='用户名：' className={style.usernameField}>
+            <Input />
           </FormField>
-          <FormField name="email" label='邮箱：'>
-            <input />
+          <FormField name="email" label='邮箱：' className={style.emailField}>
+            <Input />
           </FormField>
-          <FormField name="captcha" label='邮箱验证码：'>
-            <input />
+          <FormField name="captcha" label='邮箱验证码：' className={style.captchaField}>
+            <Input />
           </FormField>
-          <button>下一步</button>
+          <AppButton>注册</AppButton>
         </Form>
       </AppModal>
     </div>

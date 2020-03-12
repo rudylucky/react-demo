@@ -1,20 +1,20 @@
-import React, { useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
-import { route } from './route'
-import _ from 'lodash'
-
-import style from './index.module.scss'
+import { faDesktop, faMobile } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser, faMobile, faPhone, faSign, faTablet, faDesktop } from '@fortawesome/free-solid-svg-icons'
 import Login from 'components/Login'
 import SignUp from 'components/SignUp'
+import _ from 'lodash'
+import React, { useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
+import style from './index.module.scss'
+import { route } from './route'
+
 
 const AppHeader = () => {
 
   const uid = _.uniqueId()
   const location = useLocation()
 
-  const [loginVisible, setLoginVisible] = useState(false)
+  const [loginVisible, setLoginVisible] = useState(true)
   const [signupVisible, setSignupVisible] = useState(false)
 
   const menu = route.map(v => <label key={v.code}>

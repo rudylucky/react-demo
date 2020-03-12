@@ -1,12 +1,14 @@
 import React from 'react'
+import style from './index.module.scss'
 
 interface IButtonProps {
-  children: any
+  className?: string
+  children?: any
 }
 
 const AppButton = (props: IButtonProps) => {
   return (
-    <button>{props.children}</button>
+    <button className={style.button}>{props.children}</button>
   )
 }
 
