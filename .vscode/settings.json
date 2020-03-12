@@ -1,5 +1,5 @@
 {
-  "editor.fontFamily": "'Cascadia Code', 'Microsoft YaHei UI', Consolas, 'Courier New', monospace",
+  "editor.fontFamily": "'Cascadia Code PL', 'Microsoft YaHei UI', Consolas, 'Courier New', monospace",
   "editor.fontLigatures": true,
   "breadcrumbs.enabled": false,
   "editor.minimap.enabled": false,
