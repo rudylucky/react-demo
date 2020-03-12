@@ -4,12 +4,13 @@ import style from './index.module.scss'
 interface IInputProps {
   className?: string
   type?: string
+  onChange?: Function
 }
 
 const Input = (props: IInputProps) => {
-  const { className } = props
+  const { className, onChange } = props
 
-  return <input className={`${className ?? ''} ${style.input ?? ''}`}></input>
+  return <input onChange={v => onChange!(v) } className={`${className ?? ''} ${style.input ?? ''}`}></input>
 }
 
 export default Input

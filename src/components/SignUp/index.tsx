@@ -17,12 +17,13 @@ const SignUp = (props: SignUpProps) => {
   const values = new FormStore()
 
   const handleLogin = () => {
+    console.log(values)
   }
 
   return (
     <div>
       <AppModal setVisible={setVisible} visible={visible}>
-        <Form store={values} onSubmit={handleLogin}>
+        <Form store={values}>
           <FormField name="username" label='用户名：' className={style.usernameField}>
             <Input />
           </FormField>
@@ -32,7 +33,7 @@ const SignUp = (props: SignUpProps) => {
           <FormField name="captcha" label='邮箱验证码：' className={style.captchaField}>
             <Input />
           </FormField>
-          <AppButton>注册</AppButton>
+          <AppButton onClick={handleLogin}>注册</AppButton>
         </Form>
       </AppModal>
     </div>

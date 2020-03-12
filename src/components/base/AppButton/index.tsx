@@ -4,11 +4,17 @@ import style from './index.module.scss'
 interface IButtonProps {
   className?: string
   children?: any
+  onClick: Function
 }
 
 const AppButton = (props: IButtonProps) => {
+
+  const { onClick } = props
+
   return (
-    <button className={style.button}>{props.children}</button>
+    <button onClick={() => onClick()} className={style.button}>
+      {props.children}
+    </button>
   )
 }
 
