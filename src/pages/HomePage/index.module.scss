@@ -3,13 +3,14 @@
     .imgContainer {
       width: 100%;
       height: 450px;
-      background-image: url(https://s2.ax1x.com/2020/03/09/8poUVs.png);
+      background-image: url(https://s2.ax1x.com/2020/03/11/8kXoPf.jpg);
       background-position: center center;
     }
     .contentContainer {
       max-width: 1400px;
-      background-image: linear-gradient(180deg, hsla(0, 0%, 99%, 0.5), #efefef);
-      padding: 10px 40px 40px;
+      box-sizing: border-box;
+      background-image: linear-gradient(180deg, hsla(0, 0%, 99%, 0.7), #efefef);
+      padding: 10px 40px 40px 10px;
       position: relative;
       margin: -150px auto 30px;
       z-index: 100;
@@ -28,7 +29,7 @@
         text-align: start;
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
+        justify-content: flex-start;
       }
     }
   }
