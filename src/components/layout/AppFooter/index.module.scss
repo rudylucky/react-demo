@@ -1,5 +1,5 @@
 .appFooter {
-  height: 260px;
+  height: 220px;
   text-align: start;
   background-color: #313433;
   color: #fff;
@@ -13,9 +13,13 @@
     align-items: center;
     max-width: 1400px;
 
+    @media only screen and (max-width: 500px) {
+      margin: 0 10px;
+    }
+
     .declare {
       font-size: 20px;
-      margin-top: 260px;
+      margin-top: 220px;
     }
 
     .infoContainer {
