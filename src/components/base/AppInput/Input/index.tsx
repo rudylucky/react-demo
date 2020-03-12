@@ -8,9 +8,13 @@ interface IInputProps {
 }
 
 const Input = (props: IInputProps) => {
-  const { className, onChange } = props
+  const { className, onChange, type } = props
 
-  return <input onChange={v => onChange!(v) } className={`${className ?? ''} ${style.input ?? ''}`}></input>
+  return <input
+    onChange={v => onChange!(v)}
+    className={`${className ?? ''} ${style.input ?? ''}`}
+    type={type}
+  ></input>
 }
 
 export default Input

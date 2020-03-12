@@ -21,7 +21,7 @@ const SignUp = (props: SignUpProps) => {
   }
 
   return (
-    <div>
+    <div className={style.signup}>
       <AppModal setVisible={setVisible} visible={visible}>
         <Form store={values}>
           <FormField name="username" label='用户名：' className={style.usernameField}>

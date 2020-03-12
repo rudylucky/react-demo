@@ -1,6 +1,7 @@
 $headerHeight: 68px;
 
 .appHeader {
+  user-select: none;
   height: $headerHeight;
   margin: 0;
   background-color: #2ab48a;
@@ -18,7 +19,6 @@ $headerHeight: 68px;
         }
         height: $headerHeight;
         line-height: $headerHeight;
-        user-select: none;
         display: inline-block;
         cursor: pointer;
         font-size: 18px;
@@ -26,7 +26,7 @@ $headerHeight: 68px;
           background: rgba($color: #000, $alpha: 0.3);
         }
       }
-      input[type=radio] {
+      input[type='radio'] {
         display: none;
         &:checked + span {
           background: #313433;

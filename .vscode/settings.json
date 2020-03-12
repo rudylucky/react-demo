@@ -33,6 +33,5 @@
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
   "python.dataScience.sendSelectionToInteractiveWindow": false,
-  "workbench.preferredDarkColorTheme": "Default Light+",
   "workbench.activityBar.visible": false,
 }

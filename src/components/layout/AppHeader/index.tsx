@@ -14,7 +14,7 @@ const AppHeader = () => {
   const uid = _.uniqueId()
   const location = useLocation()
 
-  const [loginVisible, setLoginVisible] = useState(true)
+  const [loginVisible, setLoginVisible] = useState(false)
   const [signupVisible, setSignupVisible] = useState(false)
 
   const menu = route.map(v => <label key={v.code}>
