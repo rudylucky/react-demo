@@ -4,7 +4,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 80px;
+  min-width: 80px;
+  padding: 0 20px;
   border: 2px solid #29a77f;
   outline: none;
   cursor: pointer;
