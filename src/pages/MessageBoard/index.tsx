@@ -34,7 +34,7 @@ const MessageBoard = () => {
       您现在的位置是：首页 &gt; 博客留言
     </div>
     <div className={style.inputContainer}>
-      <TextArea value={text} onChange={setText} />
+      <TextArea placeholder='我有话要说' value={text} onChange={setText} />
       <AppButton className={style.button} onClick={() => handleSubmit()} >吐槽</AppButton>
     </div>
     <div>
