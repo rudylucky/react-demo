@@ -1,9 +1,15 @@
 .login {
   user-select: none;
-  .usernameField {
-    margin-top: 12px;
-  }
-  .passwordField {
-    margin: 12px 0;
+
+  .loginFrame {
+    width: 345px;
+    height: 220px;
+
+    .usernameField {
+      margin-top: 12px;
+    }
+    .passwordField {
+      margin: 12px 0;
+    }
   }
 }

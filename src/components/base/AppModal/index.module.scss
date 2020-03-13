@@ -10,10 +10,11 @@
   align-items: center;
   justify-content: center;
 
-  .model {
+  .modal {
     min-width: 300px;
     min-height: 50px;
     background-color: #fff;
+    position: relative;
 
     .title {
       font-weight: bold;
@@ -22,14 +23,15 @@
       height: 12px;
       line-height: 12px;
       padding: 10px;
-
-      .closeButton {
-        float: right;
-        margin-top: -1px;
-        cursor: pointer;
-        &:hover {
-          color: #2ab48a;
-        }
+    }
+    .closeButton {
+      position: absolute;
+      right: 10px;
+      top: 7px;
+      font-size: 20px;
+      cursor: pointer;
+      &:hover {
+        color: #2ab48a;
       }
     }
     .content {

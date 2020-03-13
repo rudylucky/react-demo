@@ -1,8 +1,8 @@
-import React from 'react'
-
-import style from './index.module.scss'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faWindowClose } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React, { useRef, useEffect } from 'react'
+import style from './index.module.scss'
+
 
 export interface IModelProps {
   children?: any
@@ -13,11 +13,12 @@ export interface IModelProps {
   cancelText?: string
   visible: boolean
   setVisible: Function
+  className?: string
 }
 
 const AppModal = (props: IModelProps) => {
 
-  const { visible, setVisible } = props
+  const { visible, setVisible, className } = props
 
   const showFooter = (typeof props.cancel === 'function') || (typeof props.confirm === 'function')
 
@@ -32,16 +33,32 @@ const AppModal = (props: IModelProps) => {
     confirm && confirm()
     setVisible(false)
   }
+
+  const escapPreessHandler = (e: KeyboardEvent) => {
+    if (e.keyCode === 27 && visible === true) {
+      setVisible(false)
+    }
+  }
+
+  useEffect(() => {
+    if (visible === true) {
+      window.addEventListener('keyup', escapPreessHandler)
+    } else {
+      // TODO: not work!!!
+      window.removeEventListener('keyup', escapPreessHandler)
+    }
+  }, [visible])
+
   return (
     <>
       {
         visible &&
           <div className={style.background}>
-            <div className={style.model}>
+            <div className={`${style.modal ?? ''} ${className ?? ''}`}>
               <div className={style.title}>
                 <span>{props.title}</span>
-                <FontAwesomeIcon onClick={cancel} className={style.closeButton} icon={faWindowClose} />
               </div>
+              <FontAwesomeIcon onClick={cancel} className={style.closeButton} icon={faWindowClose} />
               <div className={style.content}>
                 {props.children}
               </div>

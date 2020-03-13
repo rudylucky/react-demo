@@ -1,11 +1,12 @@
 import React from 'react'
+import { IInputProps } from '..'
 
-interface IButtonProps {
-  children: any
+type IButtonProps = IInputProps & {
 }
 
-const Radio = (props: IButtonProps) => {
-  return <input></input>
+
+const TextArea = (props: IInputProps) => {
+  return <textarea {...props} />
 }
 
-export default Radio
+export default TextArea

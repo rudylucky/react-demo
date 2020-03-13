@@ -1,55 +1,72 @@
 .commentItem {
-  margin: 20px 0;
-  height: 90px;
-  display: flex;
-  align-items: flex-start;
   background-color: #fff;
-  padding: 10px 10px 0;
-  .avater {
-    display: inline-block;
-    height: 60px;
-    width: 60px;
-    margin-top: 5px;
-    background-color: #aaa;
-    margin-right: 10px;
-    border-radius: 50%;
-    cursor: pointer;
+  padding: 10px;
+  & > .elem {
+    margin-bottom: 20px;
   }
-
-  .contentContainer {
-    flex-grow: 1;
-    height: 80px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    .author {
-      font-size: 18px;
-      color: rgba(0, 0, 0, 0.85);
-      letter-spacing: 0.64px;
+  .elem {
+    padding: 10px;
+    background-color: rgba($color: #000, $alpha: 0.04);
+    border-radius: 5px;
+    .children {
     }
-    .content {
-      font-size: 14px;
-      color: rgba(0, 0, 0, 0.65);
-      letter-spacing: 0.5px;
-    }
-    .dateContainer {
-      font-size: 14px;
-      color: rgba(0, 0, 0, 0.25);
-      letter-spacing: 0.5px;
 
-      .buttonContainer {
-        float: right;
-        font-size: 14px;
-        color: rgba(0, 0, 0, 0.35);
-        letter-spacing: 0.5px;
-        .buttonItem {
-          margin-left: 20px;
-          & > :nth-child(1) {
-            cursor: pointer;
+    .currentLayer {
+      height: 70px;
+      display: flex;
+      align-items: flex-start;
+      border-radius: 5px;
+      .avater {
+        display: inline-block;
+        height: 60px;
+        width: 60px;
+        background-color: #aaa;
+        margin-right: 10px;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+
+      .contentContainer {
+        flex-grow: 1;
+        height: 70px;
+        box-sizing: border-box;
+        .author {
+          font-size: 18px;
+          margin-top: 4px;
+          color: rgba(0, 0, 0, 0.85);
+          letter-spacing: 0.64px;
+
+          .userCode {
+            font-weight: bold;
+            margin-right: 20px;
           }
-          & > span {
-            color: #000;
-            margin-left: 3px;
+
+          .date {
+            font-size: 16px;
+            color: #777;
+          }
+        }
+        .content {
+          margin-top: 7px;
+          font-size: 14px;
+          color: rgba(0, 0, 0, 0.65);
+          letter-spacing: 0.5px;
+        }
+        .buttonContainer {
+          float: right;
+          font-size: 14px;
+          color: rgba(0, 0, 0, 0.35);
+          letter-spacing: 0.5px;
+          float: right;
+          .buttonItem {
+            margin-left: 20px;
+            & > :nth-child(1) {
+              cursor: pointer;
+            }
+            & > span {
+              color: #000;
+              margin-left: 3px;
+            }
           }
         }
       }

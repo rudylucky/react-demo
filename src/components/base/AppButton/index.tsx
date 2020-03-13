@@ -5,14 +5,19 @@ interface IButtonProps {
   className?: string
   children?: any
   onClick: Function
+  disabled?: boolean
 }
 
 const AppButton = (props: IButtonProps) => {
 
-  const { onClick } = props
+  const { onClick, className } = props
 
   return (
-    <button onClick={() => onClick()} className={style.button}>
+    <button
+      {...props}
+      onClick={() => onClick()}
+      className={`${style.button ?? ''} ${className ?? ''}`}
+    >
       {props.children}
     </button>
   )

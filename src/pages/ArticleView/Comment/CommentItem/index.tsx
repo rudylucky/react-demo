@@ -5,6 +5,7 @@ import AppModal from 'components/base/AppModal'
 import AppInput from 'components/base/AppInput'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faThumbsUp, faCommentDots } from '@fortawesome/free-solid-svg-icons'
+import TextArea from 'components/base/AppInput/TextArea'
 
 const CommentItem = (props: ICommentEntity) => {
 
@@ -19,31 +20,46 @@ const CommentItem = (props: ICommentEntity) => {
   const handleSubmit = () => {
   }
 
-  return (
-    <div className={style.commentItem}>
-      <div className={style.avater}></div>
-      <div className={style.contentContainer}>
-        <div className={style.author}>{userCode}</div>
-        <div className={style.content}>
-          {content}
-        </div>
-        <div className={style.dateContainer}>
-          <span className={style.date}>2019.12.24</span>
-          <span className={style.buttonContainer}>
-            <span className={style.buttonItem}>
-              <FontAwesomeIcon icon={faThumbsUp} />
-              <span>10</span>
+  const elem = (props: any, layer: number) => {
+
+    console.log('layer', layer)
+
+    if (layer === 0) {
+      return null
+    }
+
+    return <div className={style.elem}>
+      <div className={style.currentLayer}>
+        <div className={style.avater}></div>
+        <div className={style.contentContainer}>
+          <div className={style.author}>
+            <span className={style.userCode}>{userCode}</span>
+            <span className={style.date}>{createTime ?? new Date().toLocaleDateString()}</span>
+            <span className={style.buttonContainer}>
+              <span className={style.buttonItem}>
+                <FontAwesomeIcon icon={faThumbsUp} />
+                <span>10</span>
+              </span>
+              <span className={style.buttonItem}>
+                <FontAwesomeIcon icon={faCommentDots} />
+                <span>10</span>
+              </span>
             </span>
-            <span className={style.buttonItem}>
-              <FontAwesomeIcon icon={faCommentDots} />
-              <span>10</span>
-            </span>
-          </span>
+          </div>
+          <div className={style.content}>
+            {content}
+          </div>
         </div>
       </div>
-      <AppModal title={'回复: ' + userCode} visible={commentVisible} setVisible={setCommentVisible} confirm={handleSubmit}>
-        <AppInput className={style.replyInput} type='textarea' placeholder='请输入回复内容' onChange={handleValueChange}/>
-      </AppModal>
+      <div className={style.children}>
+        {elem(props?.children, --layer)}
+      </div>
+    </div>
+  }
+
+  return (
+    <div className={style.commentItem}>
+      {elem('', 3)}
     </div>
   )
 }
