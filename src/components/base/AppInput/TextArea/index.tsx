@@ -1,12 +1,12 @@
 import React from 'react'
 import { IInputProps } from '..'
+import style from './index.module.scss'
 
-type IButtonProps = IInputProps & {
+type ITextAreaProps = IInputProps & {
 }
 
-
-const TextArea = (props: IInputProps) => {
-  return <textarea {...props} />
+const TextArea = (props: ITextAreaProps) => {
+  return < textarea {...props} className={style.textArea} />
 }
 
 export default TextArea

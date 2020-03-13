@@ -2,7 +2,6 @@ import BaseService, { IBaseEntity } from './BaseService'
 
 
 export interface ICommentEntity extends IBaseEntity {
-  username?: string
   articleCode?: string
   userCode?: string
   content?: string

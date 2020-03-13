@@ -1,11 +1,12 @@
 .commentItem {
   background-color: #fff;
-  padding: 10px;
+  padding-top: 5px 10px;
   & > .elem {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
   .elem {
     padding: 10px;
+    padding-bottom: 0;
     background-color: rgba($color: #000, $alpha: 0.04);
     border-radius: 5px;
     .children {

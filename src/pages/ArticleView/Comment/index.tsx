@@ -36,7 +36,7 @@ const Comment = (props: ICommentProps) => {
     <div className={style.comment}>
       <CommentFrame submitCallback={freshComment} articleCode={articleCode} userCode={'visitor'} />
       {
-        comments.map((v, i) => <CommentItem key={i} username={v.username} content={v.content} />)
+        comments.map((v, i) => <CommentItem key={i} userCode={v.userCode} content={v.content} />)
       }
     </div>
   )
