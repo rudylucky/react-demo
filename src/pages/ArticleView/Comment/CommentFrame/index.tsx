@@ -1,9 +1,9 @@
-import React, { useState, ChangeEvent, useEffect } from 'react'
-import style from './index.module.scss'
-import CommentService from 'services/CommentService'
-import _ from 'lodash'
 import AppButton from 'components/base/AppButton'
 import TextArea from 'components/base/AppInput/TextArea'
+import _ from 'lodash'
+import React, { useEffect, useState } from 'react'
+import CommentService from 'services/CommentService'
+import style from './index.module.scss'
 
 interface ICommentFrameProps {
   articleCode: string
@@ -34,8 +34,6 @@ const CommentFrame = (props: ICommentFrameProps) => {
   }, [content])
 
   const handleSubmit = async () => {
-    console.log('aaaa')
-    return
     await commentService.save({
       articleCode, userCode, content
     })
@@ -46,7 +44,7 @@ const CommentFrame = (props: ICommentFrameProps) => {
   return (
     <>
       <div className={style.commentFrame}>
-        <TextArea value={content} onChange={v => setContent(v.target.value)} className={style.textarea} />
+        <TextArea placeholder='说点什么吧' value={content} onChange={v => setContent(v.target.value)} className={style.textarea} />
         <AppButton disabled={submitDisabled} onClick={handleSubmit} className={style.button}>评论</AppButton>
       </div>
     </>

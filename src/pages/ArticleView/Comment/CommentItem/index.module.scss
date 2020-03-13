@@ -9,8 +9,7 @@
     padding-bottom: 0;
     background-color: rgba($color: #000, $alpha: 0.04);
     border-radius: 5px;
-    .children {
-    }
+    border: 2px solid #eee;
 
     .currentLayer {
       height: 70px;
@@ -31,6 +30,7 @@
         flex-grow: 1;
         height: 70px;
         box-sizing: border-box;
+        text-align: start;
         .author {
           font-size: 18px;
           margin-top: 4px;

@@ -10,6 +10,9 @@
   word-wrap: break-word;
   resize: none;
   outline: none;
+  &::placeholder {
+    color: #aaa;
+  }
 
   &:focus {
     border: 2px solid #b2b4bb;
