@@ -9,17 +9,20 @@ interface ICommentFrameProps {
   articleCode: string
   userCode: string
   submitCallback?: Function
+  hidden?: boolean
+  parentCode?: string
+  className?: string
+  buttonName?: string
+  placeholder?: string
 }
 
 const CommentFrame = (props: ICommentFrameProps) => {
 
-  const { articleCode, userCode, submitCallback } = props
+  const { articleCode, buttonName, userCode, submitCallback, placeholder, hidden, parentCode, className } = props
+  const commentService = CommentService.getInstance()
 
   const [content, setContent] = useState('')
-
   const [submitDisabled, setSubmitDisabled] = useState(true)
-
-  const commentService = CommentService.getInstance()
 
   useEffect(() => {
     if (_.isEmpty(content.trim())) {
@@ -35,17 +38,17 @@ const CommentFrame = (props: ICommentFrameProps) => {
 
   const handleSubmit = async () => {
     await commentService.save({
-      articleCode, userCode, content
+      articleCode, userCode, content, parentCode
     })
-    submitCallback!()
+    submitCallback && submitCallback()
     setContent('')
   }
 
   return (
     <>
-      <div className={style.commentFrame}>
-        <TextArea placeholder='说点什么吧' value={content} onChange={v => setContent(v.target.value)} className={style.textarea} />
-        <AppButton disabled={submitDisabled} onClick={handleSubmit} className={style.button}>评论</AppButton>
+      <div className={`${style.commentFrame ?? ''} ${className ?? ''}`} hidden={hidden}>
+        <TextArea placeholder={placeholder} value={content} onChange={v => setContent(v)} className={style.textarea} />
+        <AppButton disabled={submitDisabled} onClick={handleSubmit} className={style.button}>{buttonName}</AppButton>
       </div>
     </>
   )

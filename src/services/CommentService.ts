@@ -4,7 +4,10 @@ import BaseService, { IBaseEntity } from './BaseService'
 export interface ICommentEntity extends IBaseEntity {
   articleCode?: string
   userCode?: string
+  username?: string
   content?: string
+  parentCode?: string
+  children?: Array<ICommentEntity>
 }
 
 class CommentService extends BaseService<ICommentEntity> {

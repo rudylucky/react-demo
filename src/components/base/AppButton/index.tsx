@@ -10,7 +10,7 @@ interface IButtonProps {
 
 const AppButton = (props: IButtonProps) => {
 
-  const { onClick, className } = props
+  const { onClick, className, children } = props
 
   return (
     <button
@@ -18,7 +18,7 @@ const AppButton = (props: IButtonProps) => {
       onClick={() => onClick()}
       className={`${style.button ?? ''} ${className ?? ''}`}
     >
-      {props.children}
+      {children}
     </button>
   )
 }

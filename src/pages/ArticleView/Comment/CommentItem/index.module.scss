@@ -1,73 +1,63 @@
 .commentItem {
-  background-color: #fff;
-  padding-top: 5px 10px;
-  & > .elem {
-    margin-bottom: 10px;
-  }
-  .elem {
-    padding: 10px;
-    padding-bottom: 0;
-    background-color: rgba($color: #000, $alpha: 0.04);
+  padding: 10px;
+  background-color: rgba($color: #000, $alpha: 0.04);
+  border-radius: 5px;
+
+  .currentLayer {
+    height: 70px;
+    display: flex;
+    align-items: flex-start;
     border-radius: 5px;
-    border: 2px solid #eee;
+    .avater {
+      display: inline-block;
+      height: 60px;
+      width: 60px;
+      background-color: #aaa;
+      margin-right: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
 
-    .currentLayer {
+    .contentContainer {
+      flex-grow: 1;
       height: 70px;
-      display: flex;
-      align-items: flex-start;
-      border-radius: 5px;
-      .avater {
-        display: inline-block;
-        height: 60px;
-        width: 60px;
-        background-color: #aaa;
-        margin-right: 10px;
-        border-radius: 50%;
-        cursor: pointer;
+      box-sizing: border-box;
+      text-align: start;
+      .author {
+        font-size: 18px;
+        margin-top: 4px;
+        color: rgba(0, 0, 0, 0.85);
+        letter-spacing: 0.64px;
+
+        .userCode {
+          font-weight: bold;
+          margin-right: 20px;
+        }
+
+        .date {
+          font-size: 16px;
+          color: #777;
+        }
       }
-
-      .contentContainer {
-        flex-grow: 1;
-        height: 70px;
-        box-sizing: border-box;
-        text-align: start;
-        .author {
-          font-size: 18px;
-          margin-top: 4px;
-          color: rgba(0, 0, 0, 0.85);
-          letter-spacing: 0.64px;
-
-          .userCode {
-            font-weight: bold;
-            margin-right: 20px;
-          }
-
-          .date {
-            font-size: 16px;
-            color: #777;
-          }
-        }
-        .content {
-          margin-top: 7px;
-          font-size: 14px;
-          color: rgba(0, 0, 0, 0.65);
-          letter-spacing: 0.5px;
-        }
-        .buttonContainer {
-          float: right;
-          font-size: 14px;
-          color: rgba(0, 0, 0, 0.35);
-          letter-spacing: 0.5px;
-          float: right;
-          .buttonItem {
-            margin-left: 20px;
-            & > :nth-child(1) {
-              cursor: pointer;
-            }
-            & > span {
-              color: #000;
-              margin-left: 3px;
-            }
+      .content {
+        margin-top: 7px;
+        font-size: 14px;
+        color: rgba(0, 0, 0, 0.65);
+        letter-spacing: 0.5px;
+      }
+      .buttonContainer {
+        user-select: none;
+        float: right;
+        font-size: 14px;
+        color: rgba(0, 0, 0, 0.35);
+        letter-spacing: 0.5px;
+        float: right;
+        .buttonItem {
+          margin-left: 20px;
+          cursor: pointer;
+          & > span {
+            color: #000;
+            margin-left: 3px;
           }
         }
       }

@@ -22,7 +22,7 @@ const SignUp = (props: SignUpProps) => {
 
   return (
     <div className={style.signup}>
-      <AppModal setVisible={setVisible} visible={visible}>
+      <AppModal setVisible={setVisible} visible={visible} title='注册'>
         <Form store={values}>
           <FormField name="username" label='用户名：' className={style.usernameField}>
             <Input />

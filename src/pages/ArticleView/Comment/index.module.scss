@@ -1,3 +1,11 @@
 .comment {
   box-sizing: border-box;
+
+  .commentFrame {
+    margin-bottom: 10px;
+  }
+
+  & > .commentItem {
+    margin-bottom: 10px;
+  }
 }

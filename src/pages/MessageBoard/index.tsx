@@ -4,6 +4,7 @@ import TextArea from 'components/base/AppInput/TextArea'
 import AppButton from 'components/base/AppButton'
 import CommentService, { ICommentEntity } from 'services/CommentService'
 import CommentItem from 'pages/ArticleView/Comment/CommentItem'
+import CommentFrame from 'pages/ArticleView/Comment/CommentFrame'
 
 const MessageBoard = () => {
 
@@ -22,7 +23,6 @@ const MessageBoard = () => {
   }, [])
 
   const handleSubmit = async () => {
-    console.log('aaaa')
     await commentService.save({
       articleCode, userCode, content: text
     })
@@ -34,12 +34,11 @@ const MessageBoard = () => {
       您现在的位置是：首页 &gt; 博客留言
     </div>
     <div className={style.inputContainer}>
-      <TextArea placeholder='我有话要说' value={text} onChange={setText} />
-      <AppButton className={style.button} onClick={() => handleSubmit()} >吐槽</AppButton>
+      <CommentFrame articleCode={articleCode} userCode={userCode} buttonName='吐槽' placeholder='我有句话要说' />
     </div>
     <div>
       {
-        comments.map((v, i) => <CommentItem key={i} userCode={v.userCode} content={v.content} />)
+        comments.map((v, i) => <CommentItem key={i} {...v} />)
       }
     </div>
   </div>
