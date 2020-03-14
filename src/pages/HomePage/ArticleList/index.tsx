@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import ArticleService, { IArticleEntity } from 'services/ArticleService'
 import { ArticleItem } from '../ArticleItem'
-import _ from 'lodash'
 
 interface ArticleListProps {
   category?: string

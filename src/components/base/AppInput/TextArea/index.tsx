@@ -8,13 +8,13 @@ type ITextAreaProps = IInputProps & {
 
 const TextArea = (props: ITextAreaProps) => {
 
-  const { onChange } = props
+  const { onChange, className } = props
 
   const handleChange = (v: ChangeEvent<HTMLTextAreaElement>) => {
     onChange(v.target.value)
   }
 
-  return < textarea {...props} onChange={handleChange} className={style.textArea} />
+  return < textarea {...props} onChange={handleChange} className={`${style.textArea ?? ''} ${className ?? ''}`} />
 }
 
 export default TextArea

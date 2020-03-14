@@ -1,4 +1,4 @@
-import { faAngleDoubleLeft, faAngleDoubleRight, faArrowCircleDown, faArrowCircleUp, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import { faArrowCircleDown, faArrowCircleUp, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import util from 'common/util'
 import footerStyle from 'components/layout/AppFooter/index.module.scss'
@@ -9,10 +9,9 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
 import ArticleService, { IArticleEntity } from 'services/ArticleService'
-import CommentService from 'services/CommentService'
+import Comment from './Comment'
 import style from './index.module.scss'
 import markdownStyle from './markdown.module.scss'
-import Comment from './Comment'
 
 
 interface IToc {

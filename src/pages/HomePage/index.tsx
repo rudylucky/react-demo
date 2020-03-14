@@ -9,7 +9,7 @@ import { route } from './route'
 interface IHomePageProps {
 }
 
-const HomePage = (props: IHomePageProps) => {
+const HomePage = () => {
 
   let { category } = useParams()
   category = category ? `tech:${category}` : undefined

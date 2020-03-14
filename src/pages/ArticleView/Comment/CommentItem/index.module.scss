@@ -1,7 +1,14 @@
 .commentItem {
-  padding: 10px;
+  padding: 10px 10px 1px;
   background-color: rgba($color: #000, $alpha: 0.04);
   border-radius: 5px;
+  margin-bottom: 10px;
+
+  .commentFrame {
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #eee;
+  }
 
   .currentLayer {
     height: 70px;

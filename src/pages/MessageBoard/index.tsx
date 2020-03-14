@@ -1,14 +1,10 @@
-import React, { useState, useEffect } from 'react'
-import style from './index.module.scss'
-import TextArea from 'components/base/AppInput/TextArea'
-import AppButton from 'components/base/AppButton'
-import CommentService, { ICommentEntity } from 'services/CommentService'
-import CommentItem from 'pages/ArticleView/Comment/CommentItem'
 import CommentFrame from 'pages/ArticleView/Comment/CommentFrame'
+import CommentItem from 'pages/ArticleView/Comment/CommentItem'
+import React, { useEffect, useState } from 'react'
+import CommentService, { ICommentEntity } from 'services/CommentService'
+import style from './index.module.scss'
 
 const MessageBoard = () => {
-
-  const [text, setText] = useState('')
 
   const commentService = CommentService.getInstance()
 
@@ -17,17 +13,11 @@ const MessageBoard = () => {
   const articleCode = '_message_board'
   const userCode = 'visitor'
 
-  useEffect(() => {
-    commentService.list({ articleCode })
-      .then(setComments)
-  }, [])
-
-  const handleSubmit = async () => {
-    await commentService.save({
-      articleCode, userCode, content: text
-    })
-    setText('')
+  const freshComment = () => {
+    commentService.list({ articleCode }).then(setComments)
   }
+
+  useEffect( freshComment, [])
 
   return <div className={style.messageboard}>
     <div className={style.location}>
@@ -36,11 +26,9 @@ const MessageBoard = () => {
     <div className={style.inputContainer}>
       <CommentFrame articleCode={articleCode} userCode={userCode} buttonName='吐槽' placeholder='我有句话要说' />
     </div>
-    <div>
-      {
-        comments.map((v, i) => <CommentItem key={i} {...v} />)
-      }
-    </div>
+    {
+      comments.map(v => <CommentItem key={v.code} {...v} commentCallback={freshComment} />)
+    }
   </div>
 }
 

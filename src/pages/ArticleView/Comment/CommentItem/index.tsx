@@ -7,13 +7,19 @@ import style from './index.module.scss'
 
 type ICommentItemProps = ICommentEntity & {
   className?: string
+  commentCallback?: Function
 }
 
 const CommentItem = (props: ICommentItemProps) => {
 
-  const { userCode, code, content, username, createTime, children, articleCode, className } = props
+  const { userCode, code, content, username, createTime, children, articleCode, className, commentCallback } = props
 
   const [replyVisible, setReplyVisible] = useState(false)
+
+  const handleCommentSubmit = () => {
+    commentCallback && commentCallback()
+    setReplyVisible(false)
+  }
 
   return <div className={`${style.commentItem ?? ''} ${className ?? ''}`}>
     <div className={style.currentLayer}>
@@ -38,17 +44,17 @@ const CommentItem = (props: ICommentItemProps) => {
         </div>
       </div>
     </div>
-    <div>
-      <CommentFrame
-        parentCode={code}
-        submitCallback={() => setReplyVisible(false)}
-        articleCode={articleCode!}
-        userCode={userCode!}
-        hidden={!replyVisible}
-      />
-    </div>
+    <CommentFrame
+      parentCode={code}
+      submitCallback={handleCommentSubmit}
+      articleCode={articleCode!}
+      userCode={userCode!}
+      hidden={!replyVisible}
+      buttonName='回复'
+      className={style.commentFrame}
+    />
     <div className={style.children}>
-      {children?.map(v => <CommentItem {...v} />)}
+      {children?.map(v => <CommentItem key={v.code} {...v} commentCallback={commentCallback} />)}
     </div>
   </div>
 }

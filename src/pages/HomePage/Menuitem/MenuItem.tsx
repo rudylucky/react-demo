@@ -11,7 +11,7 @@ type MenuItemProps = IRoute & {
 }
 
 const MenuItem = (props: MenuItemProps) => {
-  const { code, className, name, path, type } = props
+  const { className, name, path, type } = props
 
   const location = useLocation()
 
@@ -20,7 +20,7 @@ const MenuItem = (props: MenuItemProps) => {
   return (
     <label htmlFor={uid} className={style.menuItem}>
       <Link to={path}>
-        <input type='radio' name={type} id={uid} checked={location.pathname.endsWith(path)}/>
+        <input onChange={() => {}} type='radio' name={type} id={uid} checked={location.pathname.endsWith(path)}/>
         <span className={className}>{name}</span>
       </Link>
     </label>

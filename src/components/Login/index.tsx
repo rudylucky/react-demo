@@ -1,9 +1,9 @@
+import AppButton from 'components/base/AppButton'
 import Input from 'components/base/AppInput/Input'
 import AppModal from 'components/base/AppModal'
 import { Form, FormField, FormStore } from 'components/Form'
-import React, { useRef } from 'react'
+import React from 'react'
 import style from './index.module.scss'
-import AppButton from 'components/base/AppButton'
 
 interface LoginProps {
   visible: boolean

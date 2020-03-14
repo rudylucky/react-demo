@@ -1,5 +1,5 @@
-import { request, ContentType } from 'common/requests'
 import appConfig from 'common/config'
+import { ContentType, request } from 'common/requests'
 
 export interface IResponse<T> {
   status?: number;

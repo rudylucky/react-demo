@@ -1,6 +1,6 @@
 import { faWindowClose } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React, { useRef, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import style from './index.module.scss'
 
 

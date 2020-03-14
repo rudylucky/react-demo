@@ -19,7 +19,7 @@ const AppHeader = () => {
 
   const menu = route.map(v => <label key={v.code}>
     <Link to={v.path}>
-      <input checked={location.pathname.startsWith(v.path)} name={uid} type='radio' />
+      <input onChange={() => {}} checked={location.pathname.startsWith(v.path)} name={uid} type='radio' />
       <span>{v.name}</span>
     </Link>
   </label>)

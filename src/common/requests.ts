@@ -1,4 +1,4 @@
-import { IResponse, IBaseEntity } from 'services/BaseService'
+import { IBaseEntity, IResponse } from 'services/BaseService'
 
 export enum HttpMethod {
   GET,

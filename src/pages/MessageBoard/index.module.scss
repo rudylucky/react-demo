@@ -2,7 +2,7 @@
   max-width: 1000px;
   margin: auto;
   background-image: linear-gradient(180deg, hsla(0, 0%, 99%, 0.7), #efefef);
-  padding: 10px;
+  padding: 10px 10px 1px;
   & > * {
     margin-bottom: 10px;
     background-color: #fff;
@@ -15,11 +15,6 @@
 
   .inputContainer {
     background-color: #fff;
-    padding-bottom: 50px;
-    .button {
-      margin-top: 8px;
-      margin-right: 2px;
-      float: right;
-    }
+    padding-bottom: 0;
   }
 }

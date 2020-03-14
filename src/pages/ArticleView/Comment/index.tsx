@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Children } from 'react'
+import React, { useEffect, useState } from 'react'
 import CommentService, { ICommentEntity } from 'services/CommentService'
 import CommentFrame from './CommentFrame'
 import CommentItem from './CommentItem'
@@ -26,17 +26,21 @@ const Comment = (props: ICommentProps) => {
   }
 
   useEffect(() => {
-    (async () => {
-      const c = await commentService.list({ articleCode, userCode: 'visitor' })
-      setComments(c)
-    })()
+    freshComment()
   }, [articleCode])
 
   return (
     <div className={style.comment}>
-      <CommentFrame submitCallback={freshComment} articleCode={articleCode} userCode={'visitor'} className={style.commentFrame} />
+      <CommentFrame
+        submitCallback={freshComment}
+        articleCode={articleCode}
+        userCode={'visitor'}
+        className={style.commentFrame}
+        buttonName='评论'
+      />
       {
         comments.map(v => <CommentItem
+          commentCallback={freshComment}
           className={style.commentItem}
           key={v.code}
           code={v.code}
