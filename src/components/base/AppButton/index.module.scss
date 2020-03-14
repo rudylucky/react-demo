@@ -17,6 +17,7 @@
     border: 2px solid #296aa7;
   }
   &:disabled {
+    cursor: auto;
     background-color: #aaa;
     border-color: #999;
   }
