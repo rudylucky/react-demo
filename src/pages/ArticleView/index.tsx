@@ -153,6 +153,8 @@ const AritcleView = () => {
 
   const [title, setTitle] = useState<string>('')
 
+  const [loaded, setLoaded] = useState(false)
+
   document.title = title
 
   useEffect(() => {
@@ -172,6 +174,7 @@ const AritcleView = () => {
         ...content,
         content: ''
       })
+      setLoaded(true)
     })()
   }, [])
 
@@ -206,11 +209,7 @@ const AritcleView = () => {
 
   const history = useHistory()
 
-  if (_.isEmpty(_.trim(content))) {
-    return <Loading />
-  }
-
-  return (
+  return <Loading loaded={loaded}>
     <div className={style.articleView}>
       <div className={style.markdown}>
         <div className={style.titleContainer}>
@@ -237,7 +236,7 @@ const AritcleView = () => {
         </a>
       </div>
     </div>
-  )
+  </Loading>
 }
 
 export default AritcleView
