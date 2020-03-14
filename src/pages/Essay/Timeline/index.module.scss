@@ -1,10 +1,13 @@
 .timeline {
   margin: 50px;
   text-align: start;
+
   .timeItem {
-    height: 30px;
+    height: 40px;
     display: flex;
     align-items: center;
+    font-size: 15px;
+    color: #555;
     .bar {
       display: inline-block;
       height: 100%;
@@ -17,7 +20,7 @@
         display: block;
         position: absolute;
         left: -1.5px;
-        top: 12px;
+        top: 18px;
         width: 6px;
         height: 6px;
         background-color: #fff;
@@ -26,7 +29,7 @@
       &::before {
         position: absolute;
         left: -4.5px;
-        top: 9px;
+        top: 15px;
         content: '';
         display: block;
         width: 10px;
@@ -36,8 +39,59 @@
         border: 1px solid #fff;
       }
     }
+    .content {
+      a {
+        color: #000;
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
     & > span {
       margin-left: 10px;
+    }
+    &:first-child {
+      position: relative;
+      .bar {
+        top: 30%;
+        &::before {
+          top: -10.24px;
+        }
+        &::after {
+          top: -6.24px;
+        }
+      }
+    }
+    &:last-child {
+      .bar {
+        position: relative;
+        top: -30%;
+        &::before {
+          top: 14.24px;
+        }
+        &::after {
+          top: 18.24px;
+        }
+      }
+    }
+
+    &:first-child,
+    &:last-child {
+      .bar {
+        height: 50%;
+        position: relative;
+        &::before {
+          width: 16px;
+          height: 16px;
+          left: -7px;
+        }
+        &::after {
+          width: 10px;
+          height: 10px;
+          left: -3px;
+        }
+      }
     }
   }
 }

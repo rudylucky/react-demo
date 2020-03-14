@@ -1,0 +1,22 @@
+@keyframes rotateBar {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading {
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .bar {
+    width: 100px;
+    height: 100px;
+    background-color: #aaa;
+    animation: rotateBar 1.5s infinite;
+  }
+}

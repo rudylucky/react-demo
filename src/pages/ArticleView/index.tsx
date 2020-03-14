@@ -12,6 +12,8 @@ import ArticleService, { IArticleEntity } from 'services/ArticleService'
 import Comment from './Comment'
 import style from './index.module.scss'
 import markdownStyle from './markdown.module.scss'
+import Loading from 'components/Loading'
+import _ from 'lodash'
 
 
 interface IToc {
@@ -203,6 +205,10 @@ const AritcleView = () => {
   dispatch({ type: 'UPDATE_ARTICLE', title: article?.title ?? '' })
 
   const history = useHistory()
+
+  if (_.isEmpty(_.trim(content))) {
+    return <Loading />
+  }
 
   return (
     <div className={style.articleView}>
