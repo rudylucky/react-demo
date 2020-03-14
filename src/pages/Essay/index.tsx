@@ -1,10 +1,13 @@
 import React from 'react'
 import style from './index.module.scss'
+import Timeline from './Timeline'
 
 const Essay = () => {
 
   return <div className={style.essay}>
-    this is a placeholder of essay page
+    <div>
+      <Timeline />
+    </div>
   </div>
 }
 
