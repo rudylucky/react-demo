@@ -3,22 +3,17 @@ import style from './index.module.scss'
 import ArticleService, { IArticleEntity } from 'services/ArticleService'
 import { Link } from 'react-router-dom'
 
-const Timeline = () => {
+interface ITimeLineProps {
+  data: Array<IArticleEntity>
+}
 
-  const articleService = ArticleService.getInstance()
+const Timeline = (props: ITimeLineProps) => {
 
-  const [articleList, setArticleList] = useState <Array<IArticleEntity>>([])
-
-  useEffect(() => {
-    (async () => {
-      const list = await articleService.list()
-      setArticleList(list)
-    })()
-  }, [])
+  const { data } = props
 
   return <div className={style.timeline}>
     {
-      articleList.map(v => <TimeItem
+      data.map(v => <TimeItem
         key={v.code}
         date={v.createTime}
         content={v.title}
@@ -40,10 +35,12 @@ export const TimeItem = (props: ITimeItemProps) => {
 
   return <div className={style.timeItem}>
     <div className={style.bar}></div>
-    <span className={style.date}>{date}</span>
-    <span className={style.content}>
-      <Link to={'article/detail/' + code}>{content}</Link>
-    </span>
+    <Link to={'article/detail/' + code}>
+      <span className={style.date}>{date}</span>
+      <span className={style.content}>
+        {content}
+      </span>
+    </Link>
   </div>
 }
 
