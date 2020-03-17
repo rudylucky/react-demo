@@ -1,10 +1,8 @@
 import { combineReducers } from 'redux'
-import article from './articles'
-import user from './users'
-import breadCrumb from './breadCrumb'
+import articleReducer from './articleReducer'
+import userReducer from './userReducer'
 
 export default combineReducers({
-  article,
-  user,
-  breadCrumb
+  article: articleReducer,
+  user: userReducer,
 })

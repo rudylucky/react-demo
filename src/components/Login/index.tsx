@@ -6,6 +6,8 @@ import { Form, FormField, FormStore } from 'components/Form'
 import React from 'react'
 import UserService, { ILoginParam } from 'services/UserService'
 import style from './index.module.scss'
+import { useDispatch, useStore, useSelector } from 'react-redux'
+import { IUserAction } from 'reducers/userReducer'
 
 interface LoginProps {
   visible: boolean
@@ -20,8 +22,15 @@ const Login = (props: LoginProps) => {
 
   const loginService = UserService.getInstance()
 
+  const dispatch = useDispatch()
+
+  const user = useSelector<{user: string}>(s => s.user)
+
+  console.log(user)
+
   const handleLogin = async () => {
     const token = await loginService.login(formStore.values as ILoginParam)
+    dispatch({ type: 'LOGIN', token })
     setToken(token)
     setVisible(false)
   }
