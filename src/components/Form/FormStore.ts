@@ -15,7 +15,7 @@ export default class FormStore<T extends Object = any> {
 
   private errors: FormErrors = {}
 
-  public constructor (private values: Partial<T> = {}, private rules: FormRules = {}) {
+  public constructor (public values: Partial<T> = {}, private rules: FormRules = {}) {
     this.initialValues = values as any
     this.values = deepCopy(values) as any
 

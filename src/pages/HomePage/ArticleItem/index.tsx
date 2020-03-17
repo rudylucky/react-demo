@@ -5,9 +5,9 @@ import { faCommentDots, faEye, faThumbsUp } from '@fortawesome/free-solid-svg-ic
 import { IArticleEntity } from 'services/ArticleService'
 
 type ArticleItemProps = IArticleEntity & {
-  comments: number
-  reads: number
-  date: Date
+  comments?: number
+  reads?: number
+  date?: string
 }
 
 export function ArticleItem(props: ArticleItemProps) {
@@ -21,11 +21,13 @@ export function ArticleItem(props: ArticleItemProps) {
         <div className={style.content}>{abstract}</div>
       </a>
       <div className={style.bottom}>
-        <span className={style.dateContainer}>发布时间：{date.toLocaleDateString()}</span>
+        <span className={style.dateContainer}>
+          发布时间：{date}
+        </span>
         <span className={style.buttonContainer}>
           <span>
             <FontAwesomeIcon icon={faThumbsUp} />
-            <span>{upVote ?? 0}</span>
+            <span>{upVote}</span>
           </span>
           <span>
             <FontAwesomeIcon icon={faCommentDots} />

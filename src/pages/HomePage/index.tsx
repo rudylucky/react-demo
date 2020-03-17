@@ -12,7 +12,7 @@ interface IHomePageProps {
 const HomePage = () => {
 
   let { category } = useParams()
-  category = category ? `tech:${category}` : undefined
+  category = category ? `${category}` : undefined
 
   return (
     <div className={style.baseLayout}>

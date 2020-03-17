@@ -7,7 +7,7 @@ import FormStoreContext from './FormStoreContext'
 import FormOptionsContext, { FormOptions } from './FormOptionsContext'
 
 export interface FormProps extends FormOptions {
-  store: FormStore
+  store?: FormStore
   className?: string
   children?: React.ReactNode
   onSubmit?: (e: React.FormEvent) => void

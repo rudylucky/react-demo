@@ -3,8 +3,7 @@ import React from 'react'
 import HomePage from 'pages/HomePage'
 import AritcleView from 'pages/ArticleView'
 import { Redirect } from 'react-router-dom'
-import util from './util'
-import _ from 'lodash'
+import _, { flatMap } from 'lodash'
 import Test from 'components/Test'
 import ArticleList from 'pages/HomePage/ArticleList'
 
@@ -108,7 +107,7 @@ const route = menuRoute.concat(hiddenRoute)
 
 export function routeName(path: string): IRoute | undefined {
   const s = (JSON.parse(JSON.stringify(menuRoute)) as Array<IRoute>)
-  return util.flatMap(s, v => [v].concat(v.children ?? []))
+  return flatMap(s, v => [v].concat(v.children ?? []))
     .find(v => v.code === path)
 }
 

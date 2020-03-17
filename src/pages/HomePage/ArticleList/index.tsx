@@ -25,8 +25,8 @@ const ArticleList = (props: ArticleListProps) => {
         articles.map(v => <ArticleItem
           code={v.code}
           key={v.code}
-          comments={Math.round(Math.random() * 1000)}
-          reads={Math.round(Math.random() * 1000)}
+          comments={10}
+          reads={v.totalRead}
           title={v.title}
           upVote={v.upVote}
           abstract='小刺猬每天出门前，妈妈都要关照它穿好刺毛衣，
@@ -37,7 +37,7 @@ const ArticleList = (props: ArticleListProps) => {
               妈妈赶紧帮它脱下扎人的刺毛衣，
               然后大家一起光溜溜地洗手吃饭，
               别提有多美了。'
-          date={new Date()}
+          date={v.updateTime}
         />)
       }
     </>

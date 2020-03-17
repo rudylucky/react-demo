@@ -1,8 +1,8 @@
 import { faArrowCircleDown, faArrowCircleUp, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import util from 'common/util'
 import footerStyle from 'components/layout/AppFooter/index.module.scss'
 import headerStyle from 'components/layout/AppHeader/index.module.scss'
+import Loading from 'components/Loading'
 import marked from 'marked'
 import prismjs from 'prismjs'
 import React, { useEffect, useState } from 'react'
@@ -12,8 +12,7 @@ import ArticleService, { IArticleEntity } from 'services/ArticleService'
 import Comment from './Comment'
 import style from './index.module.scss'
 import markdownStyle from './markdown.module.scss'
-import Loading from 'components/Loading'
-import _ from 'lodash'
+import { uuid } from 'common/util'
 
 
 interface IToc {
@@ -40,7 +39,7 @@ const AritcleView = () => {
   let tempToc: IToc
   const renderer = new marked.Renderer()
   renderer.heading = (text, level) => {
-    var anchor = 'uuid' + util.uuid()
+    var anchor = 'uuid' + uuid()
     const t: IToc = {
       anchor: anchor,
       level: level,

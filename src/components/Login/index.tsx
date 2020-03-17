@@ -1,8 +1,10 @@
+import { setToken } from 'common/util'
 import AppButton from 'components/base/AppButton'
 import Input from 'components/base/AppInput/Input'
 import AppModal from 'components/base/AppModal'
 import { Form, FormField, FormStore } from 'components/Form'
 import React from 'react'
+import UserService, { ILoginParam } from 'services/UserService'
 import style from './index.module.scss'
 
 interface LoginProps {
@@ -10,21 +12,24 @@ interface LoginProps {
   setVisible: Function
 }
 
-const Login = (props: LoginProps) => {
+let formStore = new FormStore<ILoginParam>()
 
+const Login = (props: LoginProps) => {
 
   const { visible, setVisible } = props
 
-  const values = new FormStore()
+  const loginService = UserService.getInstance()
 
-  const handleLogin = () => {
-    console.log(values)
+  const handleLogin = async () => {
+    const token = await loginService.login(formStore.values as ILoginParam)
+    setToken(token)
+    setVisible(false)
   }
 
   return (
     <div className={style.login}>
       <AppModal className={style.loginFrame} title="登录" setVisible={setVisible} visible={visible}>
-        <Form store={values}>
+        <Form store={formStore}>
           <FormField name="username" label='用户名：' className={style.usernameField}>
             <Input className={style.usernameInput} />
           </FormField>
