@@ -62,6 +62,9 @@
         .buttonItem {
           margin-left: 20px;
           cursor: pointer;
+          &:hover > * {
+            color: #2ab48a;
+          }
           & > span {
             color: #000;
             margin-left: 3px;

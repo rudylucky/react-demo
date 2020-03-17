@@ -25,15 +25,15 @@ export function ArticleItem(props: ArticleItemProps) {
           发布时间：{date}
         </span>
         <span className={style.buttonContainer}>
-          <span>
+          <span className={style.button}>
             <FontAwesomeIcon icon={faThumbsUp} />
             <span>{upVote}</span>
           </span>
-          <span>
+          <span className={style.button}>
             <FontAwesomeIcon icon={faCommentDots} />
             <span>{comments}</span>
           </span>
-          <span>
+          <span className={style.button}>
             <FontAwesomeIcon icon={faEye} />
             <span>{reads}</span>
           </span>

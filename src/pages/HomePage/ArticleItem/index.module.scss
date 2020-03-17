@@ -51,6 +51,11 @@
     }
     .buttonContainer {
       float: right;
+      .button {
+        &:hover > * {
+          color: #2ab48a;
+        }
+      }
       & > span {
         user-select: none;
         cursor: pointer;
