@@ -1,15 +1,16 @@
-import { faDesktop, faMobile } from '@fortawesome/free-solid-svg-icons'
+import { faDesktop, faMobile, faUser } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { getCurrentUser } from 'common/util'
 import Login from 'components/Login'
 import SignUp from 'components/SignUp'
 import _ from 'lodash'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 import { Link, useLocation } from 'react-router-dom'
+import { IStore } from 'reducers'
 import style from './index.module.scss'
 import { route } from './route'
-import { IUserState, ICurrentUser } from 'reducers/userReducer'
-import { useSelector } from 'react-redux'
-import { IStore } from 'reducers'
+import Dropdown from 'components/base/Dropdown'
 
 
 const AppHeader = () => {
@@ -19,10 +20,15 @@ const AppHeader = () => {
 
   const [loginVisible, setLoginVisible] = useState(false)
   const [signupVisible, setSignupVisible] = useState(false)
+  const username = useSelector<IStore, string | undefined>(v => v.userState.currentUser?.fullName)
+  const [fullName, setFullName] = useState<string | undefined>(getCurrentUser()?.fullName)
 
-  const currentUser = useSelector<IStore, ICurrentUser | undefined>(s => s.userState?.currentUser)
-  const s = useSelector<IUserState, IUserState>(s => s)
-  console.log('state', s)
+  console.log(fullName)
+
+  useEffect(() => {
+    setFullName(getCurrentUser()?.fullName)
+    console.log('aaa', getCurrentUser())
+  }, [username])
 
   const menu = route.map(v => <label key={v.code}>
     <Link to={v.path}>
@@ -39,20 +45,22 @@ const AppHeader = () => {
         </div>
         <div className={style.infoContainer}>
           {
-            currentUser
-              ? <span className={style.signupButtonContainer} onClick={() => setSignupVisible(true)}>
-                <FontAwesomeIcon icon={faDesktop} />
-                <span>{currentUser.fullName}</span>
-              </span>
+            fullName
+              ? <Dropdown className={style.dropown}>
+                <span className={style.userContainer}>
+                  <FontAwesomeIcon icon={faUser} />
+                  <span>{fullName}</span>
+                </span>
+              </Dropdown>
               : <>
                 <span className={style.loginButtonContainer} onClick={() => setLoginVisible(true)}>
                   <FontAwesomeIcon icon={faMobile} />
                   <span>登录</span>
                 </span>
-                <span className={style.signupButtonContainer} onClick={() => setSignupVisible(true)}>
+                {/* <span className={style.signupButtonContainer} onClick={() => setSignupVisible(true)}>
                   <FontAwesomeIcon icon={faDesktop} />
                   <span>注册</span>
-                </span>
+                </span> */}
               </>
           }
         </div>

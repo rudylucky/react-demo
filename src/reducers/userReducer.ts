@@ -1,4 +1,5 @@
 import { IUserEntity } from 'services/UserService'
+import { setCurrentUser } from 'common/util'
 
 export interface IUserAction {
   type: 'LOGIN'
@@ -18,6 +19,7 @@ export interface IUserState {
 const userReducer = (state: IUserState = {}, action: IUserAction) => {
   switch (action.type) {
     case 'LOGIN':
+      setCurrentUser(action.user)
       state.currentUser = action.user
       return state
     default:

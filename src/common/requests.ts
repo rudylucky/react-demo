@@ -1,6 +1,6 @@
 import { IBaseEntity, IResponse } from 'services/BaseService'
-import { getToken } from './util'
 import _ from 'lodash'
+import { getCurrentUser } from './util'
 
 export enum HttpMethod {
   GET,
@@ -67,8 +67,8 @@ function callRemote(config: IConfig & RequestInit) {
   // })
   const headers: HeadersInit = new Headers()
   headers.set('content-type', config.contentType ?? ContentType.JSON)
-  const token = getToken()
-  if (token !== null) {
+  const token = getCurrentUser()?.token
+  if (token) {
     headers.set('Authorization', token)
   }
   config.headers = headers

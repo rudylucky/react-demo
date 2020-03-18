@@ -1,11 +1,13 @@
 import lodash from 'lodash'
+import { ICurrentUser } from 'reducers/userReducer'
 
-export function getToken(): string | null {
-  return sessionStorage.getItem('token')
+export function getCurrentUser(): ICurrentUser | null {
+  const json = sessionStorage.getItem('user')
+  return json && JSON.parse(json)
 }
 
-export function setToken(token: string) {
-  sessionStorage.setItem('token', token)
+export function setCurrentUser(user: ICurrentUser) {
+  sessionStorage.setItem('user', JSON.stringify(user))
 }
 
 export function merge<A, B>(source: A, target: B): A | B {

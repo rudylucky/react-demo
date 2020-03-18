@@ -41,8 +41,9 @@ $headerHeight: 68px;
     line-height: $headerHeight;
     font-weight: bold;
 
-    & > span {
-      width: 100px;
+    & > span, .userContainer {
+      padding: 0 15px;
+      min-width: 100px;
       display: inline-block;
       transition: all 0.5s;
       cursor: pointer;

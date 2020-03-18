@@ -1,4 +1,3 @@
-import { setToken } from 'common/util'
 import AppButton from 'components/base/AppButton'
 import Input from 'components/base/AppInput/Input'
 import AppModal from 'components/base/AppModal'
@@ -25,12 +24,9 @@ const Login = (props: LoginProps) => {
 
   const dispatch = useDispatch <Dispatch<IUserAction>>()
 
-  const user = useSelector<IStore, ICurrentUser | undefined>(s => s.userState.currentUser)
-
   const handleLogin = async () => {
-    const token: string = await loginService.login(formStore.values as ILoginParam)
-    dispatch({ type: 'LOGIN', user: { username: 'username', token: token } })
-    setToken(token)
+    const user: ICurrentUser = await loginService.login(formStore.values as ILoginParam)
+    dispatch({ type: 'LOGIN', user })
     setVisible(false)
   }
 
@@ -39,10 +35,10 @@ const Login = (props: LoginProps) => {
       <AppModal className={style.loginFrame} title="登录" setVisible={setVisible} visible={visible}>
         <Form store={formStore}>
           <FormField name="username" label='用户名：' className={style.usernameField}>
-            <Input className={style.usernameInput} />
+            <Input placeholder='测试账号：guest' className={style.usernameInput} />
           </FormField>
           <FormField name="password" label='密码：' className={style.passwordField}>
-            <Input className={style.passwordInput} type='password'/>
+            <Input placeholder='测试密码：guest' className={style.passwordInput} type='password'/>
           </FormField>
           <AppButton onClick={handleLogin}>登录</AppButton>
         </Form>
