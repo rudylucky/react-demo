@@ -7,6 +7,9 @@ import React, { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import style from './index.module.scss'
 import { route } from './route'
+import { IUserState, ICurrentUser } from 'reducers/userReducer'
+import { useSelector } from 'react-redux'
+import { IStore } from 'reducers'
 
 
 const AppHeader = () => {
@@ -16,6 +19,10 @@ const AppHeader = () => {
 
   const [loginVisible, setLoginVisible] = useState(false)
   const [signupVisible, setSignupVisible] = useState(false)
+
+  const currentUser = useSelector<IStore, ICurrentUser | undefined>(s => s.userState?.currentUser)
+  const s = useSelector<IUserState, IUserState>(s => s)
+  console.log('state', s)
 
   const menu = route.map(v => <label key={v.code}>
     <Link to={v.path}>
@@ -31,14 +38,23 @@ const AppHeader = () => {
           {menu}
         </div>
         <div className={style.infoContainer}>
-          <span className={style.loginButtonContainer} onClick={() => setLoginVisible(true)}>
-            <FontAwesomeIcon icon={faMobile} />
-            <span>登录</span>
-          </span>
-          <span className={style.signupButtonContainer} onClick={() => setSignupVisible(true)}>
-            <FontAwesomeIcon icon={faDesktop} />
-            <span>注册</span>
-          </span>
+          {
+            currentUser
+              ? <span className={style.signupButtonContainer} onClick={() => setSignupVisible(true)}>
+                <FontAwesomeIcon icon={faDesktop} />
+                <span>{currentUser.fullName}</span>
+              </span>
+              : <>
+                <span className={style.loginButtonContainer} onClick={() => setLoginVisible(true)}>
+                  <FontAwesomeIcon icon={faMobile} />
+                  <span>登录</span>
+                </span>
+                <span className={style.signupButtonContainer} onClick={() => setSignupVisible(true)}>
+                  <FontAwesomeIcon icon={faDesktop} />
+                  <span>注册</span>
+                </span>
+              </>
+          }
         </div>
       </div>
       <Login visible={loginVisible} setVisible={(v: boolean) => setLoginVisible(v ?? false)} />

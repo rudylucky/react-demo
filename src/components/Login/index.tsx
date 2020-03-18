@@ -3,11 +3,12 @@ import AppButton from 'components/base/AppButton'
 import Input from 'components/base/AppInput/Input'
 import AppModal from 'components/base/AppModal'
 import { Form, FormField, FormStore } from 'components/Form'
-import React from 'react'
+import React, { Dispatch } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import UserService, { ILoginParam } from 'services/UserService'
 import style from './index.module.scss'
-import { useDispatch, useStore, useSelector } from 'react-redux'
-import { IUserAction } from 'reducers/userReducer'
+import { IUserState, IUserAction, ICurrentUser } from 'reducers/userReducer'
+import { IStore } from 'reducers'
 
 interface LoginProps {
   visible: boolean
@@ -22,15 +23,13 @@ const Login = (props: LoginProps) => {
 
   const loginService = UserService.getInstance()
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch <Dispatch<IUserAction>>()
 
-  const user = useSelector<{user: string}>(s => s.user)
-
-  console.log(user)
+  const user = useSelector<IStore, ICurrentUser | undefined>(s => s.userState.currentUser)
 
   const handleLogin = async () => {
-    const token = await loginService.login(formStore.values as ILoginParam)
-    dispatch({ type: 'LOGIN', token })
+    const token: string = await loginService.login(formStore.values as ILoginParam)
+    dispatch({ type: 'LOGIN', user: { username: 'username', token: token } })
     setToken(token)
     setVisible(false)
   }

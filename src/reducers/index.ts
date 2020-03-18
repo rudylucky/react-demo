@@ -1,8 +1,13 @@
 import { combineReducers } from 'redux'
-import articleReducer from './articleReducer'
-import userReducer from './userReducer'
+import articleReducer, { IArticleState } from './articleReducer'
+import userReducer, { IUserState } from './userReducer'
+
+export interface IStore {
+  articleState: IArticleState
+  userState: IUserState
+}
 
 export default combineReducers({
-  article: articleReducer,
-  user: userReducer,
+  articleState: articleReducer,
+  userState: userReducer,
 })

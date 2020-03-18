@@ -1,6 +1,5 @@
-import ArticleService, { IArticleEntity } from 'services/ArticleService'
+import { IArticleEntity } from 'services/ArticleService'
 import { ICommentEntity } from 'services/CommentService'
-import { stat } from 'fs'
 
 export interface IArticleAction {
   type: 'LIST'
@@ -8,10 +7,8 @@ export interface IArticleAction {
 }
 
 export interface IArticleState {
-  article: {
-    [code: string]: IArticleEntity & {
-      comments: [ICommentEntity]
-    }
+  [code: string]: IArticleEntity & {
+    comments: [ICommentEntity]
   }
 }
 

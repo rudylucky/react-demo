@@ -1,18 +1,25 @@
+import { IUserEntity } from 'services/UserService'
+
 export interface IUserAction {
-  type: 'UPDATE_USER' | 'LOGIN'
-  name: string
+  type: 'LOGIN'
+  user: IUserEntity & {
+    token: string
+  }
 }
 
-const userReducer = (state = {}, action: IUserAction) => {
+export type ICurrentUser = IUserEntity & {
+  token: string
+}
+
+export interface IUserState {
+  currentUser?: ICurrentUser
+}
+
+const userReducer = (state: IUserState = {}, action: IUserAction) => {
   switch (action.type) {
-    case 'UPDATE_USER':
-      return {
-        title: action.name
-      }
     case 'LOGIN':
-      return {
-        username: action.name
-      }
+      state.currentUser = action.user
+      return state
     default:
       return state
   }
