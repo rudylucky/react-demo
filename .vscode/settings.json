@@ -3,7 +3,6 @@
   "editor.fontLigatures": true,
   "breadcrumbs.enabled": false,
   "editor.minimap.enabled": false,
-  "editor.tabSize": 2,
   "editor.formatOnPaste": true,
   "eslint.format.enable": true,
   "[typescript]": {

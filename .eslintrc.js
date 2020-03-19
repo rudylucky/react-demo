@@ -31,7 +31,7 @@ module.exports = {
     "array-bracket-spacing": [2, "never"],
     "rest-spread-spacing": [2],
     "key-spacing": [2],
-    "no-mixed-spaces-and-tabs	": [2],
+    "no-mixed-spaces-and-tabs": [1],
     "computed-property-spacing": [2],
     "no-whitespace-before-property": [2],
     "space-infix-ops": [2, { "int32Hint": false }],
