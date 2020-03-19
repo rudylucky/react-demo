@@ -24,7 +24,7 @@ function Form (props: FormProps) {
         <form className={classNames} onSubmit={onSubmit} target="nm_iframe" action="">
           {children}
         </form>
-        <iframe id="id_iframe" name="nm_iframe" style={{ display:'none' }}></iframe>
+        <iframe id="id_iframe" name="nm_iframe" style={{ display: 'none' }}></iframe>
 
       </FormOptionsContext.Provider>
     </FormStoreContext.Provider>
