@@ -27,7 +27,6 @@ const AppHeader = () => {
 
   useEffect(() => {
     setFullName(getCurrentUser()?.fullName)
-    console.log('aaa', getCurrentUser())
   }, [username])
 
   const menu = route.map(v => <label key={v.code}>

@@ -25,6 +25,11 @@ module.exports = {
     "react",
     "@typescript-eslint"
   ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "rules": {
     "indent": ["error", 2, { "SwitchCase": 1 }],
     "object-curly-spacing": [1, "always"],
