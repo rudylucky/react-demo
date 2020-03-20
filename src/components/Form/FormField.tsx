@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Validator } from 'react'
 
 import FormStoreContext from './FormStoreContext'
 import useFieldChange from './useFieldChange'
@@ -6,6 +6,7 @@ import FormOptionsContext, { FormOptions } from './FormOptionsContext'
 import { getPropName, getChangeEventValue } from './utils'
 import style from './FormField.module.scss'
 import _ from 'lodash'
+import { FormValidator } from './FormStore'
 
 export interface FormFieldProps extends FormOptions {
   className?: string
@@ -32,8 +33,10 @@ export default function FormField ({
   ...restProps
 }: FormFieldProps) {
 
-  const store = React.useContext(FormStoreContext)
+  const options = React.useContext(FormOptionsContext)
+  const { inline, compact, required, labelWidth, gutter } = { ...options, ...restProps }
 
+  const store = React.useContext(FormStoreContext)
   if (!store) {
     throw new Error('FormField should place inside a Form')
   }
@@ -41,7 +44,18 @@ export default function FormField ({
   if (defaultValue) {
     store.set(name, defaultValue)
   }
-  const options = React.useContext(FormOptionsContext)
+
+  const requiredRule: FormValidator = (value) => {
+    if (typeof value === 'undefined') {
+      return '请输入XXX'
+    }
+    return true
+  }
+
+  if (required) {
+    store.addRules(name, [requiredRule])
+  }
+
   const [value, setValue] = React.useState(store.get(name))
   const [error, setError] = React.useState(store.error(name))
 
@@ -65,16 +79,14 @@ export default function FormField ({
     child = React.cloneElement(child, childProps)
   }
 
-  const { inline, compact, required, labelWidth, gutter } = { ...options, ...restProps }
-
   console.log(value)
 
   return (
     <div className={`${style.formField} ${className ?? ''}`}>
-      <span className={`${style.label} ${required && _.isEmpty(_.trim(value)) && style.required}`}>{label}</span>
+      <span className={`${style.label} ${required && style.required}`}>{label}</span>
       <span className={style.container}>
         <div className={style.input}>{child}</div>
-        <div className={`${style.message} ${error && style.message}`}>{'请输入用户名'}</div>
+        {error && <div className={style.message}>{error}</div>}
       </span>
     </div>
   )

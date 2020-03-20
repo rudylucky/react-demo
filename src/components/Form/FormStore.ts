@@ -4,7 +4,7 @@ export type FormListener = (name: string) => void
 
 export type FormValidator = (value: any, values: any) => boolean | string
 
-export type FormRules = { [key: string]: FormValidator }
+export type FormRules = { [key: string]: Array<FormValidator> }
 
 export type FormErrors = { [key: string]: string | undefined }
 
@@ -73,26 +73,25 @@ export default class FormStore<T extends Object = any> {
     return this.errors[name]
   }
 
+  public addRules = (name: string, rules: Array<FormValidator>) => {
+    this.rules = {
+      ...this.rules,
+      [name]: [...this.rules[name], ...rules]
+    }
+  }
+
   public validate (): [Error | undefined, T]
   public validate (name: string): [Error | undefined, any]
   public validate (name?: string) {
-    if (name === undefined) {
-      // validate all fields
-      Object.keys(this.rules).forEach((n) => this.validate(n))
-      this.notify('*')
-
-      const message = this.error(0)
-      const error = message === undefined ? undefined : new Error(message)
-      return [error, this.get()]
-    } else {
-      // validate specific field
-      const validator = this.rules[name]
-      const value = this.get(name)
-      const result = validator ? validator(value, this.values) : true
-      const message = this.error(name, result === true ? undefined : result || '')
-      const error = message === undefined ? undefined : new Error(message)
-      return [error, value]
+    if (name) {
+      this.validateField(name)
     }
+    Object.keys(this.rules).forEach(this.validateField)
+    this.notify('*')
+
+    const message = this.error(0)
+    const error = message === undefined ? undefined : new Error(message)
+    return [error, this.get()]
   }
 
   public subscribe = (listener: FormListener) => {
@@ -101,5 +100,9 @@ export default class FormStore<T extends Object = any> {
       const index = this.listeners.indexOf(listener)
       if (index > -1) this.listeners.splice(index, 1)
     }
+  }
+
+  private validateField = (name: string) => {
+    this.rules.array.forEach(v => v(this.get(name), this.values))
   }
 }
