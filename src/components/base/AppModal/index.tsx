@@ -16,20 +16,19 @@ export interface IModelProps {
   className?: string
 }
 
-const AppModal = (props: IModelProps) => {
+const AppModal = ({
+  cancel, visible, setVisible, title, children,
+  confirmText, cancelText, className = '', confirm
+}: IModelProps) => {
 
-  const { visible, setVisible, className } = props
+  const showFooter = (typeof cancel === 'function') || (typeof confirm === 'function')
 
-  const showFooter = (typeof props.cancel === 'function') || (typeof props.confirm === 'function')
-
-  const cancel = () => {
-    const cancel = props.cancel
+  const handleCancel = () => {
     cancel && cancel()
     setVisible(false)
   }
 
-  const confirm = () => {
-    const confirm = props.confirm
+  const handleConfirm = () => {
     confirm && confirm()
     setVisible(false)
   }
@@ -53,24 +52,24 @@ const AppModal = (props: IModelProps) => {
     <>
       {
         visible &&
-          <div className={style.background}>
-            <div className={`${style.modal ?? ''} ${className ?? ''}`}>
-              <div className={style.title}>
-                <span>{props.title}</span>
-              </div>
-              <FontAwesomeIcon onClick={cancel} className={style.closeButton} icon={faWindowClose} />
-              <div className={style.content}>
-                {props.children}
-              </div>
-              {
-                showFooter &&
-                <div className={style.foot}>
-                  <button onClick={confirm}>{props.confirmText ?? '确定'}</button>
-                  <button onClick={cancel}>{props.cancelText ?? '取消'}</button>
-                </div>
-              }
+        <div className={style.background}>
+          <div className={`${style.modal} ${className}`}>
+            <div className={style.title}>
+              <span>{title}</span>
             </div>
+            <FontAwesomeIcon onClick={handleCancel} className={style.closeButton} icon={faWindowClose} />
+            <div className={style.content}>
+              {children}
+            </div>
+            {
+              showFooter &&
+              <div className={style.foot}>
+                <button onClick={handleConfirm}>{confirmText ?? '确定'}</button>
+                <button onClick={handleCancel}>{cancelText ?? '取消'}</button>
+              </div>
+            }
           </div>
+        </div>
       }
     </>
 

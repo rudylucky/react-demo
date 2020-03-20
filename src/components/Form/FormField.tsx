@@ -16,7 +16,6 @@ export interface FormFieldProps extends FormOptions {
   name: string
   valueProp?: string | ((type: any) => string)
   getter?: (...args: any[]) => any
-  suffix?: React.ReactNode
   children?: React.ReactNode
   defaultValue?: string | number | boolean
 }
@@ -28,7 +27,6 @@ export default function FormField({
   name,
   valueProp = 'value',
   getter = getChangeEventValue,
-  suffix,
   children,
   ...restProps
 }: FormFieldProps) {

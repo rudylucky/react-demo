@@ -14,13 +14,12 @@ export interface FormProps extends FormOptions {
   onSubmit?: (e: React.FormEvent) => void
 }
 
-function Form (props: FormProps) {
-  const { className = '', children, store, onSubmit, ...options } = props
+function Form({ className = '', children, store, onSubmit, ...options }: FormProps) {
 
   return (
     <FormStoreContext.Provider value={store}>
       <FormOptionsContext.Provider value={options}>
-        <form className={`${style.form} ${className ?? ''}`} onSubmit={onSubmit} target="nm_iframe" action="">
+        <form className={`${style.form} ${className}`} onSubmit={onSubmit} target="nm_iframe" action="">
           {children}
         </form>
         <iframe id="id_iframe" name="nm_iframe" style={{ display: 'none' }}></iframe>

@@ -14,7 +14,7 @@ const TextArea = (props: ITextAreaProps) => {
     onChange(v.target.value)
   }
 
-  return < textarea {...props} onChange={handleChange} className={`${style.textArea ?? ''} ${className ?? ''}`} />
+  return < textarea {...props} onChange={handleChange} className={`${style.textArea} ${className ?? ''}`} />
 }
 
 export default TextArea

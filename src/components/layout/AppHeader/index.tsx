@@ -1,17 +1,17 @@
-import { faDesktop, faMobile, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faMobile, faUser } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { getCurrentUser } from 'common/util'
+import Dropdown from 'components/base/Dropdown'
 import Login from 'components/Login'
 import SignUp from 'components/SignUp'
 import _ from 'lodash'
-import React, { useEffect, useState, Dispatch } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React, { Dispatch, useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link, useLocation } from 'react-router-dom'
 import { IStore } from 'reducers'
+import { ILoginoutAction } from 'reducers/userReducer'
 import style from './index.module.scss'
 import { route } from './route'
-import Dropdown from 'components/base/Dropdown'
-import { IUserAction, ILoginoutAction } from 'reducers/userReducer'
 
 
 const AppHeader = () => {
@@ -43,7 +43,7 @@ const AppHeader = () => {
 
   return (
     <>
-      <div className={`${style.appHeader} black`} id={style.appHeader}>
+      <div className={style.appHeader} id={style.appHeader}>
         <div className={style.menuContainer}>
           {menu}
         </div>

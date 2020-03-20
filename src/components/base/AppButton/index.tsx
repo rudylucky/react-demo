@@ -8,15 +8,13 @@ interface IButtonProps {
   disabled?: boolean
 }
 
-const AppButton = (props: IButtonProps) => {
-
-  const { onClick, className, children } = props
+const AppButton = ({ onClick, disabled, className = '', children }: IButtonProps) => {
 
   return (
     <button
-      {...props}
+      disabled
       onClick={() => onClick()}
-      className={`${style.button ?? ''} ${className ?? ''}`}
+      className={`${style.button} ${className}`}
     >
       {children}
     </button>

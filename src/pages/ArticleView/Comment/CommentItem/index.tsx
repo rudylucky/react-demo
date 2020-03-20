@@ -10,9 +10,7 @@ type ICommentItemProps = ICommentEntity & {
   commentCallback?: Function
 }
 
-const CommentItem = (props: ICommentItemProps) => {
-
-  const { userCode, code, content, username, createTime, children, articleCode, className, commentCallback } = props
+const CommentItem = ({ userCode, code, content, username, createTime, children, articleCode, className = '', commentCallback }: ICommentItemProps) => {
 
   const [replyVisible, setReplyVisible] = useState(false)
 
@@ -21,7 +19,7 @@ const CommentItem = (props: ICommentItemProps) => {
     setReplyVisible(false)
   }
 
-  return <div className={`${style.commentItem ?? ''} ${className ?? ''}`}>
+  return <div className={`${style.commentItem} ${className}`}>
     <div className={style.currentLayer}>
       <div className={style.avater}></div>
       <div className={style.contentContainer}>

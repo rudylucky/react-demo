@@ -16,9 +16,9 @@ interface ICommentFrameProps {
   placeholder?: string
 }
 
-const CommentFrame = (props: ICommentFrameProps) => {
-
-  const { articleCode, buttonName, userCode, submitCallback, placeholder, hidden, parentCode, className } = props
+const CommentFrame = ({
+  articleCode, buttonName, userCode, submitCallback, placeholder, hidden, parentCode, className = ''
+}: ICommentFrameProps) => {
   const commentService = CommentService.getInstance()
 
   const [content, setContent] = useState('')
@@ -46,7 +46,7 @@ const CommentFrame = (props: ICommentFrameProps) => {
 
   return (
     <>
-      <div className={`${style.commentFrame ?? ''} ${className ?? ''}`} hidden={hidden}>
+      <div className={`${style.commentFrame} ${className}`} hidden={hidden}>
         <TextArea placeholder={placeholder} value={content} onChange={v => setContent(v)} className={style.textarea} />
         <AppButton disabled={submitDisabled} onClick={handleSubmit} className={style.button}>{buttonName}</AppButton>
       </div>
