@@ -4,11 +4,14 @@ import FormStoreContext from './FormStoreContext'
 import useFieldChange from './useFieldChange'
 import FormOptionsContext, { FormOptions } from './FormOptionsContext'
 import { getPropName, getValueFromEvent } from './utils'
+import style from './FormField.module.scss'
 
 export interface FormFieldProps extends FormOptions {
   className?: string
+  // 显示的名称
   label?: string
-  name?: string
+  // 在 store 中的键值
+  name: string
   valueProp?: string | ((type: any) => string)
   valueGetter?: (...args: any[]) => any
   suffix?: React.ReactNode
@@ -28,23 +31,28 @@ export default function FormField (props: FormFieldProps) {
   } = props
 
   const store = React.useContext(FormStoreContext)
+
+  if (!store) {
+    throw new Error('FormField should place inside a Form')
+  }
+
   const options = React.useContext(FormOptionsContext)
-  const [value, setValue] = React.useState(name && store ? store.get(name) : undefined)
-  const [error, setError] = React.useState(name && store ? store.error(name) : undefined)
+  const [value, setValue] = React.useState(store.get(name))
+  const [error, setError] = React.useState(store.error(name))
 
   const onChange = React.useCallback(
-    (...args: any[]) => name && store && store.set(name, valueGetter(...args)),
+    (...args: any[]) => store.set(name, valueGetter(...args)),
     [name, store, valueGetter]
   )
 
   useFieldChange(store, name, () => {
-    setValue(store!.get(name!))
-    setError(store!.error(name!))
+    setValue(store.get(name))
+    setError(store.error(name))
   })
 
   let child: any = children
 
-  if (name && store && React.isValidElement(child)) {
+  if (React.isValidElement(child)) {
     const prop = getPropName(valueProp, child && child.type)
     const childProps = { [prop]: value, onChange }
     child = React.cloneElement(child, childProps)
@@ -63,7 +71,7 @@ export default function FormField (props: FormFieldProps) {
     error ? classes.error : '',
     className ? className : '',
     error ? errorClassName : ''
-  ].join('')
+  ].join(' ')
 
   const headerStyle = {
     width: labelWidth,
@@ -72,11 +80,9 @@ export default function FormField (props: FormFieldProps) {
 
   return (
     <div className={classNames}>
-      {label && (
-        <div className={classes.header} style={headerStyle}>
-          {label}
-        </div>
-      )}
+      {label && <div className={classes.header} style={headerStyle}>
+        {label}
+      </div>}
       <div className={classes.container}>
         <div className={classes.control}>{child}</div>
         <div className={classes.message}>{error}</div>
@@ -87,15 +93,15 @@ export default function FormField (props: FormFieldProps) {
 }
 
 const classes = {
-  field: 'rh-form-field ',
-  inline: 'rh-form-field--inline ',
-  compact: 'rh-form-field--compact ',
-  required: 'rh-form-field--required ',
-  error: 'rh-form-field--error ',
+  field: style.formField,
+  inline: style.container,
+  compact: style.compact,
+  required: style.required,
+  error: style.error,
 
-  header: 'rh-form-field__header',
-  container: 'rh-form-field__container',
-  control: 'rh-form-field__control',
-  message: 'rh-form-field__message',
-  footer: 'rh-form-field__footer'
+  header: style.header,
+  container: style.container,
+  control: style.container,
+  message: style.message,
+  footer: style.footer
 }

@@ -4,13 +4,14 @@ import { getCurrentUser } from 'common/util'
 import Login from 'components/Login'
 import SignUp from 'components/SignUp'
 import _ from 'lodash'
-import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect, useState, Dispatch } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { Link, useLocation } from 'react-router-dom'
 import { IStore } from 'reducers'
 import style from './index.module.scss'
 import { route } from './route'
 import Dropdown from 'components/base/Dropdown'
+import { IUserAction, ILoginoutAction } from 'reducers/userReducer'
 
 
 const AppHeader = () => {
@@ -18,12 +19,12 @@ const AppHeader = () => {
   const uid = _.uniqueId()
   const location = useLocation()
 
-  const [loginVisible, setLoginVisible] = useState(false)
+  const [loginVisible, setLoginVisible] = useState(true)
   const [signupVisible, setSignupVisible] = useState(false)
   const username = useSelector<IStore, string | undefined>(v => v.userState.currentUser?.fullName)
   const [fullName, setFullName] = useState<string | undefined>(getCurrentUser()?.fullName)
 
-  console.log(fullName)
+  const dispatch = useDispatch<Dispatch<ILoginoutAction>>()
 
   useEffect(() => {
     setFullName(getCurrentUser()?.fullName)
@@ -36,6 +37,11 @@ const AppHeader = () => {
     </Link>
   </label>)
 
+  const handleLogout = () => {
+    console.log('ssss')
+    dispatch({ type: 'LOGOUT' })
+  }
+
   return (
     <>
       <div className={`${style.appHeader} black`} id={style.appHeader}>
@@ -45,7 +51,15 @@ const AppHeader = () => {
         <div className={style.infoContainer}>
           {
             fullName
-              ? <Dropdown className={style.dropown}>
+              ? <Dropdown className={style.dropown}
+                option={
+                  [
+                    { label: '设置', callback: ()=> {} },
+                    { label: '个人信息', callback: ()=> {} },
+                    { label: '退出登录', callback: handleLogout },
+                  ]
+                }
+              >
                 <span className={style.userContainer}>
                   <FontAwesomeIcon icon={faUser} />
                   <span>{fullName}</span>

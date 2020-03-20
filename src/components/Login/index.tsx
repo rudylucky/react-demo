@@ -3,11 +3,10 @@ import Input from 'components/base/AppInput/Input'
 import AppModal from 'components/base/AppModal'
 import { Form, FormField, FormStore } from 'components/Form'
 import React, { Dispatch } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
+import { ICurrentUser, IUserAction, ILoginAction } from 'reducers/userReducer'
 import UserService, { ILoginParam } from 'services/UserService'
 import style from './index.module.scss'
-import { IUserState, IUserAction, ICurrentUser } from 'reducers/userReducer'
-import { IStore } from 'reducers'
 
 interface LoginProps {
   visible: boolean
@@ -22,7 +21,7 @@ const Login = (props: LoginProps) => {
 
   const loginService = UserService.getInstance()
 
-  const dispatch = useDispatch <Dispatch<IUserAction>>()
+  const dispatch = useDispatch<Dispatch<ILoginAction>>()
 
   const handleLogin = async () => {
     const user: ICurrentUser = await loginService.login(formStore.values as ILoginParam)
@@ -35,10 +34,10 @@ const Login = (props: LoginProps) => {
       <AppModal className={style.loginFrame} title="登录" setVisible={setVisible} visible={visible}>
         <Form store={formStore}>
           <FormField name="username" label='用户名：' className={style.usernameField}>
-            <Input placeholder='测试账号：guest' className={style.usernameInput} />
+            <Input defaultValue='guest' className={style.usernameInput} />
           </FormField>
           <FormField name="password" label='密码：' className={style.passwordField}>
-            <Input placeholder='测试密码：guest' className={style.passwordInput} type='password'/>
+            <Input defaultValue='guest' className={style.passwordInput} type='password'/>
           </FormField>
           <AppButton onClick={handleLogin}>登录</AppButton>
         </Form>

@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 
 import FormStoreContext from './FormStoreContext'
 import useFieldChange from './useFieldChange'

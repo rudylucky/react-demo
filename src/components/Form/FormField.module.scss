@@ -1,0 +1,68 @@
+.formField {
+  display: flex;
+  align-items: flex-start;
+  min-height: 32px;
+
+  &.header {
+    margin-right: 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 14px;
+    text-align: right;
+    height: 32px;
+    min-width: 100px;
+
+    &::before {
+      display: none;
+      content: "*";
+      color: red;
+    }
+  }
+
+  &.container {
+    position: relative;
+    flex: 0 0;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+  &.message {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    font-size: 12px;
+    color: red;
+  }
+
+  &.footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 32px;
+    margin-left: 10px;
+    font-size: 14px;
+  }
+
+  & & {
+    margin-bottom: 0;
+  }
+
+  &.inline {
+    display: inline-flex;
+  }
+
+  &.compact {
+    margin-bottom: 0;
+  }
+
+  &.compact &__message {
+    display: none;
+  }
+
+  &.required &__header::before {
+    display: inline;
+    content: "*";
+    color: red;
+  }
+}

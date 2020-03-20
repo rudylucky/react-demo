@@ -6,12 +6,14 @@ interface IInputProps {
   type?: string
   onChange?: Function
   placeholder?: string
+  defaultValue?: string
 }
 
 const Input = (props: IInputProps) => {
-  const { className, onChange, type, placeholder } = props
+  const { className, onChange, type, placeholder, defaultValue } = props
 
   return <input
+    defaultValue={defaultValue}
     placeholder={placeholder}
     onChange={v => onChange!(v)}
     className={`${className ?? ''} ${style.input ?? ''}`}

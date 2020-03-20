@@ -9,6 +9,10 @@ export function setCurrentUser(user: ICurrentUser) {
   sessionStorage.setItem('user', JSON.stringify(user))
 }
 
+export function rmCurrentUser() {
+  sessionStorage.removeItem('user')
+}
+
 export function merge<A, B>(source: A, target: B): A | B {
   return source
 }

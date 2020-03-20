@@ -1,19 +1,23 @@
 import React, { ReactElement } from 'react'
 import style from './index.module.scss'
 
-interface IDropdown {
-  children: ReactElement
-  className?: string
+export interface DropdownOption {
+  label: string
+  callback: Function
 }
 
-const Dropdown = ({ children, className }: IDropdown) => {
+export interface IDropdown {
+  children: ReactElement
+  className?: string
+  option: Array<DropdownOption>
+}
+
+const Dropdown = ({ children, className, option }: IDropdown) => {
 
   return <>
     <div className={`${style.dropdown} ${className}`}>
       {children}
-      <div className={style.option}>设置</div>
-      <div className={style.option}>个人信息</div>
-      <div className={style.option}>退出登录</div>
+      {option.map(v => <div className={style.option} key={v.label} onClick={() => v.callback()}>{v.label}</div>)}
     </div>
   </>
 }

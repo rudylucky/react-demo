@@ -1,12 +1,18 @@
 import { IUserEntity } from 'services/UserService'
-import { setCurrentUser } from 'common/util'
+import { setCurrentUser, rmCurrentUser } from 'common/util'
 
-export interface IUserAction {
+export interface ILoginAction {
   type: 'LOGIN'
   user: IUserEntity & {
     token: string
   }
 }
+
+export interface ILoginoutAction {
+  type: 'LOGOUT'
+}
+
+export type IUserAction = ILoginAction & ILoginoutAction
 
 export type ICurrentUser = IUserEntity & {
   token: string
@@ -21,6 +27,10 @@ const userReducer = (state: IUserState = {}, action: IUserAction) => {
     case 'LOGIN':
       setCurrentUser(action.user)
       state.currentUser = action.user
+      return state
+    case 'LOGOUT':
+      rmCurrentUser()
+      delete state.currentUser
       return state
     default:
       return state
