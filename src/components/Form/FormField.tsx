@@ -1,4 +1,4 @@
-import React, { Validator } from 'react'
+import React, { Validator, useCallback, useEffect } from 'react'
 
 import FormStoreContext from './FormStoreContext'
 import useFieldChange from './useFieldChange'
@@ -21,7 +21,7 @@ export interface FormFieldProps extends FormOptions {
   defaultValue?: string | number | boolean
 }
 
-export default function FormField ({
+export default function FormField({
   defaultValue,
   className,
   label,
@@ -41,9 +41,11 @@ export default function FormField ({
     throw new Error('FormField should place inside a Form')
   }
 
-  if (defaultValue) {
-    store.set(name, defaultValue)
-  }
+  useEffect(() => {
+    if (defaultValue) {
+      store.set(name, defaultValue)
+    }
+  }, [])
 
   const requiredRule: FormValidator = (value) => {
     if (typeof value === 'undefined') {
@@ -78,8 +80,6 @@ export default function FormField ({
     }
     child = React.cloneElement(child, childProps)
   }
-
-  console.log(value)
 
   return (
     <div className={`${style.formField} ${className ?? ''}`}>

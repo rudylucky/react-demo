@@ -15,7 +15,7 @@ export default class FormStore<T extends Object = any> {
 
   private errors: FormErrors = {}
 
-  public constructor (public values: Partial<T> = {}, private rules: FormRules = {}) {
+  public constructor(public values: Partial<T> = {}, private rules: FormRules = {}) {
     this.initialValues = values as any
     this.values = deepCopy(values) as any
 
@@ -32,12 +32,14 @@ export default class FormStore<T extends Object = any> {
     return name === undefined ? { ...this.values } : deepGet(this.values, name)
   }
 
-  public set (values: Partial<T>): void
-  public set (name: string, value: any, validate?: boolean): void
-  public set (name: any, value?: any, validate: boolean = true) {
+  public set(values: Partial<T>): void
+  public set(name: string, value: any, validate?: boolean): void
+  public set(name: any, value?: any, validate: boolean = true) {
     if (typeof name === 'string') {
       deepSet(this.values, name, value)
-      if (validate) this.validate(name)
+      if (validate) {
+        this.validate(name)
+      }
       this.notify(name)
     } else if (name) {
       Object.keys(name).forEach((n) => this.set(n, name[n]))
@@ -50,10 +52,10 @@ export default class FormStore<T extends Object = any> {
     this.notify('*')
   }
 
-  public error (): FormErrors
-  public error (name: number | string): string | undefined
-  public error (name: string, value: string | undefined): string | undefined
-  public error (...args: any[]) {
+  public error(): FormErrors
+  public error(name: number | string): string | undefined
+  public error(name: string, value: string | undefined): string | undefined
+  public error(...args: any[]) {
     let [name, value] = args
 
     if (args.length === 0) return this.errors
@@ -74,15 +76,15 @@ export default class FormStore<T extends Object = any> {
   }
 
   public addRules = (name: string, rules: Array<FormValidator>) => {
-    this.rules = {
-      ...this.rules,
-      [name]: [...this.rules[name], ...rules]
+    if (!this.rules[name]) {
+      this.rules[name] = rules
     }
+    this.rules[name].concat(rules)
   }
 
-  public validate (): [Error | undefined, T]
-  public validate (name: string): [Error | undefined, any]
-  public validate (name?: string) {
+  public validate(): [Error | undefined, T]
+  public validate(name: string): [Error | undefined, any]
+  public validate(name?: string) {
     if (name) {
       this.validateField(name)
     }
@@ -103,6 +105,6 @@ export default class FormStore<T extends Object = any> {
   }
 
   private validateField = (name: string) => {
-    this.rules.array.forEach(v => v(this.get(name), this.values))
+    this.rules[name]?.forEach(v => v(this.get(name), this.values))
   }
 }

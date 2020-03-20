@@ -4,7 +4,7 @@ import AppModal from 'components/base/AppModal'
 import { Form, FormField, useFormStore } from 'components/Form'
 import React, { Dispatch } from 'react'
 import { useDispatch } from 'react-redux'
-import { ICurrentUser, ILoginAction } from 'reducers/userReducer'
+import { ILoginAction, ICurrentUser } from 'reducers/userReducer'
 import UserService, { ILoginParam } from 'services/UserService'
 import style from './index.module.scss'
 
@@ -26,6 +26,7 @@ const Login = (props: LoginProps) => {
   const handleLogin = async () => {
     const user: ICurrentUser = await loginService.login(formStore.values as ILoginParam)
     dispatch({ type: 'LOGIN', user })
+    console.log(formStore)
     setVisible(false)
   }
 

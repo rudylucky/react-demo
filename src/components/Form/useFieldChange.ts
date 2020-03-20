@@ -2,7 +2,7 @@ import React from 'react'
 
 import FormStore from './FormStore'
 
-export default function useFieldChange<T> (
+export default function useFieldChange<T>(
   store: FormStore<T> | undefined,
   name: string | undefined,
   onChange: (name: string) => void

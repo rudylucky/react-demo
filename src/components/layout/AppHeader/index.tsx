@@ -19,7 +19,7 @@ const AppHeader = () => {
   const uid = _.uniqueId()
   const location = useLocation()
 
-  const [loginVisible, setLoginVisible] = useState(true)
+  const [loginVisible, setLoginVisible] = useState(false)
   const [signupVisible, setSignupVisible] = useState(false)
   const username = useSelector<IStore, string | undefined>(v => v.userState.currentUser?.fullName)
   const [fullName, setFullName] = useState<string | undefined>(getCurrentUser()?.fullName)
