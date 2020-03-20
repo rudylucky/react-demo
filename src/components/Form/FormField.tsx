@@ -5,6 +5,7 @@ import useFieldChange from './useFieldChange'
 import FormOptionsContext, { FormOptions } from './FormOptionsContext'
 import { getPropName, getChangeEventValue } from './utils'
 import style from './FormField.module.scss'
+import _ from 'lodash'
 
 export interface FormFieldProps extends FormOptions {
   className?: string
@@ -66,9 +67,11 @@ export default function FormField ({
 
   const { inline, compact, required, labelWidth, gutter } = { ...options, ...restProps }
 
+  console.log(value)
+
   return (
     <div className={`${style.formField} ${className ?? ''}`}>
-      <span className={`${style.label} ${required && style.required}`}>{label}</span>
+      <span className={`${style.label} ${required && _.isEmpty(_.trim(value)) && style.required}`}>{label}</span>
       <span className={style.container}>
         <div className={style.input}>{child}</div>
         <div className={`${style.message} ${error && style.message}`}>{'请输入用户名'}</div>
