@@ -38,7 +38,6 @@ const AppHeader = () => {
   </label>)
 
   const handleLogout = () => {
-    console.log('ssss')
     dispatch({ type: 'LOGOUT' })
   }
 

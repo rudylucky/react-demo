@@ -2,7 +2,7 @@ import React from 'react'
 
 import FormStoreContext from './FormStoreContext'
 import useFieldChange from './useFieldChange'
-import { getPropName, getValueFromEvent } from './utils'
+import { getPropName, getChangeEventValue } from './utils'
 
 export interface FormItemProps {
   name?: string
@@ -12,7 +12,7 @@ export interface FormItemProps {
 }
 
 export default function FormItem (props: FormItemProps) {
-  const { name, valueProp = 'value', valueGetter = getValueFromEvent, children } = props
+  const { name, valueProp = 'value', valueGetter = getChangeEventValue, children } = props
 
   const store = React.useContext(FormStoreContext)
   const [value, setValue] = React.useState(name && store ? store.get(name) : undefined)

@@ -5,6 +5,8 @@ $headerHeight: 68px;
   height: $headerHeight;
   margin: 0;
   background-color: #2ab48a;
+  position: relative;
+  z-index: 100;
 
   .menuContainer {
     margin: auto;

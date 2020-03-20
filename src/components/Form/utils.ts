@@ -70,7 +70,7 @@ export function getPropName (valueProp: string | ((type: any) => string), type: 
   return typeof valueProp === 'function' ? valueProp(type) : valueProp
 }
 
-export function getValueFromEvent (...args: any[]) {
+export function getChangeEventValue (...args: any[]) {
   const e = args[0] as React.ChangeEvent<any>
   return e && e.target ? (e.target.type === 'checkbox' ? e.target.checked : e.target.value) : e
 }
