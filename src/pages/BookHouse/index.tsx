@@ -1,22 +1,24 @@
-import React, { useRef, useEffect } from 'react'
-import style from './index.module.scss'
+import { Application } from 'pixi.js'
+import React, { useEffect, useRef } from 'react'
 import { draw } from './cvs'
+import style from './index.module.scss'
 
 const BookHouse = () => {
 
-  const cvsRef = useRef<HTMLCanvasElement>(null)
+  const cvsRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const ctx = cvsRef.current?.getContext('2d')
-    if (ctx) {
-      draw(ctx)
-    }
-  })
-
+    const app = new Application({
+      antialias: true, // default: false
+      transparent: false, // default: false
+      resolution: 1 // default: 1
+    })
+    draw(app)
+    cvsRef.current?.appendChild(app.view)
+  }, [])
 
   return <div className={style.bookhouse}>
-    <canvas ref={cvsRef} height='500px' width='500px' className={style.canvas}>
-    </canvas>
+    <div ref={cvsRef} className={style.canvas}></div>
   </div>
 }
 
