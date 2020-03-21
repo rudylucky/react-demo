@@ -1,26 +1,28 @@
-import { Application, Text, TextStyle, Rectangle, Circle, Graphics } from 'pixi.js'
+import { Application, Graphics } from 'pixi.js'
 
 export function draw(app: Application) {
   app.renderer.backgroundColor = 0xeeeeee
 
-  for (let i = 0; i < 17; i++) {
-    const rect = new Graphics()
-    rect.beginFill(0x66ccff)
-    rect.lineStyle(1, 0xFF3300, 1)
-    rect.drawCircle(0, 0, 30)
-    rect.endFill()
-    rect.position.set(50 * i, 30)
-    app.stage.addChild(rect)
+  for (let i = 0; i < 13; i++) {
+    setTimeout(() => {
+      const rect = new Graphics()
+      rect.beginFill(0x66ccff)
+      rect.lineStyle(1, 0xFF3300, 1)
+      rect.drawCircle(0, 0, 30)
+      rect.endFill()
+      rect.position.set(30 * (1 + i) + 30 * i, 30)
+      app.stage.addChild(rect)
 
-    let direct = 5
+      let direct = Math.round(Math.random() * 10) + 3
 
-    app.ticker.add(() => {
-      const position = outWall(rect, 30)
-      if (position.y !== 0) {
-        direct = -direct
-      }
-      rect.y += direct
-    })
+      app.ticker.add(() => {
+        const position = outWall(rect, 30)
+        if (position.y !== 0) {
+          direct = -direct
+        }
+        rect.y += direct
+      })
+    }, Math.random() * 10 * 1000)
   }
 }
 
