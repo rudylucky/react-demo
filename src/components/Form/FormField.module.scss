@@ -1,0 +1,33 @@
+.formField {
+  min-height: 30px;
+  margin: 18px 0;
+  text-align: end;
+
+  .label {
+    margin-right: 10px;
+    font-size: 14px;
+    text-align: right;
+    display: inline-block;
+
+    &.required::before {
+      content: "*";
+      display: inline;
+      color: red;
+    }
+  }
+
+  .container {
+    display: inline-block;
+    .input {
+      min-width: 120px;
+    }
+
+    .message {
+      color: #f00;
+      text-align: start;
+      position: absolute;
+      font-size: 12px;
+      min-width: 100px;
+    }
+  }
+}

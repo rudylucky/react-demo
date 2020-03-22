@@ -1,0 +1,13 @@
+.comment {
+  box-sizing: border-box;
+  background-color: #fff;
+  padding-bottom: 1px;
+
+  .commentFrame {
+    margin-bottom: 10px;
+  }
+
+  & > .commentItem {
+    margin: 0 10px 10px;
+  }
+}

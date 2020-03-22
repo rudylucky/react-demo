@@ -1,0 +1,43 @@
+.menuItem {
+  display: inline-block;
+  a,
+  a:hover,
+  a:active,
+  a:visited,
+  a:link,
+  a:focus {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+    background: none;
+    text-decoration: none;
+  }
+  span {
+    transition: all 0.5s;
+    $height: 44px;
+    margin-top: 20px;
+    text-align: center;
+    background-color: #313433;
+    user-select: none;
+    cursor: pointer;
+    border-radius: 4px;
+    display: inline-block;
+    line-height: $height;
+    margin-right: 24px;
+    height: $height;
+    width: 110px;
+    font-size: 18px;
+    color: #ffffff;
+    letter-spacing: 0.64px;
+    &:hover {
+      background: #1d7e60;
+    }
+  }
+
+  input[type='radio'] {
+    display: none;
+    &:checked + span {
+      background: #2ab48a;
+    }
+  }
+}

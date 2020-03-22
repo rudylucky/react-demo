@@ -2,13 +2,13 @@ import BaseService, { IBaseEntity } from './BaseService'
 import { ContentType } from 'common/requests'
 
 export interface IArticleEntity extends IBaseEntity {
-  title: string,
-  authorCode: string,
-  abstract: string,
-  upVote: number,
-  tag: string,
-  category: string,
-  totalRead: number,
+  title?: string,
+  authorCode?: string,
+  abstract?: string,
+  upVote?: number,
+  tag?: string,
+  category?: string,
+  totalRead?: number,
   content?: string
 }
 

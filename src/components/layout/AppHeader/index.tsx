@@ -1,33 +1,85 @@
-import React from 'react'
+import { faMobile, faUser } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser } from '@fortawesome/free-solid-svg-icons'
-import { useDispatch } from 'react-redux'
-
-const style = require('./index.module.scss')
+import { getCurrentUser } from 'common/util'
+import Dropdown from 'components/base/Dropdown'
+import Login from 'components/Login'
+import SignUp from 'components/SignUp'
+import _ from 'lodash'
+import React, { Dispatch, useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, useLocation } from 'react-router-dom'
+import { IStore } from 'reducers'
+import { ILoginoutAction } from 'reducers/userReducer'
+import style from './index.module.scss'
+import { route } from './route'
 
 
 const AppHeader = () => {
 
-  const username = '洛霖'
+  const uid = _.uniqueId()
+  const location = useLocation()
 
-  const dispatch = useDispatch()
-  dispatch({ type: 'UPDATE_USER', name: username })
+  const [loginVisible, setLoginVisible] = useState(false)
+  const [signupVisible, setSignupVisible] = useState(false)
+  const username = useSelector<IStore, string | undefined>(v => v.userState.currentUser?.fullName)
+  const [fullName, setFullName] = useState<string | undefined>(getCurrentUser()?.fullName)
+
+  const dispatch = useDispatch<Dispatch<ILoginoutAction>>()
+
+  useEffect(() => {
+    setFullName(getCurrentUser()?.fullName)
+  }, [username])
+
+  const menu = route.map(v => <label key={v.code}>
+    <Link to={v.path}>
+      <input onChange={() => {}} checked={location.pathname.startsWith(v.path)} name={uid} type='radio' />
+      <span>{v.name}</span>
+    </Link>
+  </label>)
+
+  const handleLogout = () => {
+    dispatch({ type: 'LOGOUT' })
+  }
 
   return (
-    <div className={style.appHeader}>
-      <div className={style.userDropdown}>
-        <div className={style.userContainer}>
-          <span className={style.username}>{username}</span>
-          <FontAwesomeIcon className={style.userIcon} icon={faUser} />
+    <>
+      <div className={style.appHeader} id={style.appHeader}>
+        <div className={style.menuContainer}>
+          {menu}
         </div>
-        <div className={style.settingContainer}>
-          <div className={style.userSetting}>设置</div>
-          <div className={style.userSetting}>修改密码</div>
-          <div className={style.userSetting}>个人信息</div>
-          <div className={style.userSetting}>退出登录</div>
+        <div className={style.infoContainer}>
+          {
+            fullName
+              ? <Dropdown className={style.dropown}
+                option={
+                  [
+                    { label: '设置', callback: ()=> {} },
+                    { label: '个人信息', callback: ()=> {} },
+                    { label: '退出登录', callback: handleLogout },
+                  ]
+                }
+              >
+                <span className={style.userContainer}>
+                  <FontAwesomeIcon icon={faUser} />
+                  <span>{fullName}</span>
+                </span>
+              </Dropdown>
+              : <>
+                <span className={style.loginButtonContainer} onClick={() => setLoginVisible(true)}>
+                  <FontAwesomeIcon icon={faMobile} />
+                  <span>登录</span>
+                </span>
+                {/* <span className={style.signupButtonContainer} onClick={() => setSignupVisible(true)}>
+                  <FontAwesomeIcon icon={faDesktop} />
+                  <span>注册</span>
+                </span> */}
+              </>
+          }
         </div>
       </div>
-    </div>
+      <Login visible={loginVisible} setVisible={(v: boolean) => setLoginVisible(v ?? false)} />
+      <SignUp visible={signupVisible} setVisible={(v: boolean) => setSignupVisible(v ?? false)} />
+    </>
   )
 }
 

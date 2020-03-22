@@ -3,7 +3,7 @@ import React from 'react'
 export interface TocProps {
 }
 
-const Toc = (props: TocProps) => {
+const Toc = () => {
   return (
     <div>
     </div>

@@ -1,0 +1,76 @@
+.commentItem {
+  padding: 10px 10px 1px;
+  background-color: rgba($color: #000, $alpha: 0.04);
+  border-radius: 5px;
+  margin-bottom: 10px;
+
+  .commentFrame {
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #eee;
+  }
+
+  .currentLayer {
+    height: 70px;
+    display: flex;
+    align-items: flex-start;
+    border-radius: 5px;
+    .avater {
+      display: inline-block;
+      height: 60px;
+      width: 60px;
+      background-color: #ccc;
+      margin-right: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .contentContainer {
+      flex-grow: 1;
+      height: 70px;
+      box-sizing: border-box;
+      text-align: start;
+      .author {
+        font-size: 18px;
+        margin-top: 4px;
+        color: rgba(0, 0, 0, 0.85);
+        letter-spacing: 0.64px;
+
+        .userCode {
+          font-weight: bold;
+          margin-right: 20px;
+        }
+
+        .date {
+          font-size: 16px;
+          color: #777;
+        }
+      }
+      .content {
+        margin-top: 7px;
+        font-size: 14px;
+        color: rgba(0, 0, 0, 0.65);
+        letter-spacing: 0.5px;
+      }
+      .buttonContainer {
+        user-select: none;
+        float: right;
+        font-size: 14px;
+        color: rgba(0, 0, 0, 0.35);
+        letter-spacing: 0.5px;
+        float: right;
+        .buttonItem {
+          margin-left: 20px;
+          cursor: pointer;
+          &:hover > * {
+            color: #2ab48a;
+          }
+          & > span {
+            color: #000;
+            margin-left: 3px;
+          }
+        }
+      }
+    }
+  }
+}

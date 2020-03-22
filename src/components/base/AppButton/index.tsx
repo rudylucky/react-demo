@@ -1,12 +1,23 @@
 import React from 'react'
+import style from './index.module.scss'
 
 interface IButtonProps {
-  children: any
+  className?: string
+  children?: any
+  onClick: Function
+  disabled?: boolean
 }
 
-const AppButton = (props: IButtonProps) => {
+const AppButton = ({ onClick, disabled, className = '', children }: IButtonProps) => {
+
   return (
-    <button>{props.children}</button>
+    <button
+      disabled
+      onClick={() => onClick()}
+      className={`${style.button} ${className}`}
+    >
+      {children}
+    </button>
   )
 }
 

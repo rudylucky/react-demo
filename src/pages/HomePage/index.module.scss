@@ -1,44 +1,36 @@
-@keyframes slide {
-  0%,
-  15% {
-    margin-left: 0;
-  }
-  20%,
-  35% {
-    margin-left: -100%;
-  }
-  40%,
-  55% {
-    margin-left: -200%;
-  }
-  60%,
-  75% {
-    margin-left: -300%;
-  }
-  80%,
-  95% {
-    margin-left: -400%;
-  }
-}
-
-.homePage {
-  overflow: hidden;
-  margin: auto;
-  max-width: 1024px;
-  .imgContainer {
-    display: none;
-    height: 337px;
-    cursor: pointer;
-    width: 500%;
-    animation: slide 20s ease-out infinite;
-    .slide {
-      background-color: #eee;
-      box-sizing: border-box;
-      width: 20%;
-      height: 100%;
-      float: left;
+.baseLayout {
+  .content {
+    .imgContainer {
+      width: 100%;
+      height: 450px;
+      background-image: url(https://s2.ax1x.com/2020/03/11/8kXoPf.jpg);
+      background-position: center center;
     }
-  }
-  .articleList {
+    .contentContainer {
+      max-width: 1400px;
+      box-sizing: border-box;
+      background-image: linear-gradient(180deg, hsla(0, 0%, 99%, 0.7), #efefef);
+      padding: 10px 40px 40px 10px;
+      position: relative;
+      margin: -150px auto 30px;
+      z-index: 100;
+      @media only screen and (max-width: 500px) {
+        padding: 10px 0px 40px;
+        background-color: rgba($color: #000, $alpha: 0.1);
+      }
+
+      .menuContainer {
+        text-align: start;
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .articleContainer {
+        text-align: start;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+      }
+    }
   }
 }

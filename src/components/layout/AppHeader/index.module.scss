@@ -1,53 +1,68 @@
-$headerHeight: 60px;
+$headerHeight: 68px;
 
 .appHeader {
-  height: 100%;
+  user-select: none;
+  height: $headerHeight;
   margin: 0;
-  .userDropdown {
-    cursor: pointer;
-    height: $headerHeight;
-    float: right;
-    position: relative;
-    user-select: none;
-    .userContainer {
-      line-height: $headerHeight;
-      height: $headerHeight;
-      padding: 0 20px;
-      display: flex;
-      align-items: center;
-      margin-right: 10px;
+  background-color: #2ab48a;
+  position: relative;
+  z-index: 100;
 
-      .username {
-        font-size: 14px;
-        margin-right: 10px;
-      }
-
-      .userIcon {
-        font-size: 25px;
-      }
-    }
-    &:hover .settingContainer {
-      transform: scaleY(1);
-    }
-    .settingContainer {
-      z-index: 200;
-      transition: 250ms;
-      transform-origin: top;
-      transform: scaleY(0);
-      background-color: #eee;
-      border: 0.5px solid #ccc;
-      box-shadow: 0 1px 1px 1px #888;
-      position: relative;
-      width: 100px;
-      .userSetting {
-        height: 40px;
-        line-height: 40px;
-        margin: 0;
-
+  .menuContainer {
+    margin: auto;
+    display: inline-block;
+    label {
+      span {
+        transition: all 0.5s;
+        color: #fff;
+        width: 99px;
+        @media only screen and (max-width: 500px) {
+          width: 70px;
+        }
+        height: $headerHeight;
+        line-height: $headerHeight;
+        display: inline-block;
+        cursor: pointer;
+        font-size: 18px;
         &:hover {
-          background-color: rgba($color: #000000, $alpha: 0.2);
+          background: rgba($color: #000, $alpha: 0.3);
         }
       }
+      input[type='radio'] {
+        display: none;
+        &:checked + span {
+          background: #313433;
+        }
+      }
+    }
+  }
+
+  .infoContainer {
+    float: right;
+    height: $headerHeight;
+    line-height: $headerHeight;
+    font-weight: bold;
+
+    & > span, .userContainer {
+      padding: 0 15px;
+      min-width: 100px;
+      display: inline-block;
+      transition: all 0.5s;
+      cursor: pointer;
+      color: #fff;
+
+      &:hover {
+        background-color: rgba($color: #000, $alpha: 0.3);
+      }
+
+      & > span {
+        margin-left: 10px;
+      }
+    }
+
+    .loginButtonContainer {
+    }
+    .signinButtonContainer {
     }
   }
 }

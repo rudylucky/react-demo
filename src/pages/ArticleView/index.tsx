@@ -1,17 +1,19 @@
-import React, { useState, useEffect } from 'react'
-import marked from 'marked'
-import ArticleService, { IArticleEntity } from 'services/ArticleService'
-import markdownStyle from './markdown.module.scss'
-import style from './index.module.scss'
-
-import prismjs from 'prismjs'
-import { useParams } from 'react-router-dom'
-import util from 'common/util'
-import Comment from './Comment'
-import CommentService from 'services/CommentService'
+import { faArrowCircleDown, faArrowCircleUp, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAngleDoubleLeft, faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons'
+import footerStyle from 'components/layout/AppFooter/index.module.scss'
+import headerStyle from 'components/layout/AppHeader/index.module.scss'
+import Loading from 'components/Loading'
+import marked from 'marked'
+import prismjs from 'prismjs'
+import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
+import { useHistory, useParams } from 'react-router-dom'
+import ArticleService, { IArticleEntity } from 'services/ArticleService'
+import Comment from './Comment'
+import style from './index.module.scss'
+import markdownStyle from './markdown.module.scss'
+import { uuid } from 'common/util'
+
 
 const loadLanguages = require('prismjs/components/')
 loadLanguages(['java', 'bash', 'powershell'])
@@ -32,7 +34,7 @@ const AritcleView = () => {
 
   const [content, setContent] = useState('')
   const [toc, setToc] = useState<IToc>({} as IToc)
-  const { articleId } = useParams()
+  const { articleCode } = useParams()
 
   const [tocCollapse, setTocCollapse] = useState(true)
   const tocContentClassName = tocCollapse ? 'invisible' : ''
@@ -40,7 +42,7 @@ const AritcleView = () => {
   let tempToc: IToc
   const renderer = new marked.Renderer()
   renderer.heading = (text, level) => {
-    var anchor = 'uuid' + util.uuid()
+    var anchor = 'uuid' + uuid()
     const t: IToc = {
       anchor: anchor,
       level: level,
@@ -60,6 +62,8 @@ const AritcleView = () => {
             curr.children.push(newItem)
           }
         }
+      } else {
+        setTitle(text)
       }
     }
 
@@ -80,7 +84,7 @@ const AritcleView = () => {
   }
 
   function buildTOC(parent: IToc) {
-    parent.children.forEach((item, index) => {
+    parent?.children.forEach((item, index) => {
       if (!item.chapter) {
         item.chapter = []
       }
@@ -94,7 +98,7 @@ const AritcleView = () => {
   }
 
   function toDom(parent: IToc) {
-    if (!parent.children ) {
+    if (!parent?.children ) {
     // when toc have not composed already
       return null
     }
@@ -135,8 +139,12 @@ const AritcleView = () => {
     return ['mermaid', ''].includes(lang) ? code : prismjs.highlight(code, prismjs.languages[lang], lang)
   }
 
+  const hightlightCode = (code: any, lang: any) => {
+    return ['mermaid', ''].includes(lang) ? code : prismjs.highlight(code, prismjs.languages[lang], lang)
+  }
+
   marked.setOptions({
-    highlight: highlightCode,
+    highlight: hightlightCode,
     renderer,
     pedantic: false,
     gfm: true,
@@ -149,12 +157,18 @@ const AritcleView = () => {
 
   const [article, setArticle] = useState<IArticleEntity | null>(null)
 
+  const [title, setTitle] = useState<string>('')
+
+  const [loaded, setLoaded] = useState(false)
+
+  document.title = title
+
   useEffect(() => {
     (async () => {
-      if (!articleId) {
+      if (!articleCode) {
         return
       }
-      const content = await ArticleService.getInstance().infoWithContent({ code: articleId } as IArticleEntity)
+      const content = await ArticleService.getInstance().infoWithContent({ code: articleCode } as IArticleEntity)
       if (!content) {
         return
       }
@@ -166,55 +180,69 @@ const AritcleView = () => {
         ...content,
         content: ''
       })
+      setLoaded(true)
     })()
   }, [])
 
-  useEffect(() => {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault()
-        const href = anchor.getAttribute('href')
-        if (!href) {
-          return
-        }
-        const elem = document.querySelector(href)
-        if (!elem) {
-          return
-        }
+  const smoothScroll = (anchor: Element) => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault()
+      const href = anchor.getAttribute('href')
+      if (!href) {
+        return
+      }
+      const elem = document.querySelector(href)
+      if (!elem) {
+        return
+      }
         elem?.scrollIntoView({
           behavior: 'smooth'
         })
-      })
     })
+  }
+
+  useEffect(() => {
+    document.querySelectorAll('a[href^="#"]').forEach(smoothScroll)
+    const headerDom = document.getElementById(headerStyle.header)
+    headerDom && smoothScroll(headerDom)
+    const footerDom = document.querySelector(footerStyle.footer)
+    footerDom && smoothScroll(footerDom)
   }, [toc])
 
-  const comments = CommentService.getInstance().getComments()
   const dispatch = useDispatch()
 
   dispatch({ type: 'UPDATE_ARTICLE', title: article?.title ?? '' })
 
-  return (
+  const history = useHistory()
+
+  return <Loading loaded={loaded}>
     <div className={style.articleView}>
-      <div className={`${style.toc}  ${style[tocContentClassName]}`}>
-        <div className={`${style.tocContent} ${style[tocContentClassName]}`}>
-          {toDom(toc)}
-        </div>
-        <div className={style.tocButton} onClick={() => setTocCollapse(!tocCollapse)}>
-          <FontAwesomeIcon className={style.userIcon} icon={tocCollapse ? faAngleDoubleRight : faAngleDoubleLeft } />
-        </div>
-      </div>
-      <div className={`${style.mockToc} ${style[tocContentClassName]}`}></div>
       <div className={style.markdown}>
+        <div className={style.titleContainer}>
+          <span className={style.title} onClick={() => history.goBack()}>
+            <FontAwesomeIcon icon={faArrowLeft} />
+            <span>{title}</span>
+          </span>
+          <span className={style.createDate}>{new Date().toLocaleDateString()}</span>
+        </div>
         <div
           className={markdownStyle['markdown-body']}
           dangerouslySetInnerHTML={{ __html: content }}>
         </div>
-        <div className={style.comment}>
-          {comments.map(v => <Comment {...v} />)}
-        </div>
+      </div>
+      <div className={style.comment}>
+        <Comment articleCode={articleCode} />
+      </div>
+      <div className={style.toTop}>
+        <a href={'#' + headerStyle.appHeader}>
+          <FontAwesomeIcon className={style.icon} icon={faArrowCircleUp} />
+        </a>
+        <a href={'#' + footerStyle.appFooter}>
+          <FontAwesomeIcon className={style.icon} icon={faArrowCircleDown} />
+        </a>
       </div>
     </div>
-  )
+  </Loading>
 }
 
 export default AritcleView

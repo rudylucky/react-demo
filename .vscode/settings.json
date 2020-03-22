@@ -1,0 +1,35 @@
+{
+  "editor.fontFamily": "'Cascadia Code PL', 'Microsoft YaHei UI', Consolas, 'Courier New', monospace",
+  "editor.fontLigatures": true,
+  "breadcrumbs.enabled": false,
+  "editor.minimap.enabled": false,
+  "editor.formatOnPaste": true,
+  "eslint.format.enable": true,
+  // "[typescript]": {
+  //   "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  // },
+  "files.eol": "\n",
+  // "[typescriptreact]": {
+  //   "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  // },
+  // "[javascript]": {
+  //   "editor.defaultFormatter": "vscode.typescript-language-features"
+  // },
+  // "editor.formatOnType": true,
+  // "[json]": {
+  //   "editor.defaultFormatter": "vscode.json-language-features"
+  // },
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  // "prettier.jsxSingleQuote": true,
+  // "prettier.singleQuote": true,
+  // "typescript.format.semicolons": "remove",
+  // "javascript.format.semicolons": "remove",
+  // "[jsonc]": {
+  //   "editor.defaultFormatter": "vscode.json-language-features"
+  // },
+  // "[javascriptreact]": {
+  //   "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  // },
+  "python.dataScience.sendSelectionToInteractiveWindow": false,
+  "workbench.activityBar.visible": false,
+}

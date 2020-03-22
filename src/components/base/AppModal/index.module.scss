@@ -5,27 +5,41 @@
   left: 0;
   right: 0;
   background-color: rgba($color: #000000, $alpha: 0.8);
-  z-index: 300;
+  z-index: 200;
   display: flex;
   align-items: center;
   justify-content: center;
 
-  .model {
-    min-width: 300px;
+  .modal {
+    min-width: 200px;
+    min-height: 50px;
     background-color: #fff;
+    position: relative;
 
     .title {
       font-weight: bold;
       border-bottom: 1px solid #aaa;
       background-color: #eee;
-      padding: 5px;
+      height: 34px;
+      line-height: 12px;
+      padding: 10px;
+    }
+    .closeButton {
+      position: absolute;
+      right: 10px;
+      top: 7px;
+      font-size: 20px;
+      cursor: pointer;
+      &:hover {
+        color: #2ab48a;
+      }
     }
     .content {
-      border-bottom: 1px solid #aaa;
-      padding: 5px;
+      padding: 5px 10px;
     }
     .foot {
       flex-grow: 0;
+      border-top: 1px solid #aaa;
       background-color: #eee;
       & > button {
         cursor: pointer;

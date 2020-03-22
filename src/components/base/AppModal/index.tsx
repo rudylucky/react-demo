@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react'
-
+import { faWindowClose } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React, { useEffect } from 'react'
 import style from './index.module.scss'
+
 
 export interface IModelProps {
   children?: any
@@ -11,41 +13,63 @@ export interface IModelProps {
   cancelText?: string
   visible: boolean
   setVisible: Function
+  className?: string
 }
 
-const AppModal = (props: IModelProps) => {
+const AppModal = ({
+  cancel, visible, setVisible, title, children,
+  confirmText, cancelText, className = '', confirm
+}: IModelProps) => {
 
-  const { visible, setVisible } = props
+  const showFooter = (typeof cancel === 'function') || (typeof confirm === 'function')
 
-  const cancel = () => {
-    const cancel = props.cancel
+  const handleCancel = () => {
     cancel && cancel()
     setVisible(false)
   }
 
-  const confirm = () => {
-    const confirm = props.confirm
+  const handleConfirm = () => {
     confirm && confirm()
     setVisible(false)
   }
+
+  const escapPreessHandler = (e: KeyboardEvent) => {
+    if (e.keyCode === 27 && visible === true) {
+      setVisible(false)
+    }
+  }
+
+  useEffect(() => {
+    if (visible === true) {
+      window.addEventListener('keyup', escapPreessHandler)
+    } else {
+      // TODO: not work!!!
+      window.removeEventListener('keyup', escapPreessHandler)
+    }
+  }, [visible])
+
   return (
     <>
       {
         visible &&
-          <div className={style.background}>
-            <div className={style.model}>
-              <div className={style.title}>
-                {props.title ?? '请输入内容'}
-              </div>
-              <div className={style.content}>
-                {props.children}
-              </div>
-              <div className={style.foot}>
-                <button onClick={confirm}>{props.confirmText ?? '确定'}</button>
-                <button onClick={cancel}>{props.cancelText ?? '取消'}</button>
-              </div>
+        <div className={style.background}>
+          <div className={`${style.modal} ${className}`}>
+            <div className={style.title}>
+              <span>{title}</span>
             </div>
+            <FontAwesomeIcon onClick={handleCancel} className={style.closeButton} icon={faWindowClose} />
+            <div className={style.content}>
+              {children}
+            </div>
+            {
+              showFooter &&
+              <div className={style.foot}>
+                <button onClick={handleConfirm}>{confirmText ?? '确定'}</button>
+                <button onClick={handleCancel}>{cancelText ?? '取消'}</button>
+              </div>
+            }
           </div>
+        </div>
       }
     </>
 

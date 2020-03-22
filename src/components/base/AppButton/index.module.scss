@@ -1,0 +1,24 @@
+.button {
+  margin: auto;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 80px;
+  color: #fff;
+  padding: 0 20px;
+  border: 2px solid #29a77f;
+  outline: none;
+  cursor: pointer;
+  background-color: #2ab48a;
+  transition: all 1s;
+  &:hover {
+    background-color: #2a94b4;
+    border: 2px solid #296aa7;
+  }
+  &:disabled {
+    cursor: auto;
+    background-color: #aaa;
+    border-color: #999;
+  }
+}

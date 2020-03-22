@@ -1,4 +1,6 @@
-import { IResponse, IBaseEntity } from 'services/BaseService'
+import { IBaseEntity, IResponse } from 'services/BaseService'
+import _ from 'lodash'
+import { getCurrentUser } from './util'
 
 export enum HttpMethod {
   GET,
@@ -65,6 +67,10 @@ function callRemote(config: IConfig & RequestInit) {
   // })
   const headers: HeadersInit = new Headers()
   headers.set('content-type', config.contentType ?? ContentType.JSON)
+  const token = getCurrentUser()?.token
+  if (token) {
+    headers.set('Authorization', token)
+  }
   config.headers = headers
   if (config.contentType === ContentType.FORM) {
     config.body = queryString(config.data)
@@ -97,6 +103,7 @@ function checkHttpStatus(resp: Response) {
 function checkResposeData(resp: IResponse<IBaseEntity>): any {
   if (resp.errorCode) {
     console.error('http fetch error', resp)
+    throw new Error(resp.errorMessage)
   }
   // if (typeof resp.data !== 'string') {
   //   console.info('http fetch result', resp.data)

@@ -1,0 +1,67 @@
+.appFooter {
+  height: 220px;
+  text-align: start;
+  background-color: #313433;
+  color: #fff;
+
+  .footerContainer {
+    margin: auto;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+
+    @media only screen and (max-width: 500px) {
+      margin: 0 10px;
+    }
+
+    .declare {
+      font-size: 20px;
+      margin-top: 220px;
+    }
+
+    .infoContainer {
+      box-sizing: border-box;
+      max-width: 340px;
+
+      & > div {
+        font-size: 14px;
+      }
+
+      .interest {
+        padding-bottom: 5px;
+        font-size: 16px;
+      }
+
+      .interestEn {
+        font-size: 12px;
+
+        &::after {
+          margin: 12px 0 20px;
+          content: "";
+          display: block;
+          width: 33px;
+          height: 4px;
+          background-color: #fff;
+          opacity: 0.5;
+        }
+      }
+
+      .name,
+      .address,
+      .telephone,
+      .email {
+        margin-top: 8px;
+      }
+    }
+    .qrCode {
+      width: 120px;
+      height: 120px;
+      background-color: #aaa;
+      background-image: url(https://s2.ax1x.com/2020/03/11/8AOgd1.jpg);
+      background-size: 100%;
+    }
+  }
+}

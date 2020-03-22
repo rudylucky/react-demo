@@ -1,0 +1,19 @@
+.dropdown {
+  background-color: #2ab48a;
+  & > .option {
+    height: 0;
+    overflow: hidden;
+    transition: all 0.5s;
+    line-height: 40px;
+    cursor: pointer;
+    margin: auto;
+    color: #fff;
+    background-color: rgba($color: #000, $alpha: 0.1);
+    &:hover {
+      background-color: rgba($color: #000, $alpha: 0.3);
+    }
+  }
+  &:hover > .option {
+    height: 40px;
+  }
+}

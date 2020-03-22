@@ -1,0 +1,14 @@
+.aboutme {
+  max-width: 980px;
+  margin: auto;
+
+  .infoContainer {
+    padding: 50px 0;
+    .content {
+      text-align: start;
+    }
+    .author {
+      float: right;
+    }
+  }
+}

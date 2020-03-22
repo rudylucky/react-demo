@@ -1,12 +1,11 @@
+/* eslint-disable react/display-name */
 import React from 'react'
-import ArticleList from 'components/ArticleList'
 import HomePage from 'pages/HomePage'
 import AritcleView from 'pages/ArticleView'
 import { Redirect } from 'react-router-dom'
-import util from './util'
-import _ from 'lodash'
+import _, { flatMap } from 'lodash'
 import Test from 'components/Test'
-import AppModal from 'components/base/AppModal'
+import ArticleList from 'pages/HomePage/ArticleList'
 
 export interface IRoute {
   name?: string,
@@ -48,30 +47,44 @@ const menuRoute: Array<IRoute> = [{
   name: '技术',
   code: 'tech',
   path: '/tech',
-  component: ArticleList,
+  component: () => <ArticleList category='tech' />,
   children: [{
     name: 'Java',
     code: 'java',
     path: '/java',
+    component: () => <ArticleList category='tech:java' />,
   }, {
     name: 'JS',
     code: 'js',
-    path: '/js'
+    path: '/js',
+    component: () => <ArticleList category='tech:js' />,
   }, {
     name: 'Python',
     code: 'python',
     path: '/python',
+    component: () => <ArticleList category='tech:python' />,
+  }, {
+    name: 'Linux',
+    code: 'linux',
+    path: '/linux',
+    component: () => <ArticleList category='tech:linux' />,
+  }, {
+    name: 'DevOps',
+    code: 'devops',
+    path: '/devops',
+    component: () => <ArticleList category='tech:devops' />,
   }, {
     name: 'Golang',
     code: 'golang',
-    path: '/golang'
+    path: '/golang',
+    component: () => <ArticleList category='tech:golang' />,
   }],
 },
 {
   name: '生活',
   code: 'life',
   path: '/life',
-  component: ArticleList,
+  component: () => <ArticleList category='tech:life' />,
   children: [{
     name: '电影',
     code: 'movie',
@@ -88,13 +101,13 @@ const menuRoute: Array<IRoute> = [{
   name: '笔记',
   code: 'note',
   path: '/note',
-  component: ArticleList,
+  component: () => <ArticleList category='tech:note' />,
 }]
 const route = menuRoute.concat(hiddenRoute)
 
 export function routeName(path: string): IRoute | undefined {
   const s = (JSON.parse(JSON.stringify(menuRoute)) as Array<IRoute>)
-  return util.flatMap(s, v => [v].concat(v.children ?? []))
+  return flatMap(s, v => [v].concat(v.children ?? []))
     .find(v => v.code === path)
 }
 

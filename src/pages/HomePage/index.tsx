@@ -1,34 +1,31 @@
-import React, { useState } from 'react'
+import _ from 'lodash'
+import React from 'react'
+import { useParams } from 'react-router-dom'
+import ArticleList from './ArticleList'
 import style from './index.module.scss'
-import ArticleList from 'components/ArticleList'
+import MenuItem from './Menuitem/MenuItem'
+import { route } from './route'
 
 interface IHomePageProps {
-  children?: any
 }
 
-const HomePage = (props: IHomePageProps) => {
+const HomePage = () => {
+
+  let { category } = useParams()
+  category = category ? `${category}` : undefined
 
   return (
-    <div className={style.homePage}>
-      <div className={style.imgContainer}>
-        <div className={style.slide}>
-          <img src="https://i.loli.net/2019/12/26/MxjikTyo3QlDUdp.jpg" width="100%"></img>
+    <div className={style.baseLayout}>
+      <div className={style.content}>
+        <div className={style.imgContainer}></div>
+        <div className={style.contentContainer}>
+          <div className={style.menuContainer}>
+            {route.map(v => <MenuItem className={style.menuItem} type={_.uniqueId()} key={v.code} {...v} />)}
+          </div>
+          <div className={style.articleContainer}>
+            <ArticleList category={category} />
+          </div>
         </div>
-        <div className={style.slide}>
-          <img src="https://i.loli.net/2019/12/26/MxjikTyo3QlDUdp.jpg" width="100%"></img>
-        </div>
-        <div className={style.slide}>
-          <img src="https://i.loli.net/2019/12/26/MxjikTyo3QlDUdp.jpg" width="100%"></img>
-        </div>
-        <div className={style.slide}>
-          <img src="https://i.loli.net/2019/12/26/MxjikTyo3QlDUdp.jpg" width="100%"></img>
-        </div>
-        <div className={style.slide}>
-          <img src="https://i.loli.net/2019/12/26/MxjikTyo3QlDUdp.jpg" width="100%"></img>
-        </div>
-      </div>
-      <div className={style.articleList}>
-        <ArticleList />
       </div>
     </div>
   )
