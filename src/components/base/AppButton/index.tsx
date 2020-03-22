@@ -12,7 +12,7 @@ const AppButton = ({ onClick, disabled, className = '', children }: IButtonProps
 
   return (
     <button
-      disabled
+      disabled={disabled}
       onClick={() => onClick()}
       className={`${style.button} ${className}`}
     >

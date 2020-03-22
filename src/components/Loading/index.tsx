@@ -1,4 +1,4 @@
-import React, { DOMElement, useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import style from './index.module.scss'
 
 interface ILoadingProps {

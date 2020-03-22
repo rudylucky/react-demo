@@ -1,5 +1,4 @@
 import { IBaseEntity, IResponse } from 'services/BaseService'
-import _ from 'lodash'
 import { getCurrentUser } from './util'
 
 export enum HttpMethod {

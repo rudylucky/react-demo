@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import style from './index.module.scss'
-import ArticleService, { IArticleEntity } from 'services/ArticleService'
+import React from 'react'
 import { Link } from 'react-router-dom'
+import { IArticleEntity } from 'services/ArticleService'
+import style from './index.module.scss'
 
 interface ITimeLineProps {
   data: Array<IArticleEntity>

@@ -1,12 +1,11 @@
-import React, { Validator, useCallback, useEffect } from 'react'
-
+import React, { useEffect } from 'react'
+import style from './FormField.module.scss'
+import FormOptionsContext, { FormOptions } from './FormOptionsContext'
+import { FormValidator } from './FormStore'
 import FormStoreContext from './FormStoreContext'
 import useFieldChange from './useFieldChange'
-import FormOptionsContext, { FormOptions } from './FormOptionsContext'
-import { getPropName, getChangeEventValue } from './utils'
-import style from './FormField.module.scss'
-import _ from 'lodash'
-import { FormValidator } from './FormStore'
+import { getChangeEventValue, getPropName } from './utils'
+
 
 export interface FormFieldProps extends FormOptions {
   className?: string
@@ -32,7 +31,7 @@ export default function FormField({
 }: FormFieldProps) {
 
   const options = React.useContext(FormOptionsContext)
-  const { inline, compact, required, labelWidth, gutter } = { ...options, ...restProps }
+  const { required } = { ...options, ...restProps }
 
   const store = React.useContext(FormStoreContext)
   if (!store) {

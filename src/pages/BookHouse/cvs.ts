@@ -1,44 +1,41 @@
 import { Application, Graphics } from 'pixi.js'
 
+let v = 0
+
 export function draw(app: Application) {
   app.renderer.backgroundColor = 0xeeeeee
 
-  for (let i = 0; i < 13; i++) {
+  for (let i = 1; i <= 1; i++) {
     setTimeout(() => {
       const rect = new Graphics()
       rect.beginFill(0x66ccff)
       rect.lineStyle(1, 0xFF3300, 1)
       rect.drawCircle(0, 0, 30)
       rect.endFill()
-      rect.position.set(30 * (1 + i) + 30 * i, 30)
+      rect.position.set(60 * i, 30)
       app.stage.addChild(rect)
 
-      let direct = Math.round(Math.random() * 10) + 3
 
       app.ticker.add(() => {
-        const position = outWall(rect, 30)
-        if (position.y !== 0) {
-          direct = -direct
-        }
-        rect.y += direct
+        move(rect, v)
       })
-    }, Math.random() * 10 * 1000)
+    }, 1000)
   }
 }
 
-function testPart(v: number, limit: number, r: number): 0 | -1 | 1 {
-  if (v - r < 0) {
-    return -1
+function move(obj: Graphics, v0: number) {
+  const g = 9.8
+  let vt = v0 + g / 60
+  let delta = (vt * vt - v0 * v0) * 10
+  if (obj.y + delta > 570) {
+    vt = -vt * 0.6
+    delta = -delta
   }
-  if (v + r > limit) {
-    return 1
+  if (Math.abs(v) < 1 && obj.y > 568) {
+    vt = v0 = 0
+    delta = 0
+    obj.y = 570
   }
-  return 0
-}
-
-function outWall(o: Graphics, x: number, y: number = x) {
-  return {
-    x: testPart(o.x, 800, x),
-    y: testPart(o.y, 600, y)
-  }
+  obj.y += delta
+  v = vt
 }

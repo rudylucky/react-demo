@@ -1,5 +1,6 @@
 import { faArrowCircleDown, faArrowCircleUp, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { uuid } from 'common/util'
 import footerStyle from 'components/layout/AppFooter/index.module.scss'
 import headerStyle from 'components/layout/AppHeader/index.module.scss'
 import Loading from 'components/Loading'
@@ -12,11 +13,6 @@ import ArticleService, { IArticleEntity } from 'services/ArticleService'
 import Comment from './Comment'
 import style from './index.module.scss'
 import markdownStyle from './markdown.module.scss'
-import { uuid } from 'common/util'
-
-
-const loadLanguages = require('prismjs/components/')
-loadLanguages(['java', 'bash', 'powershell'])
 
 interface IToc {
   anchor: string,
@@ -24,10 +20,6 @@ interface IToc {
   text: string,
   chapter: Array<number>,
   children: Array<IToc>
-}
-
-interface IArticleViewProps {
-  children?: any
 }
 
 const AritcleView = () => {
