@@ -24,16 +24,16 @@ export interface IUserState {
 
 const userReducer = (state: IUserState = {}, action: IUserAction) => {
   switch (action.type) {
-    case 'LOGIN':
-      setCurrentUser(action.user)
-      state.currentUser = action.user
-      return state
-    case 'LOGOUT':
-      rmCurrentUser()
-      delete state.currentUser
-      return state
-    default:
-      return state
+  case 'LOGIN':
+    setCurrentUser(action.user)
+    state.currentUser = action.user
+    return state
+  case 'LOGOUT':
+    rmCurrentUser()
+    delete state.currentUser
+    return state
+  default:
+    return state
   }
 }
 

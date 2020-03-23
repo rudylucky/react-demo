@@ -14,8 +14,8 @@ export interface IArticleState {
 
 const articleReducer = (state = {}, action: IArticleAction) => {
   switch (action.type) {
-    default:
-      return state
+  default:
+    return state
   }
 }
 

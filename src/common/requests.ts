@@ -13,10 +13,10 @@ export enum ContentType {
 
 function parseMethod(method: HttpMethod): string {
   switch (method) {
-    case HttpMethod.GET:
-      return 'get'
-    case HttpMethod.POST:
-      return 'post'
+  case HttpMethod.GET:
+    return 'get'
+  case HttpMethod.POST:
+    return 'post'
   }
 }
 

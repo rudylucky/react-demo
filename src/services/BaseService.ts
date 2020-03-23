@@ -36,7 +36,7 @@ abstract class BaseService<T extends IBaseEntity> {
   }
 
   list (data: T = {} as T): Promise<Array<T>> {
-    return this.request('/list', data)
+    return this.request('/lis', data)
   }
 
   save (data: T) {
